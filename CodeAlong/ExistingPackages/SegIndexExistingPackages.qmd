@@ -1,0 +1,82 @@
+---
+title: "Computing segregation indices from existing packages"
+author: "C. Cottineau-Mugadza & I. Urria Yañez"
+
+date: today  
+format:
+  html:
+    toc: true
+    html-math-method: katex
+    
+editor: visual
+bibliography: assets/References.bib 
+csl: assets/apa.csl
+link-citations: true
+theme: united 
+---
+
+## Introduction
+
+Context and aim. Process.
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(sf)
+```
+
+## Data
+
+```{r dataprep}
+#| include: false
+
+Rotterdam <- st_read("data/OECD_fuas/fuas.shp") |>
+  filter(fuaname_en == "Rotterdam") |>
+  st_transform(28992) |>
+  st_buffer(dist = 100)
+
+muni <- st_read("data/gemeenten.gpkg") |>
+  st_transform(28992) |>
+  st_intersection(Rotterdam) |>
+  st_write("processed_data/rotterdam_muni.gpkg")
+
+grid2025 <-  st_read("data/CBS_grids/2025/cbs_vk500_2025_v1.gpkg") |>
+  st_transform(28992) |>
+  st_intersection(Rotterdam) |>
+  mutate(older65 = if_else(aantal_inwoners_65_jaar_en_ouder < 0, NA, aantal_inwoners_65_jaar_en_ouder)) |>
+  st_write("processed_data/rotterdam_500m.gpkg")
+
+
+```
+
+We are using open data from the Dutch statistics office CBS, and in particular 500x500 grid cells of Rotterdam. This is count-data coming from the Dutch register, as the 500m x 500m resolution [@cbs500]. The data was clipped to fit the Rotterdam functional area as defined by the OECD [@oecdFUA]. Municipal boundaries come from the kadaster [@kadaster].
+
+```{r mapRotterdam}
+
+rotterdam_muni <- st_read("processed_data/rotterdam_muni.gpkg") |>
+  st_transform(28992) 
+
+rotterdam2025 <-  st_read("processed_data/rotterdam_500m.gpkg") |>
+  st_transform(28992) 
+
+FENIX <- rotterdam2025 |> filter(crs28992res500m == "E0925N4350")
+
+ggplot() +
+  geom_sf(data = rotterdam2025, aes(fill = older65), linewidth=0) +
+  geom_sf(data = rotterdam_muni, colour = "orange", linewidth=0.4) +
+  geom_sf(data = FENIX, colour = "yellow", linewidth=0.8) 
+
+```
+
+## Dissimilarity
+Ignacio
+
+## Entropy
+Clémentine
+
+## Index comparison
+
+
+
+
