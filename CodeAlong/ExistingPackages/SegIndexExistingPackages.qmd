@@ -44,7 +44,23 @@ muni <- st_read("data/gemeenten.gpkg") |>
 grid2025 <-  st_read("data/CBS_grids/2025/cbs_vk500_2025_v1.gpkg") |>
   st_transform(28992) |>
   st_intersection(Rotterdam) |>
-  mutate(older65 = if_else(aantal_inwoners_65_jaar_en_ouder < 0, NA, aantal_inwoners_65_jaar_en_ouder)) |>
+  mutate(
+    across(
+      starts_with("aantal_inwoners_"),
+      ~ if_else(.x < 0, NA, .x)
+    )
+  ) |>
+  rename(
+    age_0_15    = aantal_inwoners_0_tot_15_jaar,
+    age_15_25   = aantal_inwoners_15_tot_25_jaar,
+    age_25_45   = aantal_inwoners_25_tot_45_jaar,
+    age_45_65   = aantal_inwoners_45_tot_65_jaar,
+    age_older65 = aantal_inwoners_65_jaar_en_ouder
+  ) |> 
+  mutate(
+    age_under65 = age_0_15 + age_15_25 + age_25_45 + age_45_65 
+  ) |>
+  select(crs28992res500m, starts_with("age_")) |> 
   st_write("processed_data/rotterdam_500m.gpkg")
 
 
@@ -63,20 +79,18 @@ rotterdam2025 <-  st_read("processed_data/rotterdam_500m.gpkg") |>
 FENIX <- rotterdam2025 |> filter(crs28992res500m == "E0925N4350")
 
 ggplot() +
-  geom_sf(data = rotterdam2025, aes(fill = older65), linewidth=0) +
+  geom_sf(data = rotterdam2025, aes(fill = age_older65), linewidth=0) +
   geom_sf(data = rotterdam_muni, colour = "orange", linewidth=0.4) +
   geom_sf(data = FENIX, colour = "yellow", linewidth=0.8) 
 
 ```
 
 ## Dissimilarity
+
 Ignacio
 
 ## Entropy
+
 Clémentine
 
 ## Index comparison
-
-
-
-
