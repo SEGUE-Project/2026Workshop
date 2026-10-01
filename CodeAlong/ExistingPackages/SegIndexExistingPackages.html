@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="C. Cottineau-Mugadza &amp; I. Urria Yañez">
-<meta name="dcterms.date" content="2026-09-22">
+<meta name="dcterms.date" content="2026-10-01">
 
 <title>Computing segregation indices from existing packages</title>
 <style>
@@ -107,7 +107,14 @@ div.csl-indent {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
+  <ul class="collapse">
+  <li><a href="#population-density-and-spatial-distribution" id="toc-population-density-and-spatial-distribution" class="nav-link" data-scroll-target="#population-density-and-spatial-distribution">Population density and spatial distribution</a></li>
+  <li><a href="#ratio-of-populations" id="toc-ratio-of-populations" class="nav-link" data-scroll-target="#ratio-of-populations">Ratio of populations</a></li>
+  </ul></li>
+  <li><a href="#dissimilarity" id="toc-dissimilarity" class="nav-link" data-scroll-target="#dissimilarity">Dissimilarity</a></li>
+  <li><a href="#entropy-clémentine" id="toc-entropy-clémentine" class="nav-link" data-scroll-target="#entropy-clémentine">Entropy (Clémentine)</a></li>
+  <li><a href="#index-comparison" id="toc-index-comparison" class="nav-link" data-scroll-target="#index-comparison">Index comparison</a></li>
   </ul>
 </nav>
 </div>
@@ -132,7 +139,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 22, 2026</p>
+      <p class="date">October 1, 2026</p>
     </div>
   </div>
   
@@ -154,12 +161,56 @@ div.csl-indent {
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>We are using CBS 500x500m grid cells of Rotterdam as our main source of data. This is counts data coming from the Dutch register, as the 500m x 500m resolution <span class="citation" data-cites="cbs500">(<a href="#ref-cbs500" role="doc-biblioref">Statistiek (CBS), 2026</a>)</span>. The data was clipped to fit the Rotterdam functional area as defined by the OECD <span class="citation" data-cites="oecdFUA">(<a href="#ref-oecdFUA" role="doc-biblioref">OECD, 2023</a>)</span>. Municipal boundaries come from the kadaster <span class="citation" data-cites="kadaster">(<a href="#ref-kadaster" role="doc-biblioref">Kadaster, 2026</a>)</span>.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> grid2025, <span class="fu">aes</span>(<span class="at">fill =</span> older65), <span class="at">linewidth=</span><span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> muni, <span class="at">colour =</span> <span class="st">"orange"</span>, <span class="at">linewidth=</span><span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> FENIX, <span class="at">colour =</span> <span class="st">"yellow"</span>, <span class="at">linewidth=</span><span class="fl">0.8</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We are using open data from the Dutch statistics office CBS, and in particular 500x500 grid cells of Rotterdam. This is count-data coming from the Dutch register, as the 500m x 500m resolution <span class="citation" data-cites="cbs500">(<a href="#ref-cbs500" role="doc-biblioref">Statistiek (CBS), 2026</a>)</span>. The data was clipped to fit the Rotterdam functional area as defined by the OECD <span class="citation" data-cites="oecdFUA">(<a href="#ref-oecdFUA" role="doc-biblioref">OECD, 2023</a>)</span>. Municipal boundaries come from the kadaster <span class="citation" data-cites="kadaster">(<a href="#ref-kadaster" role="doc-biblioref">Kadaster, 2026</a>)</span>.</p>
+<section id="population-density-and-spatial-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="population-density-and-spatial-distribution">Population density and spatial distribution</h3>
+<div class="cell" data-verbose="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rotterdam_muni <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"processed_data/rotterdam_muni.gpkg"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">28992</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `rotterdam_muni' from data source 
+  `/Users/ccottineau/GitHub/2026Workshop/CodeAlong/ExistingPackages/processed_data/rotterdam_muni.gpkg' 
+  using driver `GPKG'
+Simple feature collection with 108 features and 12 fields
+Geometry type: MULTILINESTRING
+Dimension:     XY
+Bounding box:  xmin: 48049.64 ymin: 402346.9 xmax: 123368.9 ymax: 453421
+Projected CRS: Amersfoort / RD New</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rotterdam_water <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"processed_data/rotterdam_water.gpkg"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">28992</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `rotterdam_water' from data source 
+  `/Users/ccottineau/GitHub/2026Workshop/CodeAlong/ExistingPackages/processed_data/rotterdam_water.gpkg' 
+  using driver `GPKG'
+Simple feature collection with 21116 features and 13 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 48195.34 ymin: 402298.1 xmax: 123369.3 ymax: 453421.2
+Projected CRS: Amersfoort / RD New</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rotterdam2025 <span class="ot">&lt;-</span>  <span class="fu">st_read</span>(<span class="st">"processed_data/rotterdam_500m.gpkg"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">28992</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `rotterdam_500m' from data source 
+  `/Users/ccottineau/GitHub/2026Workshop/CodeAlong/ExistingPackages/processed_data/rotterdam_500m.gpkg' 
+  using driver `GPKG'
+Simple feature collection with 8645 features and 8 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 48021.63 ymin: 402241.4 xmax: 123369.3 ymax: 453421.2
+Projected CRS: Amersfoort / RD New</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>FENIX <span class="ot">&lt;-</span> rotterdam2025 <span class="sc">|&gt;</span> <span class="fu">filter</span>(crs28992res500m <span class="sc">==</span> <span class="st">"E0925N4350"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rotterdam2025, <span class="fu">aes</span>(<span class="at">fill =</span> population), <span class="at">linewidth=</span><span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rotterdam_water, <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">linewidth=</span><span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rotterdam_muni, <span class="at">colour =</span> <span class="st">"orange"</span>, <span class="at">linewidth=</span><span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a> <span class="co"># geom_sf(data = FENIX, colour = "#00A99D", linewidth=0.7) +</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"black"</span>, <span class="at">na.value =</span> <span class="st">"#FFE9C9"</span>) <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -167,18 +218,110 @@ div.csl-indent {
 </figure>
 </div>
 </div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rotterdam2025, <span class="fu">aes</span>(<span class="at">fill =</span> age_older65), <span class="at">linewidth=</span><span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rotterdam_water, <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">linewidth=</span><span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rotterdam_muni, <span class="at">colour =</span> <span class="st">"orange"</span>, <span class="at">linewidth=</span><span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"#93278F"</span>, <span class="at">na.value =</span> <span class="st">"#FFE9C9"</span>)<span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SegIndexExistingPackages_files/figure-html/mapRotterdam-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<p>You can add options to executable code like this</p>
-<div class="cell">
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rotterdam2025, <span class="fu">aes</span>(<span class="at">fill =</span> age_under65), <span class="at">linewidth=</span><span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rotterdam_water, <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">linewidth=</span><span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rotterdam_muni, <span class="at">colour =</span> <span class="st">"orange"</span>, <span class="at">linewidth=</span><span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"forestgreen"</span>, <span class="at">na.value =</span> <span class="st">"#FFE9C9"</span>)<span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SegIndexExistingPackages_files/figure-html/mapRotterdam-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="ratio-of-populations" class="level3">
+<h3 class="anchored" data-anchor-id="ratio-of-populations">Ratio of populations</h3>
+<div class="cell" data-verbose="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>rotterdam2025 <span class="ot">&lt;-</span> rotterdam2025 <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share_older65 =</span> age_older65 <span class="sc">/</span> population)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rotterdam2025, <span class="fu">aes</span>(<span class="at">fill =</span> share_older65), <span class="at">linewidth=</span><span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rotterdam_water, <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">linewidth=</span><span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> rotterdam_muni, <span class="at">colour =</span> <span class="st">"orange"</span>, <span class="at">linewidth=</span><span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient2</span>(<span class="at">midpoint =</span> <span class="fl">0.25</span>, <span class="at">low =</span> <span class="st">"forestgreen"</span>, <span class="at">mid =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"#93278F"</span>, <span class="at">na.value =</span> <span class="st">"#FFE9C9"</span>)<span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="SegIndexExistingPackages_files/figure-html/mapshares-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="dissimilarity" class="level2">
+<h2 class="anchored" data-anchor-id="dissimilarity">Dissimilarity</h2>
+<p>Ignacio</p>
+</section>
+<section id="entropy-clémentine" class="level2">
+<h2 class="anchored" data-anchor-id="entropy-clémentine">Entropy (Clémentine)</h2>
+<div class="cell" data-verbose="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(OasisR)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(divseg)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(segregation)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>group_data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(rotterdam2025) <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share_under25 =</span> (age_0_15 <span class="sc">+</span> age_15_25) <span class="sc">/</span> population,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">share_25_65 =</span> (age_25_45 <span class="sc">+</span> age_45_65) <span class="sc">/</span> population ) <span class="sc">|&gt;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(share_under25, share_25_65, share_older65) <span class="sc">|&gt;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(share_under25 <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> share_25_65 <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> share_older65 <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a> entropy <span class="ot">&lt;-</span> <span class="fu">HTheil</span>(group_data)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>entropy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<pre><code>[1] 0.0174 0.0129 0.0507</code></pre>
 </div>
 </div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+<p>We end up with the follow distribution of group entropy:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Age category</th>
+<th>Entropy value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Under 25</td>
+<td>0.0174</td>
+</tr>
+<tr class="even">
+<td>25 to 25 y.o.</td>
+<td>0.0129</td>
+</tr>
+<tr class="odd">
+<td>Over 65</td>
+<td>0.0507</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="index-comparison" class="level2 unnumbered">
+
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Index comparison</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-kadaster" class="csl-entry" role="listitem">
 Kadaster. (2026). <em>INSPIRE NL administratieve eenheden</em>. <a href="https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/7dd1fd45-ace5-41e0-93a6-64e3be231717">https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/7dd1fd45-ace5-41e0-93a6-64e3be231717</a>
 </div>

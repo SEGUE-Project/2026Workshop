@@ -29,6 +29,9 @@ library(sf)
 ## Data
 
 ```{r dataprep}
+#| eval: false
+#| message: false
+#| warning: false
 #| include: false
 
 Rotterdam <- st_read("data/OECD_fuas/fuas.shp") |>
@@ -41,36 +44,52 @@ muni <- st_read("data/gemeenten.gpkg") |>
   st_intersection(Rotterdam) |>
   st_write("processed_data/rotterdam_muni.gpkg")
 
+muni <- st_read("data/water.gpkg") |>
+  st_transform(28992) |>
+  st_intersection(Rotterdam) |>
+  st_write("processed_data/rotterdam_water.gpkg")
+
 grid2025 <-  st_read("data/CBS_grids/2025/cbs_vk500_2025_v1.gpkg") |>
   st_transform(28992) |>
   st_intersection(Rotterdam) |>
   mutate(
     across(
-      starts_with("aantal_inwoners_"),
+      starts_with("aantal_inwoners"),
       ~ if_else(.x < 0, NA, .x)
     )
   ) |>
   rename(
+    population = aantal_inwoners,
     age_0_15    = aantal_inwoners_0_tot_15_jaar,
     age_15_25   = aantal_inwoners_15_tot_25_jaar,
     age_25_45   = aantal_inwoners_25_tot_45_jaar,
     age_45_65   = aantal_inwoners_45_tot_65_jaar,
     age_older65 = aantal_inwoners_65_jaar_en_ouder
-  ) |> 
-  mutate(
-    age_under65 = age_0_15 + age_15_25 + age_25_45 + age_45_65 
   ) |>
-  select(crs28992res500m, starts_with("age_")) |> 
+  mutate(
+    age_under65 = age_0_15 + age_15_25 + age_25_45 + age_45_65
+  ) |>
+  select(crs28992res500m, population, starts_with("age_")) |>
   st_write("processed_data/rotterdam_500m.gpkg")
+
+
 
 
 ```
 
 We are using open data from the Dutch statistics office CBS, and in particular 500x500 grid cells of Rotterdam. This is count-data coming from the Dutch register, as the 500m x 500m resolution [@cbs500]. The data was clipped to fit the Rotterdam functional area as defined by the OECD [@oecdFUA]. Municipal boundaries come from the kadaster [@kadaster].
 
+### Population density and spatial distribution
+
 ```{r mapRotterdam}
+#| message: false
+#| warning: false
+#| verbose: false
+
 
 rotterdam_muni <- st_read("processed_data/rotterdam_muni.gpkg") |>
+  st_transform(28992) 
+rotterdam_water <- st_read("processed_data/rotterdam_water.gpkg") |>
   st_transform(28992) 
 
 rotterdam2025 <-  st_read("processed_data/rotterdam_500m.gpkg") |>
@@ -78,10 +97,46 @@ rotterdam2025 <-  st_read("processed_data/rotterdam_500m.gpkg") |>
 
 FENIX <- rotterdam2025 |> filter(crs28992res500m == "E0925N4350")
 
+
+ggplot() +
+  geom_sf(data = rotterdam2025, aes(fill = population), linewidth=0) +
+  geom_sf(data = rotterdam_water, fill = "lightblue", linewidth=0) +
+  geom_sf(data = rotterdam_muni, colour = "orange", linewidth=0.4) +
+ # geom_sf(data = FENIX, colour = "#00A99D", linewidth=0.7) +
+  scale_fill_gradient(low = "white", high = "black", na.value = "#FFE9C9") +
+  theme_minimal()
+
 ggplot() +
   geom_sf(data = rotterdam2025, aes(fill = age_older65), linewidth=0) +
+  geom_sf(data = rotterdam_water, fill = "lightblue", linewidth=0) +
   geom_sf(data = rotterdam_muni, colour = "orange", linewidth=0.4) +
-  geom_sf(data = FENIX, colour = "yellow", linewidth=0.8) 
+  scale_fill_gradient(low = "white", high = "#93278F", na.value = "#FFE9C9")+
+  theme_minimal()
+
+
+ggplot() +
+  geom_sf(data = rotterdam2025, aes(fill = age_under65), linewidth=0) +
+  geom_sf(data = rotterdam_water, fill = "lightblue", linewidth=0) +
+  geom_sf(data = rotterdam_muni, colour = "orange", linewidth=0.4) +
+  scale_fill_gradient(low = "white", high = "forestgreen", na.value = "#FFE9C9")+
+  theme_minimal()
+```
+
+### Ratio of populations
+
+```{r mapshares}
+#| message: false
+#| warning: false
+#| verbose: false
+rotterdam2025 <- rotterdam2025 |>
+  mutate(share_older65 = age_older65 / population)
+
+ggplot() +
+  geom_sf(data = rotterdam2025, aes(fill = share_older65), linewidth=0) +
+  geom_sf(data = rotterdam_water, fill = "lightblue", linewidth=0) +
+  geom_sf(data = rotterdam_muni, colour = "orange", linewidth=0.4) +
+  scale_fill_gradient2(midpoint = 0.25, low = "forestgreen", mid = "white", high = "#93278F", na.value = "#FFE9C9")+
+  theme_minimal()
 
 ```
 
@@ -89,8 +144,38 @@ ggplot() +
 
 Ignacio
 
-## Entropy
+## Entropy (Clémentine)
 
-Clémentine
+```{r entropy}
+#| message: false
+#| warning: false
+#| verbose: false
+
+
+library(OasisR)
+library(divseg)
+library(segregation)
+
+
+group_data <- as.data.frame(rotterdam2025) |>
+  mutate(share_under25 = (age_0_15 + age_15_25) / population,
+         share_25_65 = (age_25_45 + age_45_65) / population ) |>
+  select(share_under25, share_25_65, share_older65) |>
+  filter(share_under25 > 0 & share_25_65 > 0 & share_older65 > 0)
+
+  entropy <- HTheil(group_data)
+  entropy
+
+```
+
+We end up with the follow distribution of group entropy:
+
+| Age category        | Entropy value |
+|---------------|------|
+| Under 25      |   `r entropy[1]`   |
+| 25 to 25 y.o. |   `r entropy[2]`   |
+| Over 65       |   `r entropy[3]`   |
+
+
 
 ## Index comparison
