@@ -77,7 +77,7 @@ grid2025 <-  st_read("data/CBS_grids/2025/cbs_vk500_2025_v1.gpkg") |>
 
 ```
 
-We are using open data from the Dutch statistics office CBS, and in particular 500x500 grid cells of Rotterdam. This is count-data coming from the Dutch register, as the 500m x 500m resolution [@cbs500]. The data was clipped to fit the Rotterdam functional area as defined by the OECD [@oecdFUA]. Municipal boundaries come from the kadaster [@kadaster].
+We are using open data from the Dutch statistics office CBS, and in particular 500x500 grid cells of Rotterdam. This is count-data coming from the Dutch register, as the 500m x 500m resolution [@cbs500]. The data was clipped to fit the Rotterdam functional area as defined by the OECD [@oecdFUA]. Municipal boundaries and waterbodies come from the kadaster [@kadaster].
 
 ### Population density and spatial distribution
 
@@ -144,38 +144,137 @@ ggplot() +
 
 Ignacio
 
-## Entropy (Clémentine)
+## Entropy
 
-```{r entropy}
+There are currently (at least) 3 packages available to compute entropy indices of segregation.
+
+### `OasisR`
+
+`OasisR` was deprecated last year but seems to function well again: performs most categorical & ordinal measures of segregation + resampling methods to test significance https://cran.rstudio.com/web/packages/OasisR/OasisR.pdf
+
+```{r OasisR}
 #| message: false
 #| warning: false
 #| verbose: false
 
 
 library(OasisR)
-library(divseg)
-library(segregation)
 
+HTheil
+```
+This function takes as input x:
 
+> an object of class matrix (or which can be coerced to that class), where each column represents the distribution of a group within spatial units. The number of columns should be greater than 1 (at least 2 groups are required). You should not include a column with total population, because this will be interpreted as a group.
+
+```{r entropyOasisR}
 group_data <- as.data.frame(rotterdam2025) |>
   mutate(share_under25 = (age_0_15 + age_15_25) / population,
          share_25_65 = (age_25_45 + age_45_65) / population ) |>
   select(share_under25, share_25_65, share_older65) |>
   filter(share_under25 > 0 & share_25_65 > 0 & share_older65 > 0)
 
-  entropy <- HTheil(group_data)
-  entropy
+  entropyOasisR <- HTheil(group_data)
+  entropyOasisR
 
 ```
 
-We end up with the follow distribution of group entropy:
+### `divseg`
 
-| Age category        | Entropy value |
-|---------------|------|
-| Under 25      |   `r entropy[1]`   |
-| 25 to 25 y.o. |   `r entropy[2]`   |
-| Over 65       |   `r entropy[3]`   |
+`divseg` performs diversity measures and indices proposed by Massey & Denton along the 5 dimensions of segregation https://christophertkenny.com/divseg/reference/index.html
+
+```{r divseg}
+#| message: false
+#| warning: false
+#| verbose: false
 
 
+library(divseg)
+ds_entropy
+```
+
+
+This function takes as input a tibble (which means we can keep the `sf` format). You need to specify the columns with which to compute the measure. 
+
+> Must be at least 2 columns. If more than 2, treats first column as first group and sum of other columns as second.
+
+
+```{r entropyDivseg}
+group_datadivseg <- rotterdam2025 |>
+  mutate(share_under25 = (age_0_15 + age_15_25) / population,
+         share_25_65 = (age_25_45 + age_45_65) / population ) |>
+  select(share_under25, share_25_65, share_older65) |>
+  filter(share_under25 > 0 & share_25_65 > 0 & share_older65 > 0)
+
+
+  entropydivsegunUnder25 <- ds_entropy(group_datadivseg, starts_with("share"))[[1]]
+  entropydivsegunUnder25
+  
+  group_datadivseg <- group_datadivseg |>
+    select(share_25_65, share_older65, share_under25)
+
+  entropydivsegun25_45 <- ds_entropy(group_datadivseg, starts_with("share"))[[1]]
+  entropydivsegun25_45
+  
+   group_datadivseg <- group_datadivseg |>
+    select(share_older65, share_25_65, share_under25)
+
+  entropydivsegunolder65 <- ds_entropy(group_datadivseg, starts_with("share"))[[1]]
+  entropydivsegunolder65
+```
+
+
+
+
+### `segregation`
+
+`segregation`: offers standards segregation indices (M, H, D + exposure indices), but also addesses sample bias, decomposition of entropy based indices and visalisation. https://www.rdocumentation.org/packages/segregation/versions/1.1.0
+
+```{r segregationpackage}
+#| message: false
+#| warning: false
+#| verbose: false
+
+library(segregation)
+
+
+entropy
+```
+
+> The segregation package requires data in long form (because most segregation data comes in this form), not in the form of contingency tables.
+
+https://cran.r-project.org/web/packages/segregation/vignettes/segregation.html
+
+
+```{r entropysegregation}
+long_data <- as.data.frame(rotterdam2025) |>
+  mutate(under25 = age_0_15 + age_15_25,
+         group25_65 = age_25_45 + age_45_65) |>
+select(crs28992res500m, under25, group25_65, age_older65) |>
+  pivot_longer(!crs28992res500m,names_to = "group", values_to = "n") |>
+  filter(n > 0)
+  
+  total <- mutual_total(long_data, "group", "crs28992res500m", weight = "n")
+  local <- mutual_local(long_data, "crs28992res500m", "group", weight = "n", wide = T)
+  total
+  local
+  
+  
+```
 
 ## Index comparison
+
+We end up with the following measures of group segregation:
+
+| Age category  | Package     | Entropy value             |
+|---------------|-------------|---------------------------|
+| Under 25      | OasisR      | `r entropyOasisR[1]`      |
+| Under 25      | divseg      | `r entropydivsegunUnder25`      |
+| Under 25      | segregation      | `r   local[3,2]`      |
+| 25 to 25 y.o. | OasisR      | `r entropyOasisR[2]`      |
+| 25 to 25 y.o. | divseg      | `r entropydivsegun25_45`      |
+| 25 to 25 y.o.      | segregation      | `r   local[2,2]`      |
+| Over 65       | OasisR      | `r entropyOasisR[3]`      |
+| Over 65       | divseg      | `r entropydivsegunolder65`      |
+| Over 65     | segregation      | `r   local[1,2]`      |
+
+

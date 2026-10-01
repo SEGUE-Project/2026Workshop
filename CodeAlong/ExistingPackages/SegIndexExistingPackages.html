@@ -113,7 +113,12 @@ div.csl-indent {
   <li><a href="#ratio-of-populations" id="toc-ratio-of-populations" class="nav-link" data-scroll-target="#ratio-of-populations">Ratio of populations</a></li>
   </ul></li>
   <li><a href="#dissimilarity" id="toc-dissimilarity" class="nav-link" data-scroll-target="#dissimilarity">Dissimilarity</a></li>
-  <li><a href="#entropy-clémentine" id="toc-entropy-clémentine" class="nav-link" data-scroll-target="#entropy-clémentine">Entropy (Clémentine)</a></li>
+  <li><a href="#entropy" id="toc-entropy" class="nav-link" data-scroll-target="#entropy">Entropy</a>
+  <ul class="collapse">
+  <li><a href="#oasisr" id="toc-oasisr" class="nav-link" data-scroll-target="#oasisr"><code>OasisR</code></a></li>
+  <li><a href="#divseg" id="toc-divseg" class="nav-link" data-scroll-target="#divseg"><code>divseg</code></a></li>
+  <li><a href="#segregation" id="toc-segregation" class="nav-link" data-scroll-target="#segregation"><code>segregation</code></a></li>
+  </ul></li>
   <li><a href="#index-comparison" id="toc-index-comparison" class="nav-link" data-scroll-target="#index-comparison">Index comparison</a></li>
   </ul>
 </nav>
@@ -161,7 +166,7 @@ div.csl-indent {
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>We are using open data from the Dutch statistics office CBS, and in particular 500x500 grid cells of Rotterdam. This is count-data coming from the Dutch register, as the 500m x 500m resolution <span class="citation" data-cites="cbs500">(<a href="#ref-cbs500" role="doc-biblioref">Statistiek (CBS), 2026</a>)</span>. The data was clipped to fit the Rotterdam functional area as defined by the OECD <span class="citation" data-cites="oecdFUA">(<a href="#ref-oecdFUA" role="doc-biblioref">OECD, 2023</a>)</span>. Municipal boundaries come from the kadaster <span class="citation" data-cites="kadaster">(<a href="#ref-kadaster" role="doc-biblioref">Kadaster, 2026</a>)</span>.</p>
+<p>We are using open data from the Dutch statistics office CBS, and in particular 500x500 grid cells of Rotterdam. This is count-data coming from the Dutch register, as the 500m x 500m resolution <span class="citation" data-cites="cbs500">(<a href="#ref-cbs500" role="doc-biblioref">Statistiek (CBS), 2026</a>)</span>. The data was clipped to fit the Rotterdam functional area as defined by the OECD <span class="citation" data-cites="oecdFUA">(<a href="#ref-oecdFUA" role="doc-biblioref">OECD, 2023</a>)</span>. Municipal boundaries and waterbodies come from the kadaster <span class="citation" data-cites="kadaster">(<a href="#ref-kadaster" role="doc-biblioref">Kadaster, 2026</a>)</span>.</p>
 <section id="population-density-and-spatial-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="population-density-and-spatial-distribution">Population density and spatial distribution</h3>
 <div class="cell" data-verbose="false">
@@ -272,56 +277,258 @@ Projected CRS: Amersfoort / RD New</code></pre>
 <h2 class="anchored" data-anchor-id="dissimilarity">Dissimilarity</h2>
 <p>Ignacio</p>
 </section>
-<section id="entropy-clémentine" class="level2">
-<h2 class="anchored" data-anchor-id="entropy-clémentine">Entropy (Clémentine)</h2>
+<section id="entropy" class="level2">
+<h2 class="anchored" data-anchor-id="entropy">Entropy</h2>
+<p>There are currently (at least) 3 packages available to compute entropy indices of segregation.</p>
+<section id="oasisr" class="level3">
+<h3 class="anchored" data-anchor-id="oasisr"><code>OasisR</code></h3>
+<p><code>OasisR</code> was deprecated last year but seems to function well again: performs most categorical &amp; ordinal measures of segregation + resampling methods to test significance https://cran.rstudio.com/web/packages/OasisR/OasisR.pdf</p>
 <div class="cell" data-verbose="false">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(OasisR)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(divseg)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(segregation)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>group_data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(rotterdam2025) <span class="sc">|&gt;</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share_under25 =</span> (age_0_15 <span class="sc">+</span> age_15_25) <span class="sc">/</span> population,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">share_25_65 =</span> (age_25_45 <span class="sc">+</span> age_45_65) <span class="sc">/</span> population ) <span class="sc">|&gt;</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(share_under25, share_25_65, share_older65) <span class="sc">|&gt;</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(share_under25 <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> share_25_65 <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> share_older65 <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a> entropy <span class="ot">&lt;-</span> <span class="fu">HTheil</span>(group_data)</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>entropy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>HTheil</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>function (x) 
+{
+    x &lt;- segdataclean(as.matrix(x))$x
+    result &lt;- vector(length = ncol(x))
+    E &lt;- matrix(data = 0, nrow = nrow(x), ncol = ncol(x))
+    pTotal &lt;- colSums(x)/sum(x)
+    px &lt;- x/rowSums(x)
+    Etot &lt;- rep(0, ncol(x))
+    for (k in 1:ncol(x)) Etot[k] &lt;- pTotal[k] * log(1/pTotal[k]) + 
+        (1 - pTotal[k]) * log(1/(1 - pTotal[k]))
+    for (k in 1:ncol(x)) {
+        E[, k] &lt;- px[, k] * log(1/px[, k]) + (1 - px[, k]) * 
+            log(1/(1 - px[, k]))
+        if (any(is.nan(E[, k]))) 
+            E[, k][is.nan(E[, k])] &lt;- 0
+        result[k] &lt;- sum((rowSums(x) * (Etot[k] - E[, k]))/(Etot[k] * 
+            sum(x)))
+    }
+    return(round(result, 4))
+}
+&lt;bytecode: 0x7735761c8&gt;
+&lt;environment: namespace:OasisR&gt;</code></pre>
+</div>
+</div>
+<p>This function takes as input x:</p>
+<blockquote class="blockquote">
+<p>an object of class matrix (or which can be coerced to that class), where each column represents the distribution of a group within spatial units. The number of columns should be greater than 1 (at least 2 groups are required). You should not include a column with total population, because this will be interpreted as a group.</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>group_data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(rotterdam2025) <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share_under25 =</span> (age_0_15 <span class="sc">+</span> age_15_25) <span class="sc">/</span> population,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">share_25_65 =</span> (age_25_45 <span class="sc">+</span> age_45_65) <span class="sc">/</span> population ) <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(share_under25, share_25_65, share_older65) <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(share_under25 <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> share_25_65 <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> share_older65 <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  entropyOasisR <span class="ot">&lt;-</span> <span class="fu">HTheil</span>(group_data)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  entropyOasisR</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.0174 0.0129 0.0507</code></pre>
 </div>
 </div>
-<p>We end up with the follow distribution of group entropy:</p>
+</section>
+<section id="divseg" class="level3">
+<h3 class="anchored" data-anchor-id="divseg"><code>divseg</code></h3>
+<p><code>divseg</code> performs diversity measures and indices proposed by Massey &amp; Denton along the 5 dimensions of segregation https://christophertkenny.com/divseg/reference/index.html</p>
+<div class="cell" data-verbose="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(divseg)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ds_entropy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>function (.data, .cols, .name, .comp = FALSE) 
+{
+    .cols &lt;- rlang::enquo(.cols)
+    if (missing(.name)) {
+        .name &lt;- "v_index"
+        ret_t &lt;- FALSE
+    }
+    else {
+        ret_t &lt;- TRUE
+    }
+    sub &lt;- dplyr::select(drop_sf(.data), !!.cols)
+    if (ncol(sub) &lt;= 1) {
+        stop(".cols refers to a single column")
+    }
+    sub &lt;- dplyr::ungroup(dplyr::mutate(dplyr::rowwise(sub), 
+        .total = sum(dplyr::c_across(everything()))))
+    .T &lt;- sum(sub$.total)
+    .P &lt;- sum(sub[[1]])/.T
+    .E &lt;- .P * plog(1/.P) + (1 - .P) * plog(1/(1 - .P))
+    out &lt;- dplyr::pull(dplyr::mutate(rowwise_if(dplyr::mutate(sub, 
+        .p = pick_n(1)/.data$.total, .e = .data$.p * plog(1/.data$.p) + 
+            (1 - .data$.p) * plog(1/(1 - .data$.p))), .comp), 
+        `:=`(!!.name, sum(.data$.total * (.E - .data$.e))/(.E * 
+            .T))), !!.name)
+    if (ret_t) {
+        relocate_sf(dplyr::mutate(.data, `:=`(!!.name, out)))
+    }
+    else {
+        out
+    }
+}
+&lt;bytecode: 0x767501c78&gt;
+&lt;environment: namespace:divseg&gt;</code></pre>
+</div>
+</div>
+<p>This function takes as input a tibble (which means we can keep the <code>sf</code> format). You need to specify the columns with which to compute the measure.</p>
+<blockquote class="blockquote">
+<p>Must be at least 2 columns. If more than 2, treats first column as first group and sum of other columns as second.</p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>group_datadivseg <span class="ot">&lt;-</span> rotterdam2025 <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share_under25 =</span> (age_0_15 <span class="sc">+</span> age_15_25) <span class="sc">/</span> population,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">share_25_65 =</span> (age_25_45 <span class="sc">+</span> age_45_65) <span class="sc">/</span> population ) <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(share_under25, share_25_65, share_older65) <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(share_under25 <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> share_25_65 <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> share_older65 <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  entropydivsegunUnder25 <span class="ot">&lt;-</span> <span class="fu">ds_entropy</span>(group_datadivseg, <span class="fu">starts_with</span>(<span class="st">"share"</span>))[[<span class="dv">1</span>]]</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  entropydivsegunUnder25</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.01738609</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>  group_datadivseg <span class="ot">&lt;-</span> group_datadivseg <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(share_25_65, share_older65, share_under25)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  entropydivsegun25_45 <span class="ot">&lt;-</span> <span class="fu">ds_entropy</span>(group_datadivseg, <span class="fu">starts_with</span>(<span class="st">"share"</span>))[[<span class="dv">1</span>]]</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  entropydivsegun25_45</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.01287292</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>   group_datadivseg <span class="ot">&lt;-</span> group_datadivseg <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(share_older65, share_25_65, share_under25)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  entropydivsegunolder65 <span class="ot">&lt;-</span> <span class="fu">ds_entropy</span>(group_datadivseg, <span class="fu">starts_with</span>(<span class="st">"share"</span>))[[<span class="dv">1</span>]]</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  entropydivsegunolder65</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.05073242</code></pre>
+</div>
+</div>
+</section>
+<section id="segregation" class="level3">
+<h3 class="anchored" data-anchor-id="segregation"><code>segregation</code></h3>
+<p><code>segregation</code>: offers standards segregation indices (M, H, D + exposure indices), but also addesses sample bias, decomposition of entropy based indices and visalisation. https://www.rdocumentation.org/packages/segregation/versions/1.1.0</p>
+<div class="cell" data-verbose="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(segregation)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>entropy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>function (data, group, weight = NULL, base = exp(1)) 
+{
+    if (!is.null(weight)) {
+        data[, "freq"] &lt;- data[[weight]]
+    }
+    else {
+        data[, "freq"] &lt;- 1
+    }
+    data.table::setDT(data)
+    n_total &lt;- sum(data[, "freq"])
+    p &lt;- data[, list(p = sum(freq)), by = group][["p"]]/n_total
+    sum(p * logf(1/p, base))
+}
+&lt;bytecode: 0x766ff7b28&gt;
+&lt;environment: namespace:segregation&gt;</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>The segregation package requires data in long form (because most segregation data comes in this form), not in the form of contingency tables.</p>
+</blockquote>
+<p>https://cran.r-project.org/web/packages/segregation/vignettes/segregation.html</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>long_data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(rotterdam2025) <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">under25 =</span> age_0_15 <span class="sc">+</span> age_15_25,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">group25_65 =</span> age_25_45 <span class="sc">+</span> age_45_65) <span class="sc">|&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(crs28992res500m, under25, group25_65, age_older65) <span class="sc">|&gt;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>crs28992res500m,<span class="at">names_to =</span> <span class="st">"group"</span>, <span class="at">values_to =</span> <span class="st">"n"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  total <span class="ot">&lt;-</span> <span class="fu">mutual_total</span>(long_data, <span class="st">"group"</span>, <span class="st">"crs28992res500m"</span>, <span class="at">weight =</span> <span class="st">"n"</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  local <span class="ot">&lt;-</span> <span class="fu">mutual_local</span>(long_data, <span class="st">"crs28992res500m"</span>, <span class="st">"group"</span>, <span class="at">weight =</span> <span class="st">"n"</span>, <span class="at">wide =</span> T)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  total</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     stat        est
+   &lt;char&gt;      &lt;num&gt;
+1:      M 0.03408428
+2:      H 0.03365595</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>  local</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Key: &lt;group&gt;
+         group         ls         p
+        &lt;char&gt;      &lt;num&gt;     &lt;num&gt;
+1: age_older65 0.10700448 0.1952732
+2:  group25_65 0.01011701 0.5263689
+3:     under25 0.02825101 0.2783579</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="index-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="index-comparison">Index comparison</h2>
+<p>We end up with the following measures of group segregation:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Age category</th>
+<th>Package</th>
 <th>Entropy value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Under 25</td>
+<td>OasisR</td>
 <td>0.0174</td>
 </tr>
 <tr class="even">
+<td>Under 25</td>
+<td>divseg</td>
+<td>0.0173861</td>
+</tr>
+<tr class="odd">
+<td>Under 25</td>
+<td>segregation</td>
+<td>0.028251</td>
+</tr>
+<tr class="even">
 <td>25 to 25 y.o.</td>
+<td>OasisR</td>
 <td>0.0129</td>
 </tr>
 <tr class="odd">
+<td>25 to 25 y.o.</td>
+<td>divseg</td>
+<td>0.0128729</td>
+</tr>
+<tr class="even">
+<td>25 to 25 y.o.</td>
+<td>segregation</td>
+<td>0.010117</td>
+</tr>
+<tr class="odd">
 <td>Over 65</td>
+<td>OasisR</td>
 <td>0.0507</td>
+</tr>
+<tr class="even">
+<td>Over 65</td>
+<td>divseg</td>
+<td>0.0507324</td>
+</tr>
+<tr class="odd">
+<td>Over 65</td>
+<td>segregation</td>
+<td>0.1070045</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="index-comparison" class="level2 unnumbered">
-
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Index comparison</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-kadaster" class="csl-entry" role="listitem">
 Kadaster. (2026). <em>INSPIRE NL administratieve eenheden</em>. <a href="https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/7dd1fd45-ace5-41e0-93a6-64e3be231717">https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/7dd1fd45-ace5-41e0-93a6-64e3be231717</a>
 </div>
