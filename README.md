@@ -6,6 +6,11 @@ Updating urban segregation computation with R
 > [!WARNING]
 > The material in this repository is work in progress and it is being prepared for [workshop "Updating urban segregation computation with R"](https://erc-segue.nl/Workshop).
 
+The workshop will take place over 5 full days: 9, 10, 11, 12 and 13 November 2026, at TU Delft, in the Netherlands.
+
+
+
+
 ## License
 
 This repository uses two licenses:
