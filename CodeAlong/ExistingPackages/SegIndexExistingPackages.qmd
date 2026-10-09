@@ -186,12 +186,10 @@ library(segregation)
 
 The Index of Dissimilarity measures the unevenness with which two population groups are distributed across a set of spatial units. For two groups $x$ and $y$ distributed across $n$ units:
 
-$$
-D = \frac{1}{2}\sum_{i=1}^{n}
+$$D = \frac{1}{2}\sum_{i=1}^{n}
 \left|
 \frac{x_i}{X} - \frac{y_i}{Y}
-\right|
-$$
+\right|$$
 
 For the first comparison we distinguish between people aged **0--25** and everyone aged **26 and older**.
 
@@ -222,7 +220,6 @@ age_two_count_matrix <- age_two_count |>
   as.matrix()
 
 ```
-
 
 Let's calculate the Dissimilarity Index between the first two groups
 
@@ -278,6 +275,7 @@ age_two_count_long <- age_two_count |>
 ```
 
 Let's calculate the dissimilarity index with this package using the long format data:
+
 ```{r DissSegregation}
 dissim_segregation <- segregation::dissimilarity(
   age_two_count_long,
@@ -295,7 +293,6 @@ The function returns a one-row table identifying the statistic and its estimate.
 dissim_segregation_value <- dissim_segregation$est[[1]]
 dissim_segregation_value
 ```
-
 
 ### Comparing the same two-group index
 
@@ -392,10 +389,10 @@ segregation::dissimilarity(
 
 **Discuss:** What should a function do when the user supplies more than two groups?
 
--   return all pairwise comparisons?
--   collapse the data to one group versus all others?
--   calculate a multigroup extension?
--   require the user to choose explicitly?
+- return all pairwise comparisons?
+- collapse the data to one group versus all others?
+- calculate a multigroup extension?
+- require the user to choose explicitly?
 
 ### Adding spatial information
 
@@ -551,15 +548,14 @@ This output represents **local contributions by spatial unit**, rather than grou
 
 For the group-versus-rest calculation, `OasisR::HTheil()` and `divseg::ds_entropy()` provide directly comparable outputs:
 
-| Age category  | Package     | Entropy value              |
-|---------------|-------------|----------------------------|
-| Under 25      | OasisR      | `r entropyOasisR[1]`       |
-| Under 25      | divseg      | `r entropydivsegUnder25`   |
-| 25 to 65 y.o. | OasisR      | `r entropyOasisR[2]`       |
-| 25 to 65 y.o. | divseg      | `r entropydivseg25_65`     |
-| Over 65       | OasisR      | `r entropyOasisR[3]`       |
-| Over 65       | divseg      | `r entropydivsegolder65`   |
-
+| Age category  | Package | Entropy value            |
+|---------------|---------|--------------------------|
+| Under 25      | OasisR  | `r entropyOasisR[1]`     |
+| Under 25      | divseg  | `r entropydivsegUnder25` |
+| 25 to 65 y.o. | OasisR  | `r entropyOasisR[2]`     |
+| 25 to 65 y.o. | divseg  | `r entropydivseg25_65`   |
+| Over 65       | OasisR  | `r entropyOasisR[3]`     |
+| Over 65       | divseg  | `r entropydivsegolder65` |
 
 For a genuine overall multigroup H, we can compare `OasisR::HMulti()` with the H returned by `segregation::mutual_total()`:
 
@@ -583,4 +579,3 @@ tibble(
 ```
 
 `divseg::ds_entropy()` is not included in this second table because its documented behaviour with more than two selected columns is to compare the first group with the sum of the remaining groups, rather than to calculate a multigroup H.
-

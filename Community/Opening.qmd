@@ -1,0 +1,121 @@
+---
+title: "Welcome"
+author: "Clémentine Cottineau-Mugadza"
+filters:
+  - revealjs-header
+format: 
+  revealjs: 
+    theme: simple
+    header-logo-right: assets/segue_logo.png
+    header-logo-right-url: https://erc-segue.nl
+    header-logo-right-height: 75px
+    header-logo-left: assets/Logo_Rbanism_ Full.png
+    header-logo-left-height: 75px
+
+
+editor: visual
+date: 11-9-2026  
+date-format: long
+bibliography: assets/References.bib 
+csl: assets/apa.csl
+link-citations: true
+
+
+title-slide-attributes:
+  data-background-image: assets/background.png
+  data-background-opacity: "0.6"
+css: assets/style.css
+---
+
+## Form 9 groups of 3 & ask each other:
+
+- Who are you?
+- What do you do?
+- Why are you here?
+
+```{r}
+#| echo: false
+#| cache: false
+countdown::countdown(minutes = 9)
+```
+
+## Change groups!
+
+- Who are you?
+- What do you do?
+- Why are you here?
+
+```{r}
+#| echo: false
+#| cache: false
+countdown::countdown(minutes = 9)
+```
+
+## Okay! Now you know 6 people! {.scrollable}
+
+```{r}
+#| label: maps
+#| echo: false
+
+library(tidyverse)
+library(sf)
+country <- read_csv("assets/country.csv") |>
+  mutate(alpha.3 = ISO3_Country) |>
+  group_by(alpha.3) |>
+  summarise(n = n())
+map <- st_read("assets/tiled_grid_mapped.geojson") |>
+  left_join(country, by = "alpha.3")
+
+ggplot(map) +
+  geom_sf(aes(fill = n.y), color = NA) +
+  geom_label(data = map[!is.na(map$n.y),], aes(x= coord_x, y = coord_y, label = `alpha.2`), label.size = NA, fill = NA, color = "#00A99D") +
+  scale_fill_gradient(low = "gray70", high = "black", na.value = "grey90") +
+  theme_minimal() +
+  theme(legend.position = "bottom") +
+  labs(title = "Number of participants") +
+  theme_void()
+```
+
+## The 27 {.scrollable .smaller}
+
+- [**Adrian Nowacki**]{style="color:#f57b26;"}, PhD Student, Doctoral School of Natural Sciences, Adam Mickiewicz University in Poznań, Poland.
+- [**Alok Kumar**]{style="color:#00A99D;"}, PhD Candidate, Jawaharlal Nehru University New Delhi, India
+- [**Ana Luisa Maffini**]{style="color:#00A99D;"}, Researcher/Postdoctoral Researcher at Urban and Regional Planning program at UFRGS, Brasil
+- [**Ana Petrović**]{style="color:#f57b26;"}, Assistant Professor in urban studies at TU Delft, NL
+- [**Benjamin Jarvis**]{style="color:#93278F;"}, Associate Professor, Institute for Analytical Sociology, Linköping University, Sweden
+- [**Benjamin Rosche**]{style="color:#93278F;"}, Assistant Professor of Computational Social Science, New York University Abu Dhabi, Abu Dhabi
+- [**Claudiu Forgaci**]{style="color:#93278F;"}, Assistant Professor in urban design and analytics at TU Delft, NL
+- [**Clémentine Cottineau-Mugadza**]{style="color:#f57b26;"}, Assistant Professor in urban studies at TU Delft, NL
+- [**Daniele Cannatella**]{style="color:#93278F;"}, Assistant Professor in spatial data science at Delft, NL
+- [**Giuliana La Mantia**]{style="color:#f57b26;"}, Post-doc researcher at University of Genoa, Italy.
+- [**Guilherme Kenjy Chihaya Da Silva**]{style="color:#f57b26;"}, Associate Professor, Nord University, Faculty of Social Sciences, Norway
+- [**Ignacio Urria Yáñez**]{style="color:#93278F;"}, PhD Candidate in urban studies at Delft, NL
+- [**Javier San Millán Tejedor**]{style="color:#f57b26;"}, PhD Candidate in urban studies at Delft, NL
+- [**Jiannis Kaućič**]{style="color:#00A99D;"}, Scientific Staff (Praedoc) at the Institute for Urban and Regional Research (ÖAW), Austria
+- [**Julie Vallée**]{style="color:#00A99D;"}, Senior researcher at CNRS, LISST, France
+- [**Julien Migozzi**]{style="color:#00A99D;"}, Assistant Professor in Development Studies at University of Cambridge, UK
+- [**Juta Kawalerowicz**]{style="color:#00A99D;"}, Lecturer at Stokholm University, Sweden
+- [**Karina Trelles**]{style="color:#00A99D;"}, Master student at University of Brescia, Italy
+- [**Levi John Wolf**]{style="color:#93278F;"}, Associate Professor of Spatial Analysis at the University of Bristol, UK
+- [**Nadeem Ullah**]{style="color:#00A99D;"}, Postdoctoral Researcher, School of Architecture, Tianjin University, China
+- [**Onur Tumturk**]{style="color:#00A99D;"}, Marie Curie Postdoc, Bilkent University, Turkey
+- [**Onyinyechi Ossai**]{style="color:#00A99D;"}, Senior Lecturer/University of Nigeria, Nsukka, Nigeria
+- [**Priyanka deSouza**]{style="color:#00A99D;"}, Assistant Professor, University of Colorado Denver, USA
+- [**Selcan Mutgan**]{style="color:#f57b26;"}, Assistant Professor at the Institute for Analytical Sociology in Linköping University, Sweden
+- [**Seong-Yun Hong**]{style="color:#93278F;"}, Associate Professor at Kyung Hee University, South Korea
+- [**Timothée Giraud**]{style="color:#93278F;"}, Research engineer at CNRS, UAR RIATE - Center for spatial analysis and geovizualisation, France
+- [**Yuliia Kazmina**]{style="color:#f57b26;"}, PhD candidate at the Faculty of Social and Behavioural Sciences, University of Amsterdam, NL
+
+## Developer profile {background-gradient="linear-gradient(135deg, white 30%, #93278F)"}
+
+...because you are experienced in programming and/or have built R packages before
+
+## User profile {background-gradient="linear-gradient(135deg, white 30%, #00A99D)"}
+
+...because you are experienced in segregation analysis, interpretation and/or have a strong case study to test the package
+
+## Interface profile {background-gradient="linear-gradient(135deg, white 30%, #f57b26)"}
+
+...because you are experienced in translating between developer and user profiles
+
+# Flash talks

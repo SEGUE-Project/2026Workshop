@@ -1,0 +1,38 @@
+.styled-output .cell-output {
+  background-color: #f57b26;
+}
+
+.styled-output .cell-output pre {
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  font-size: 120px ;
+  color: white !important;
+}
+
+.quarto-title-author-name {
+  font-size: 40px;
+  color: white !important;
+}
+
+.date {
+  font-size: 40px;
+  color: white !important;
+}
+
+
+a:link {
+        color: #f57b26;
+      }
+      
+a:visited {
+        color: #f57b26;
+      }
+      
+a:hover {
+        color: #F7931E;
+      }
+      
