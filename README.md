@@ -11,7 +11,7 @@ The workshop will take place over 5 full days: 9, 10, 11, 12 and 13 November 202
 
 ## Opening plenary
 
-- (Slides of the plenary)[https://erc-segue.nl/2026Workshop/Community/Opening.html]
+- [Slides of the plenary with aims, links, participants and program](https://erc-segue.nl/2026Workshop/Community/Opening.html)
 
 
 ## License
