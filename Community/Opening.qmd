@@ -27,7 +27,6 @@ title-slide-attributes:
 css: assets/style.css
 ---
 
-
 # Welcome {background-gradient="linear-gradient(135deg, white 30%, #00A99D)"}
 
 ## Aims of the workshop
@@ -36,19 +35,18 @@ css: assets/style.css
 - create a **community** of urban scholars to collaborate on comparative research, theory and methodology development .
 - prepare the development of a **new R package** to assist with segregation measure selection, computation, visualization and/or analysis.
 
-
 ## Some background
 
 > Urban segregation – the pattern of (geographical) separation between people of different social groups or economic levels in cities.
 
-- large component of the scientific program of urban sciences (geography, sociology, demography and economics). 
-- dire consequences for social cohesion, economic mobility, health and education opportunities, especially in a context of rising economic inequalities and uneven development. 
+- large component of the scientific program of urban sciences (geography, sociology, demography and economics).
+- dire consequences for social cohesion, economic mobility, health and education opportunities, especially in a context of rising economic inequalities and uneven development.
 
 ## Some questions
 
-- How does urban segregation relate to economic inequality? 
-- At which scale can urban planners best design more efficient policies to reduce urban segregation? 
-- What are the mechanisms through which some places produce better outcomes than others? 
+- How does urban segregation relate to economic inequality?
+- At which scale can urban planners best design more efficient policies to reduce urban segregation?
+- What are the mechanisms through which some places produce better outcomes than others?
 - Does segregation directly harm children in vulnerable families?
 
 ## Your questions {.scrollable}
@@ -61,7 +59,7 @@ css: assets/style.css
 
 ## Indices of segregation
 
-- Historical (racial) segregation indices, reviewed by [@massey1988dimensions] 
+- Historical (racial) segregation indices, reviewed by [@massey1988dimensions]
 - Spatial segregation [@white1983measurement] [@morrill1991]
 - Multi-groups [@wong1998measuring]
 - Ordinal variables [@reardon2009measures]
@@ -94,19 +92,18 @@ index <- read_csv("assets/index_inventory-aiex.csv") |>
   
 ```
 
-
 ## Data on people in cities
 
 - register-based microdata (NL, AT, SE, NO)
-- granular census tract-based data on an annual basis (ES, FR). 
+- granular census tract-based data on an annual basis (ES, FR).
 - less granular/less frequent census and survey data
 - nightlight data as a proxy of population density and income (CN)
-- first hand interview and survey data 
+- first hand interview and survey data
 
 ## Methodological infrastructure
 
 - Websites, applications & software for computing segregation
-- open-source packages in Python (`segregation`) 
+- open-source packages in Python (`segregation`)
 - open-source packages in R (`OasisR`, `seg`, `segregation`, `divseg`, `ineq`, `mutualinf`)
 
 But, we are missing a few things...
@@ -117,7 +114,7 @@ But, we are missing a few things...
 
 ## 2. A way to make innovative methods accessible to answer big theoretical questions of the field
 
-- Making the computation of relevant indices accessible and painless 
+- Making the computation of relevant indices accessible and painless
 - Facilitating the design of spatial counterfactuals and robustness analysis
 - Reorienting the development of indices towards unanswered questions of the field
 
@@ -133,7 +130,6 @@ Different journals, conferences, networks and departments.
 - is **up to date** with the methodological literature (e.g. Divergence index)
 - considers **multilayered attributes of segregation**, as exposed by network segregation [@kazmina2024socio], daytime segregation [@le2017social] and multiscale segregation [@petrovic2018multiscale].
 
-
 ## How to?
 
 - **Diversity** of participants (profiles, location, skills and interests)
@@ -142,11 +138,9 @@ Different journals, conferences, networks and departments.
 - Italian catering!
 - open source / collaborative / test-driven package development
 
-
 ## Program
 
 ![](assets/program.png)
-
 
 ## Organising team outside TU Delft {.smaller}
 
@@ -162,7 +156,7 @@ Different journals, conferences, networks and departments.
 
 - [Yuliia Kazmina](https://www.uva.nl/en/profile/k/a/y.kazmina/y.kazmina.html), PhD candidate at the Faculty of Social and Behavioural Sciences, University of Amsterdam (NL)
 
-## Organising team @ TU Delft {.smaller}
+## Organising team \@ TU Delft {.smaller}
 
 - [Ana Petrovic](https://research.tudelft.nl/en/persons/a-petrovi%C4%87/), Assistant Professor in urban studies at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)
 
@@ -176,80 +170,72 @@ Different journals, conferences, networks and departments.
 
 - [Javier San Millan Tejedor](https://javiersanmillan.github.io/), PhD Candidate in urban studies at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)[![](assets/segue_logo.png){fig-align="left" width="30"}](http://erc-segue.nl/)
 
-
-## What is SEGUE?     
+## What is SEGUE?
 
 It is an project dedicated to the estimation, modelling and identification of policy scenarios to reduce urban economic segregation in the Netherlands.
 
-It is funded by the European Research Council between 2022 and 2029. 
+It is funded by the European Research Council between 2022 and 2029.
 
 SEGUE funds the organisation of this meeting.
 
 [erc-segue.nl](erc-segue.nl)
 
- [![](assets/segue_logo.png){fig-align="left" width="100"}](http://erc-segue.nl/) 
+[![](assets/segue_logo.png){fig-align="left" width="100"}](http://erc-segue.nl/)
 
 ## Initial results from SEGUE {.scrollable .smaller}
 
-1. urban economic **segregation** is linked to economic **inequality** through a variety of causal pathways, including but not restricted to housing markets [@cottineau2025economic] [@paulinaslr]
-2. income **segregation in the Netherlands** is rather low, stable and heterogeneous in Dutch metropolitan areas, but wealth inequalities and segregation are much larger and growing since 2011 [@san_millan_economic_2025] [@sanmillan2025wealth]
-3. the size, spatial dispersion and allocation rules of **social housing** play an important role in dampening the effect of economic inequality on economic segregation, but that they vary significantly between cities
-[@san2026inequality] [@buitrago2026]. This directly affects the type of **policies** to design in order to reduce income and wealth segregation.
+1.  urban economic **segregation** is linked to economic **inequality** through a variety of causal pathways, including but not restricted to housing markets [@cottineau2025economic] [@paulinaslr]
+2.  income **segregation in the Netherlands** is rather low, stable and heterogeneous in Dutch metropolitan areas, but wealth inequalities and segregation are much larger and growing since 2011 [@san_millan_economic_2025] [@sanmillan2025wealth]
+3.  the size, spatial dispersion and allocation rules of **social housing** play an important role in dampening the effect of economic inequality on economic segregation, but that they vary significantly between cities [@san2026inequality] [@buitrago2026]. This directly affects the type of **policies** to design in order to reduce income and wealth segregation.
 
-## What is Rbanism? 
+## What is Rbanism?
 
 ::::: {layout-ncol="2"}
 ::: {}
 A community of practice from TU Delft, whose mission is to build capacity, competence, and confidence for working with data and research software in the urbanism community.
 
-[![](assets/Logo_Rbanism_%20Full.png){fig-align="centre" width="150"}](http://rbanism.org/) 
-
+[![](assets/Logo_Rbanism_%20Full.png){fig-align="centre" width="150"}](http://rbanism.org/)
 :::
 
 ::: {}
-
 We organise trainings, challenges, workshops and community events. Our skills and experience in the fields of **open science** and **community building** will serve this workshop.
 
 ![](assets/rbanism_join.png){fig-align="centre" width="150"}
 :::
-::::: 
-
+:::::
 
 ## Rbanism's latest productions
 
-💡 **Training**: [Geospatial Data Carpentry for Urbanism](https://datacarpentry.github.io/r-intro-geospatial/) workshop. 
+💡 **Training**: [Geospatial Data Carpentry for Urbanism](https://datacarpentry.github.io/r-intro-geospatial/) workshop.
 
-📦 **Software**: R packages [rcrisp](https://github.com/CityRiverSpaces/rcrisp), [rcoins](https://github.com/CityRiverSpaces/rcoins), and [visor](https://github.com/CityRiverSpaces/visor).   
+📦 **Software**: R packages [rcrisp](https://github.com/CityRiverSpaces/rcrisp), [rcoins](https://github.com/CityRiverSpaces/rcoins), and [visor](https://github.com/CityRiverSpaces/visor).
 
 🗺️ **Challenges**: [#30DayMapChallenge2026](https://github.com/Rbanism/30DayMapChallenge2026), [#30DayMapChallenge2025](https://github.com/Rbanism/30DayMapChallenge2025) and [#30DayMapChallenge2024](https://github.com/Rbanism/30DayMapChallenge2024).
 
 📝 **Publications**: [Guidelines and open-source toolbox for systematic literature reviews in the field of urbanism](https://osf.io/preprints/socarxiv/w5b8v).
 
-
 ## This is an open source project
 
 Preparation materials and upcoming contribution to use two licenses:
 
-- Apache License 2.0. for Code (R source, tests, and other software) 
-- Creative Commons Attribution 4.0 International (CC BY 4.0) for workshop materials and outputs (data, presentations, notebooks, prose, figures, and other non-code content) 
+- Apache License 2.0. for Code (R source, tests, and other software)
+- Creative Commons Attribution 4.0 International (CC BY 4.0) for workshop materials and outputs (data, presentations, notebooks, prose, figures, and other non-code content)
 
 ## Infrastructure for collaboration
-
 
 ::::: {layout-ncol="2"}
 ::: {}
 - Workshop material: [github.com/SEGUE-Project/2026Workshop](https://github.com/SEGUE-Project/2026Workshop)
 - Livecode: [github.com/SEGUE-Project/workshop-livecode](https://github.com/SEGUE-Project/workshop-livecode)
 - test-driven development: [erc-segue.nl/tdd-r-pkg/](https://erc-segue.nl/tdd-r-pkg/)
-
 :::
-These slides
-
-
 
 ::: {}
-:::::
+These slides:
 
+![](assets/openingSlides.png)
+:::
+:::::
 
 ## References {.scrollable .smaller}
 
@@ -327,7 +313,7 @@ mf_map(
 
 - [**Adrian Nowacki**]{style="color:#f57b26;"}, PhD Student, Doctoral School of Natural Sciences, Adam Mickiewicz University in Poznań, Poland.
 - [**Alok Kumar**]{style="color:#00A99D;"}, PhD Candidate, Jawaharlal Nehru University New Delhi, India
-- [**Ana Luisa Maffini**]{style="color:#00A99D;"}, Researcher/Postdoctoral Researcher at Urban and Regional Planning program at UFRGS, Brasil
+- [~~**Ana Luisa Maffini**~~]{style="color:#00A99D;"}~~, Researcher/Postdoctoral Researcher at Urban and Regional Planning program at UFRGS, Brasil~~
 - [**Ana Petrović**]{style="color:#f57b26;"}, Assistant Professor in urban studies at TU Delft, NL
 - [**Benjamin Jarvis**]{style="color:#93278F;"}, Associate Professor, Institute for Analytical Sociology, Linköping University, Sweden
 - [**Benjamin Rosche**]{style="color:#93278F;"}, Assistant Professor of Computational Social Science, New York University Abu Dhabi, Abu Dhabi
@@ -365,4 +351,4 @@ mf_map(
 
 ...because you are experienced in translating between developer and user profiles
 
-## Next: Coffee. Then Review talks: "Why quantify urban segregation? What’s the current landscape of indicators and packages?"
+# Next: Coffee!
