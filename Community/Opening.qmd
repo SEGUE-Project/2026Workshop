@@ -59,21 +59,37 @@ countdown::countdown(minutes = 9)
 
 library(tidyverse)
 library(sf)
-country <- read_csv("assets/country.csv") |>
-  mutate(alpha.3 = ISO3_Country) |>
-  group_by(alpha.3) |>
-  summarise(n = n())
-map <- st_read("assets/tiled_grid_mapped.geojson") |>
-  left_join(country, by = "alpha.3")
+library(mapsf)
+library(rnaturalearth)
+sf_use_s2(FALSE)
 
-ggplot(map) +
-  geom_sf(aes(fill = n.y), color = NA) +
-  geom_label(data = map[!is.na(map$n.y),], aes(x= coord_x, y = coord_y, label = `alpha.2`), label.size = NA, fill = NA, color = "#00A99D") +
-  scale_fill_gradient(low = "gray70", high = "black", na.value = "grey90") +
-  theme_minimal() +
-  theme(legend.position = "bottom") +
-  labs(title = "Number of participants") +
-  theme_void()
+country <- read_csv("assets/country.csv") |>
+  mutate(iso = ISO3_Country) |>
+  group_by(iso) |>
+  summarise(n = n())
+
+world <- st_as_sf(ne_countries()) |>
+  mutate(iso = adm0_a3) |>
+  left_join(country, by = "iso") |>
+  mutate(n = if_else(!is.na(n), n, 0),
+         status = if_else(n>0, "≥ 1 participant", "No participant")
+         ) |>
+  st_transform("ESRI:54024")
+
+mf_map(
+  x = world,
+  var = "status",
+  type = "typo",
+  leg_pos = "topleft",
+  leg_title = "Country representation",
+  pal = c("#00A99D", "#7C7C7C"),
+  val_order = c("≥ 1 participant", "No participant"),
+  lwd = .2, leg_title_cex = 1,
+  leg_val_cex = .9, leg_no_data = "No data",
+  leg_box_cex = c(.5, 3), leg_box_border = NA,
+  border = "white"
+  )
+
 ```
 
 ## The 27 {.scrollable .smaller}
@@ -118,4 +134,4 @@ ggplot(map) +
 
 ...because you are experienced in translating between developer and user profiles
 
-# Flash talks
+# Flash talks (5min pp)
