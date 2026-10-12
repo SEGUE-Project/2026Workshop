@@ -9,6 +9,9 @@ Updating urban segregation computation with R
 The workshop will take place over 5 full days: 9, 10, 11, 12 and 13 November 2026, at TU Delft, in the Netherlands.
 
 
+## Opening plenary
+
+- (Slides of the plenary)[https://erc-segue.nl/2026Workshop/Community/Opening.html]
 
 
 ## License
@@ -18,6 +21,6 @@ This repository uses two licenses:
 - **Code** (R source, tests, and other software) is licensed under the [Apache License 2.0](LICENSE-CODE).
 - **Workshop materials** (the presentation, notebook, prose, figures, and other non-code content) are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE).
 
-Copyright (c) 2026 SEGUE and Rbanism. When reusing the materials, please provide attribution to the original authors and link back to this repository.
+Copyright (c) 2026 Clémentine Cottineau-Mugadza, SEGUE and Rbanism. When reusing the materials, please provide attribution to the original authors and link back to this repository.
 
 
