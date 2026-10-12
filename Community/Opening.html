@@ -13,7 +13,7 @@
 
   <meta name="author" content="Clémentine Cottineau-Mugadza">
   <meta name="dcterms.date" content="2026-11-09">
-  <title>Welcome</title>
+  <title>Updating urban segregation computation with R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -34,7 +34,27 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="Opening_files/libs/revealjs/dist/theme/quarto-0427d8d92a431aa6a6430e53ec02a470.css">
   <link rel="stylesheet" href="assets/style.css">
   <link href="Opening_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -136,7 +156,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="assets/background.png" data-background-opacity="0.6" class="quarto-title-block center">
-  <h1 class="title">Welcome</h1>
+  <h1 class="title">Updating urban segregation computation with R</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -148,6 +168,211 @@ Clémentine Cottineau-Mugadza
 
   <p class="date">November 9, 2026</p>
 </section>
+<section>
+<section id="welcome" class="title-slide slide level1 center" data-background-gradient="linear-gradient(135deg, white 30%, #00A99D)">
+<h1>Welcome</h1>
+
+</section>
+<section id="aims-of-the-workshop" class="slide level2">
+<h2>Aims of the workshop</h2>
+<ul>
+<li>foster <strong>research conversations</strong> on the state of segregation measurement and its relation to theories, data, scale and social attributes considered.</li>
+<li>create a <strong>community</strong> of urban scholars to collaborate on comparative research, theory and methodology development .</li>
+<li>prepare the development of a <strong>new R package</strong> to assist with segregation measure selection, computation, visualization and/or analysis.</li>
+</ul>
+</section>
+<section id="some-background" class="slide level2">
+<h2>Some background</h2>
+<blockquote>
+<p>Urban segregation – the pattern of (geographical) separation between people of different social groups or economic levels in cities.</p>
+</blockquote>
+<ul>
+<li>large component of the scientific program of urban sciences (geography, sociology, demography and economics).</li>
+<li>dire consequences for social cohesion, economic mobility, health and education opportunities, especially in a context of rising economic inequalities and uneven development.</li>
+</ul>
+</section>
+<section id="some-questions" class="slide level2">
+<h2>Some questions</h2>
+<ul>
+<li>How does urban segregation relate to economic inequality?</li>
+<li>At which scale can urban planners best design more efficient policies to reduce urban segregation?</li>
+<li>What are the mechanisms through which some places produce better outcomes than others?</li>
+<li>Does segregation directly harm children in vulnerable families?</li>
+</ul>
+</section>
+<section id="your-questions" class="slide level2 scrollable">
+<h2>Your questions</h2>
+<ul>
+<li><span style="color:#00A99D;">How does adding new dwellings to existing housing stock change local segregation values at different scales?</span></li>
+<li><span style="color:#00A99D;">To which extent the links formed by agents across neighborhoors mirror/solidify/diverge from segregation patterns?</span></li>
+<li><span style="color:#00A99D;">How much segregation might standard measures miss in a city of walled communities, and can urban form help reveal it?</span></li>
+<li><span style="color:#00A99D;">How do patterns of urban infrastructural accessibility or inequality shape the everyday experiences of disabled residents in African cities?</span></li>
+<li><span style="color:#00A99D;">How can we compare daily variations in urban segregation across different cities when: (i) the population distributions with respect to socio-demographic categories differ between cities; (ii) cities have different geographical perimeters; and (iii) the primary spatial units (neighbourhoods) differ ?</span></li>
+</ul>
+</section>
+<section id="indices-of-segregation" class="slide level2">
+<h2>Indices of segregation</h2>
+<ul>
+<li>Historical (racial) segregation indices, reviewed by <span class="citation" data-cites="massey1988dimensions">(<a href="#/references" role="doc-biblioref" onclick="">Massey &amp; Denton, 1988</a>)</span></li>
+<li>Spatial segregation <span class="citation" data-cites="white1983measurement">(<a href="#/references" role="doc-biblioref" onclick="">White, 1983</a>)</span> <span class="citation" data-cites="morrill1991">(<a href="#/references" role="doc-biblioref" onclick="">Morrill, 1991</a>)</span></li>
+<li>Multi-groups <span class="citation" data-cites="wong1998measuring">(<a href="#/references" role="doc-biblioref" onclick="">Wong, 1998</a>)</span></li>
+<li>Ordinal variables <span class="citation" data-cites="reardon2009measures">(<a href="#/references" role="doc-biblioref" onclick="">Reardon, 2009</a>)</span></li>
+</ul>
+</section>
+<section id="indices-of-segregation-1" class="slide level2">
+<h2>Indices of segregation</h2>
+
+<img data-src="Opening_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
+<section id="data-on-people-in-cities" class="slide level2">
+<h2>Data on people in cities</h2>
+<ul>
+<li>register-based microdata (NL, AT, SE, NO)</li>
+<li>granular census tract-based data on an annual basis (ES, FR).</li>
+<li>less granular/less frequent census and survey data</li>
+<li>nightlight data as a proxy of population density and income (CN)</li>
+<li>first hand interview and survey data</li>
+</ul>
+</section>
+<section id="methodological-infrastructure" class="slide level2">
+<h2>Methodological infrastructure</h2>
+<ul>
+<li>Websites, applications &amp; software for computing segregation</li>
+<li>open-source packages in Python (<code>segregation</code>)</li>
+<li>open-source packages in R (<code>OasisR</code>, <code>seg</code>, <code>segregation</code>, <code>divseg</code>, <code>ineq</code>, <code>mutualinf</code>)</li>
+</ul>
+<p>But, we are missing a few things…</p>
+</section>
+<section id="a-routemap-to-choose-urban-segregation-measures." class="slide level2">
+<h2>1. A “routemap” to choose urban segregation measures.</h2>
+
+<img data-src="assets/decisionTree.png" class="r-stretch"></section>
+<section id="a-way-to-make-innovative-methods-of-segregation-computation-accessible-to-answer-big-theoretical-questions-of-the-field" class="slide level2">
+<h2>2. A way to make innovative methods of segregation computation accessible to answer big theoretical questions of the field</h2>
+<ul>
+<li>Making the computation of relevant indices accessible and painless</li>
+<li>Facilitating the design of spatial counterfactuals and robustness analysis</li>
+<li>Reorienting the development of indices towards unanswered questions of the field</li>
+</ul>
+</section>
+<section id="a-forum-where-sharp-theoretical-developments-meet-novel-computational-science" class="slide level2">
+<h2>3. A forum where sharp theoretical developments meet novel computational science</h2>
+<p>Unfortunately for now, these two strands of urban segregation research tend to develop in parallel, if not against each other.</p>
+<p>Different journals, conferences, networks and departments.</p>
+<blockquote>
+<p>Current theoretical developments in the field of urban segregation often ignore methodological innovations while methodological developments do not address current debates of the field.</p>
+</blockquote>
+</section>
+<section id="a-new-and-updated-toolbox-of-segregation-indices-which" class="slide level2">
+<h2>4. A new and updated toolbox of segregation indices, which</h2>
+<ul>
+<li>allows for <strong>combinations</strong> of data features (multi-group AND spatial, ordinal AND spatial)</li>
+<li>is <strong>up to date</strong> with the methodological literature (e.g.&nbsp;Divergence index)</li>
+<li>considers <strong>multilayered attributes of segregation</strong>, as exposed by network segregation <span class="citation" data-cites="kazmina2024socio">(<a href="#/references" role="doc-biblioref" onclick="">Kazmina et al., 2024</a>)</span>, daytime segregation <span class="citation" data-cites="le2017social">(<a href="#/references" role="doc-biblioref" onclick="">Le Roux et al., 2017</a>)</span> and multiscale segregation <span class="citation" data-cites="petrovic2018multiscale">(<a href="#/references" role="doc-biblioref" onclick="">Petrović et al., 2018</a>)</span>.</li>
+</ul>
+</section>
+<section id="how-to" class="slide level2">
+<h2>How to?</h2>
+<ul>
+<li><strong>Diversity</strong> of participants (profiles, location, skills and interests)</li>
+<li>Needs-mapping <strong>activities</strong></li>
+<li>5 days to prepare for <strong>longer term</strong> development</li>
+<li>Italian catering!</li>
+</ul>
+</section>
+<section id="program" class="slide level2">
+<h2>Program</h2>
+
+<img data-src="assets/program.png" class="r-stretch"></section>
+<section id="organising-team" class="slide level2 scrollable smaller">
+<h2>Organising team</h2>
+<ul>
+<li><p><a href="https://research.tudelft.nl/en/persons/a-petrovi%C4%87/">Ana Petrovic</a>, Assistant Professor in urban studies at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a></p></li>
+<li><p><a href="https://cforgaci.github.io/">Claudiu Forgaci</a>, Assistant Professor in urban design at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a></p></li>
+<li><p><a href="https://clementinecttn.github.io/">Clémentine Cottineau-Mugadza</a>, Assistant Professor in urban studies at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a><a href="http://erc-segue.nl/"><img data-src="assets/segue_logo.png" class="quarto-figure quarto-figure-left" width="30"></a></p></li>
+<li><p><a href="https://www.tudelft.nl/staff/d.cannatella/">Daniele Cannatella</a>, Assistant Professor in spatial data science at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a></p></li>
+<li><p><a href="https://www.tudelft.nl/staff/i.a.urriayanez/">Ignacio Urria Yáñez</a>, PhD Candidate in urban studies at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a></p></li>
+<li><p><a href="https://javiersanmillan.github.io/">Javier San Millan Tejedor</a>, PhD Candidate in urban studies at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a><a href="http://erc-segue.nl/"><img data-src="assets/segue_logo.png" class="quarto-figure quarto-figure-left" width="30"></a></p></li>
+<li><p><a href="https://lisst.univ-tlse2.fr/home/julie-vallee">Julie Vallée</a>, Senior researcher at CNRS, LISST, France</p></li>
+<li><p><a href="https://jmigozzi.github.io/">Julien Migozzi</a>, Assistant Professor in Development Studies at University of Cambridge, UK</p></li>
+<li><p><a href="https://www.ljwolf.org/">Levi John Wolf</a>, Associate Professor of Spatial Analysis at the University of Bristol , UK</p></li>
+<li><p><a href="https://www.selcanmutgan.com/">Selcan Mutgan</a>, Assistant Professor at the Institute for Analytical Sociology in Linköping University, Sweden</p></li>
+<li><p><a href="https://khu.elsevierpure.com/en/persons/seong-yun-hong/">Seong-Yun Hong</a>, Associate Professor at Kyung Hee University, South Korea</p></li>
+<li><p><a href="https://www.uva.nl/en/profile/k/a/y.kazmina/y.kazmina.html">Yuliia Kazmina</a>, PhD candidate at the Faculty of Social and Behavioural Sciences, University of Amsterdam (NL)</p></li>
+</ul>
+</section>
+<section id="what-is-segue" class="slide level2">
+<h2>What is SEGUE?</h2>
+<p>It is an project dedicated to the estimation, modelling and identification of policy scenarios to reduce urban economic segregation in the Netherlands.</p>
+<p>It is funded by the European Research Council between 2022 and 2029.</p>
+<p>The project funds some participants and the organisation of this meeting.</p>
+</section>
+<section id="initial-results-from-segue" class="slide level2 scrollable smaller">
+<h2>Initial results from SEGUE?</h2>
+<ol type="1">
+<li>urban economic <strong>segregation</strong> is linked to economic <strong>inequality</strong> through a variety of causal pathways, including but not restricted to housing markets <span class="citation" data-cites="cottineau2025economic">(<a href="#/references" role="doc-biblioref" onclick="">Cottineau-Mugadza, 2025</a>)</span> <span class="citation" data-cites="paulinaslr">(<a href="#/references" role="doc-biblioref" onclick="">Pizarro Kumpf et al., 2026</a>)</span></li>
+<li>income <strong>segregation in the Netherlands</strong> is rather low, stable and heterogeneous in Dutch metropolitan areas, but wealth inequalities and segregation are much larger and growing since 2011 <span class="citation" data-cites="san_millan_economic_2025">(<a href="#/references" role="doc-biblioref" onclick="">San Millán, Cottineau‐Mugadza, et al., 2025</a>)</span> <span class="citation" data-cites="sanmillan2025wealth">(<a href="#/references" role="doc-biblioref" onclick="">San Millán, Cottineau-Mugadza, et al., 2025</a>)</span></li>
+<li>the size, spatial dispersion and allocation rules of <strong>social housing</strong> play an important role in dampening the effect of economic inequality on economic segregation, but that they vary significantly between cities <span class="citation" data-cites="san2026inequality">(<a href="#/references" role="doc-biblioref" onclick="">San Millán et al., 2026</a>)</span> <span class="citation" data-cites="buitrago2026">(<a href="#/references" role="doc-biblioref" onclick="">Buitrago-Mora &amp; Cottineau-Mugadza, 2026</a>)</span>. This directly affects the type of <strong>policies</strong> to design in order to reduce income and wealth segregation.</li>
+</ol>
+</section>
+<section id="rbanism" class="slide level2">
+<h2>Rbanism</h2>
+</section>
+<section id="this-is-an-open-source-project" class="slide level2">
+<h2>This is an open source project</h2>
+<p>license, material, data?, code, 1 repo for coding sandpit</p>
+</section>
+<section id="references" class="slide level2 scrollable smaller" style="font-size: 40px">
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-buitrago2026" class="csl-entry" role="listitem">
+Buitrago-Mora, D., &amp; Cottineau-Mugadza, C. (2026). Reshaping economic segregation in the netherlands: The role of social housing allocation. <em>Under Review</em>.
+</div>
+<div id="ref-cottineau2025economic" class="csl-entry" role="listitem">
+Cottineau-Mugadza, C. (2025). Economic inequality and economic segregation: A systematic review of causal pathways. <em>Social Forces</em>. <a href="https://doi.org/10.1093/sf/soaf195">https://doi.org/10.1093/sf/soaf195</a>
+</div>
+<div id="ref-kazmina2024socio" class="csl-entry" role="listitem">
+Kazmina, Y., Heemskerk, E. M., Bokányi, E., &amp; Takes, F. W. (2024). Socio-economic segregation in a population-scale social network. <em>Social Networks</em>, <em>78</em>, 279–291.
+</div>
+<div id="ref-le2017social" class="csl-entry" role="listitem">
+Le Roux, G., Vallée, J., &amp; Commenges, H. (2017). Social segregation around the clock in the paris region (france). <em>Journal of Transport Geography</em>, <em>59</em>, 134–145.
+</div>
+<div id="ref-massey1988dimensions" class="csl-entry" role="listitem">
+Massey, D. S., &amp; Denton, N. A. (1988). The dimensions of residential segregation. <em>Social Forces</em>, <em>67</em>(2), 281–315.
+</div>
+<div id="ref-morrill1991" class="csl-entry" role="listitem">
+Morrill, B. (1991). On the measure of geographic segregation. <em>Geography Research Forum</em>, <em>11</em>, 25–36.
+</div>
+<div id="ref-petrovic2018multiscale" class="csl-entry" role="listitem">
+Petrović, A., Van Ham, M., &amp; Manley, D. (2018). Multiscale measures of population: Within-and between-city variation in exposure to the sociospatial context. <em>Annals of the American Association of Geographers</em>, <em>108</em>(4), 1057–1074.
+</div>
+<div id="ref-paulinaslr" class="csl-entry" role="listitem">
+Pizarro Kumpf, P., Cottineau-Mugadza, C., &amp; Ham, M. van. (2026). <em>The weight of legacy: A systematic review of agent-based models of economic segregation</em>. Working paper.
+</div>
+<div id="ref-reardon2009measures" class="csl-entry" role="listitem">
+Reardon, S. F. (2009). Measures of ordinal segregation. <em>Research on Economic Inequality</em>, <em>17</em>, 129–155.
+</div>
+<div id="ref-sanmillan2025wealth" class="csl-entry" role="listitem">
+San Millán, J., Cottineau-Mugadza, C., &amp; Van Ham, M. (2025). From flux to capital: Distinguishing patterns of income and wealth segregation in the netherlands. <em>Population, Space and Place</em>, <em>31</em>(8), e70127. <a href="https://doi.org/10.1002/psp.70127">https://doi.org/10.1002/psp.70127</a>
+</div>
+<div id="ref-san2026inequality" class="csl-entry" role="listitem">
+San Millán, J., Cottineau-Mugadza, C., &amp; Van Ham, M. (2026). Why inequality does not always lead to segregation: The role of social housing in the netherlands. <em>Housing Studies</em>, 1–28.
+</div>
+<div id="ref-san_millan_economic_2025" class="csl-entry" role="listitem">
+San Millán, J., Cottineau‐Mugadza, C., &amp; Van Ham, M. (2025). The <span>Economic</span> <span>Urban</span> <span>Divide</span>: <span>A</span> <span>Detailed</span> <span>Study</span> of <span>Income</span> <span>Inequality</span> and <span>Segregation</span> in <span>Dutch</span> <span>Urban</span> <span>Areas</span> (2011–2022). <em>Tijdschrift Voor Economische En Sociale Geografie</em>, <em>116</em>(4), 508–530. <a href="https://doi.org/10.1111/tesg.70011">https://doi.org/10.1111/tesg.70011</a>
+</div>
+<div id="ref-white1983measurement" class="csl-entry" role="listitem">
+White, M. J. (1983). The measurement of spatial segregation. <em>American Journal of Sociology</em>, <em>88</em>(5), 1008–1018.
+</div>
+<div id="ref-wong1998measuring" class="csl-entry" role="listitem">
+Wong, D. W. (1998). Measuring multiethnic spatial segregation. <em>Urban Geography</em>, <em>19</em>(1), 77–87.
+</div>
+</div>
+</section></section>
+<section>
+<section id="getting-to-know-each-other" class="title-slide slide level1 center" data-background-gradient="linear-gradient(135deg, white 30%, #93278F)">
+<h1>Getting to know each other</h1>
+
+</section>
 <section id="form-9-groups-of-3-ask-each-other" class="slide level2">
 <h2>Form 9 groups of 3 &amp; ask each other:</h2>
 <ul>
@@ -157,7 +382,7 @@ Clémentine Cottineau-Mugadza
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<countdown-timer class="countdown" id="timer_ee0cbe15" minutes="9" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
+<countdown-timer class="countdown" id="timer_ff467a37" minutes="9" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
 </div>
 </div>
 </section>
@@ -170,7 +395,7 @@ Clémentine Cottineau-Mugadza
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<countdown-timer class="countdown" id="timer_6601cdb9" minutes="9" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
+<countdown-timer class="countdown" id="timer_0ecfd56a" minutes="9" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
 </div>
 </div>
 </section>
@@ -222,8 +447,8 @@ Clémentine Cottineau-Mugadza
 <h2>Interface profile</h2>
 <p>…because you are experienced in translating between developer and user profiles</p>
 </section>
-<section id="flash-talks-5min-pp" class="title-slide slide level1 center">
-<h1>Flash talks (5min pp)</h1>
+<section id="next-coffee.-then-review-talks-why-quantify-urban-segregation-whats-the-current-landscape-of-indicators-and-packages" class="slide level2">
+<h2>Next: Coffee. Then Review talks: “Why quantify urban segregation? What’s the current landscape of indicators and packages?”</h2>
 
 <div class="reveal-header">
 <div class="header-logo-left">
@@ -233,7 +458,7 @@ Clémentine Cottineau-Mugadza
 <a href="https://erc-segue.nl"><img data-src="assets/segue_logo.png" style="--qrh-logo-height:75px;"></a>
 </div>
 </div>
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

@@ -1,5 +1,5 @@
 ---
-title: "Welcome"
+title: "Updating urban segregation computation with R"
 author: "Clémentine Cottineau-Mugadza"
 filters:
   - revealjs-header
@@ -28,7 +28,181 @@ css: assets/style.css
 ---
 
 
-# Getting to know each other
+# Welcome {background-gradient="linear-gradient(135deg, white 30%, #00A99D)"}
+
+## Aims of the workshop
+
+- foster **research conversations** on the state of segregation measurement and its relation to theories, data, scale and social attributes considered.
+- create a **community** of urban scholars to collaborate on comparative research, theory and methodology development .
+- prepare the development of a **new R package** to assist with segregation measure selection, computation, visualization and/or analysis.
+
+
+## Some background
+
+> Urban segregation – the pattern of (geographical) separation between people of different social groups or economic levels in cities.
+
+- large component of the scientific program of urban sciences (geography, sociology, demography and economics). 
+- dire consequences for social cohesion, economic mobility, health and education opportunities, especially in a context of rising economic inequalities and uneven development. 
+
+## Some questions
+
+- How does urban segregation relate to economic inequality? 
+- At which scale can urban planners best design more efficient policies to reduce urban segregation? 
+- What are the mechanisms through which some places produce better outcomes than others? 
+- Does segregation directly harm children in vulnerable families?
+
+## Your questions {.scrollable}
+
+- [How does adding new dwellings to existing housing stock change local segregation values at different scales?]{style="color:#00A99D;"}
+- [To which extent the links formed by agents across neighborhoors mirror/solidify/diverge from segregation patterns?]{style="color:#00A99D;"}
+- [How much segregation might standard measures miss in a city of walled communities, and can urban form help reveal it?]{style="color:#00A99D;"}
+- [How do patterns of urban infrastructural accessibility or inequality shape the everyday experiences of disabled residents in African cities?]{style="color:#00A99D;"}
+- [How can we compare daily variations in urban segregation across different cities when: (i) the population distributions with respect to socio-demographic categories differ between cities; (ii) cities have different geographical perimeters; and (iii) the primary spatial units (neighbourhoods) differ ?]{style="color:#00A99D;"}
+
+## Indices of segregation
+
+- Historical (racial) segregation indices, reviewed by [@massey1988dimensions] 
+- Spatial segregation [@white1983measurement] [@morrill1991]
+- Multi-groups [@wong1998measuring]
+- Ordinal variables [@reardon2009measures]
+
+## Indices of segregation
+
+```{r}
+library(tidyverse)
+# library(devtools)
+# install_github("deleetdk/kirkegaard")
+library(kirkegaard)
+
+index <- read_csv("assets/index_inventory-aiex.csv") |>
+  pivot_longer(cols = c("OasisR","divseg","segregation",
+                        "seg","mutualinf","ineq"),
+               names_to = "Package name",
+               values_to = "includes",
+               values_drop_na = F) |>
+  mutate(includes = as.factor(includes),
+         `Index name` = fct_reorder(`Index name`, desc(`Index name`))) 
+
+
+  ggplot(index, aes(y=`Index name`, x=`Package name`, fill=includes)) + 
+  geom_raster() +
+    scale_fill_manual(values = c("1" = "#93278F"), na.value = "white") +
+    guides(fill="none") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 50, 
+                                    vjust = 0.95, hjust=1)) 
+  
+```
+
+
+## Data on people in cities
+
+- register-based microdata (NL, AT, SE, NO)
+- granular census tract-based data on an annual basis (ES, FR). 
+- less granular/less frequent census and survey data
+- nightlight data as a proxy of population density and income (CN)
+- first hand interview and survey data 
+
+## Methodological infrastructure
+
+- Websites, applications & software for computing segregation
+- open-source packages in Python (`segregation`) 
+- open-source packages in R (`OasisR`, `seg`, `segregation`, `divseg`, `ineq`, `mutualinf`)
+
+But, we are missing a few things...
+
+## 1. A “routemap” to choose urban segregation measures.
+
+![](assets/decisionTree.png)
+
+## 2. A way to make innovative methods of segregation computation accessible to answer big theoretical questions of the field
+
+- Making the computation of relevant indices accessible and painless 
+- Facilitating the design of spatial counterfactuals and robustness analysis
+- Reorienting the development of indices towards unanswered questions of the field
+
+## 3. A forum where sharp theoretical developments meet novel computational science
+
+Unfortunately for now, these two strands of urban segregation research tend to develop in parallel, if not against each other.
+
+Different journals, conferences, networks and departments.
+
+> Current theoretical developments in the field of urban segregation often ignore methodological innovations while methodological developments do not address current debates of the field.
+
+## 4. A new and updated toolbox of segregation indices, which
+
+- allows for **combinations** of data features (multi-group AND spatial, ordinal AND spatial)
+- is **up to date** with the methodological literature (e.g. Divergence index)
+- considers **multilayered attributes of segregation**, as exposed by network segregation [@kazmina2024socio], daytime segregation [@le2017social] and multiscale segregation [@petrovic2018multiscale].
+
+
+## How to?
+
+- **Diversity** of participants (profiles, location, skills and interests)
+- Needs-mapping **activities**
+- 5 days to prepare for **longer term** development
+- Italian catering!
+
+
+## Program
+
+![](assets/program.png)
+
+## Organising team {.scrollable .smaller}
+
+- [Ana Petrovic](https://research.tudelft.nl/en/persons/a-petrovi%C4%87/), Assistant Professor in urban studies at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)
+
+- [Claudiu Forgaci](https://cforgaci.github.io/), Assistant Professor in urban design at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)
+
+- [Clémentine Cottineau-Mugadza](https://clementinecttn.github.io/), Assistant Professor in urban studies at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)[![](assets/segue_logo.png){fig-align="left" width="30"}](http://erc-segue.nl/)
+
+- [Daniele Cannatella](https://www.tudelft.nl/staff/d.cannatella/), Assistant Professor in spatial data science at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)
+
+- [Ignacio Urria Yáñez](https://www.tudelft.nl/staff/i.a.urriayanez/), PhD Candidate in urban studies at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)
+
+- [Javier San Millan Tejedor](https://javiersanmillan.github.io/), PhD Candidate in urban studies at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)[![](assets/segue_logo.png){fig-align="left" width="30"}](http://erc-segue.nl/)
+
+- [Julie Vallée](https://lisst.univ-tlse2.fr/home/julie-vallee), Senior researcher at CNRS, LISST, France
+
+- [Julien Migozzi](https://jmigozzi.github.io/), Assistant Professor in Development Studies at University of Cambridge, UK
+
+- [Levi John Wolf](https://www.ljwolf.org/), Associate Professor of Spatial Analysis at the University of Bristol , UK
+
+- [Selcan Mutgan](https://www.selcanmutgan.com/), Assistant Professor at the Institute for Analytical Sociology in Linköping University, Sweden
+
+- [Seong-Yun Hong](https://khu.elsevierpure.com/en/persons/seong-yun-hong/), Associate Professor at Kyung Hee University, South Korea
+
+- [Yuliia Kazmina](https://www.uva.nl/en/profile/k/a/y.kazmina/y.kazmina.html), PhD candidate at the Faculty of Social and Behavioural Sciences, University of Amsterdam (NL)
+
+
+## What is SEGUE? 
+
+It is an project dedicated to the estimation, modelling and identification of policy scenarios to reduce urban economic segregation in the Netherlands.
+
+It is funded by the European Research Council between 2022 and 2029.
+
+The project funds some participants and the organisation of this meeting.
+
+## Initial results from SEGUE {.scrollable .smaller}
+
+1. urban economic **segregation** is linked to economic **inequality** through a variety of causal pathways, including but not restricted to housing markets [@cottineau2025economic] [@paulinaslr]
+2. income **segregation in the Netherlands** is rather low, stable and heterogeneous in Dutch metropolitan areas, but wealth inequalities and segregation are much larger and growing since 2011 [@san_millan_economic_2025] [@sanmillan2025wealth]
+3. the size, spatial dispersion and allocation rules of **social housing** play an important role in dampening the effect of economic inequality on economic segregation, but that they vary significantly between cities
+[@san2026inequality] [@buitrago2026]. This directly affects the type of **policies** to design in order to reduce income and wealth segregation.
+
+## Rbanism
+
+## This is an open source project
+
+license, material, data?, code, 1 repo for coding sandpit
+
+
+## References {.scrollable .smaller style="font-size: 40px"}
+
+::: {#refs}
+:::
+
+# Getting to know each other {background-gradient="linear-gradient(135deg, white 30%, #93278F)"}
 
 ## Form 9 groups of 3 & ask each other:
 
@@ -137,4 +311,4 @@ mf_map(
 
 ...because you are experienced in translating between developer and user profiles
 
-# Flash talks (5min pp)
+## Next: Coffee. Then Review talks: "Why quantify urban segregation? What’s the current landscape of indicators and packages?"
