@@ -27,6 +27,9 @@ title-slide-attributes:
 css: assets/style.css
 ---
 
+
+# Getting to know each other
+
 ## Form 9 groups of 3 & ask each other:
 
 - Who are you?
