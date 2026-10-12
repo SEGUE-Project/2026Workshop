@@ -1,7 +1,14 @@
 ---
 title: "Computing segregation indices from existing packages"
-author: "C. Cottineau-Mugadza & I. Urria Yañez"
-
+author:
+  - name: Clémentine Cottineau-Mugadza
+    orcid: 0000-0002-2452-3901
+    email: c.cottineau@tudelft.nl
+  - name: Ignacio Urria Yáñez
+    orcid: 0000-0003-3218-5102
+    email: I.A.UrriaYanez@tudelft.nl
+    
+    
 date: today  
 format:
   html:
@@ -17,7 +24,17 @@ theme: united
 
 ## Introduction
 
-Context and aim. Process.
+In this first code along crash course, we want to bring discussions back to the coding environments, with an exploration of existing segregation measures in R packages. 
+
+We have three aims with this activity:
+
+1. aligning our vocabulary around segregation computation with R by work with R functions to compute segregation together
+2. aligning our knowledge and understanding of the current landscape of segregation computation with R
+3. foster discussions about what the field needs and what the package needs to provide with concrete examples. 
+
+We understand that for some of you, parts of the script will seem challenging while for other, it will be very basic... This is the point of our diverse group: some of us are more comfortable with development while others are at ease with theoretical discussions. The fact that everybody attends both types of session facilitates communication between developers and users profiles.
+
+## Basic Packages
 
 ```{r}
 #| message: false
@@ -140,7 +157,7 @@ ggplot() +
 
 ```
 
-## Packages
+## Segregation Packages
 
 There are currently (at least) 3 packages available to compute the indices of segregation we will use in this session: dissimilarity and entropy.
 
