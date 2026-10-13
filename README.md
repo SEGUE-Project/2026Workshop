@@ -13,9 +13,9 @@ The workshop will take place over 5 full days: 9, 10, 11, 12 and 13 November 202
 
 ### Presentation material
 
-- [Plenary session with aims, links, participants and program](https://erc-segue.nl/2026Workshop/Community/Opening.html)
+- [Plenary session with aims, links, participants and program](https://erc-segue.nl/2026Workshop/Presentations/Opening.html)
 - [Test-Driven R Package Development](https://erc-segue.nl/tdd-r-pkg/presentation.html)
-- [Closing session with roles, timeline and actions](https://erc-segue.nl/2026Workshop/Community/Closing.html)
+- [Closing session with roles, timeline and actions](https://erc-segue.nl/2026Workshop/Presentations/Closing.html)
 
 ### Code along sessions
 
