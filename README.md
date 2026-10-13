@@ -9,10 +9,19 @@ Updating urban segregation computation with R
 The workshop will take place over 5 full days: 9, 10, 11, 12 and 13 November 2026, at TU Delft, in the Netherlands.
 
 
-## Presentation material
+## Workshop material
 
-- [Slides of the plenary with aims, links, participants and program](https://erc-segue.nl/2026Workshop/Community/Opening.html)
-- [Slides of the closing session with roles, timeline and actions](https://erc-segue.nl/2026Workshop/Community/Closing.html)
+### Presentation material
+
+- [Plenary session with aims, links, participants and program](https://erc-segue.nl/2026Workshop/Community/Opening.html)
+- [Test-Driven R Package Development](https://erc-segue.nl/tdd-r-pkg/presentation.html)
+- [Closing session with roles, timeline and actions](https://erc-segue.nl/2026Workshop/Community/Closing.html)
+
+### Code along sessions
+
+- [Livecode repository](https://github.com/SEGUE-Project/workshop-livecode)
+- [Notebook "Computing segregation indices from existing packages"](https://erc-segue.nl/2026Workshop/CodeAlong/ExistingPackages/SegIndexExistingPackages.html)
+- [Notebook "Test-Driven R Package Development"](https://erc-segue.nl/tdd-r-pkg/practical.html)
 
 ## License
 
