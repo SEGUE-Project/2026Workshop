@@ -195,7 +195,7 @@ SEGUE funds the organisation of this meeting.
 ::: {}
 A community of practice from TU Delft, whose mission is to build capacity, competence, and confidence for working with data and research software in the urbanism community.
 
-[![](assets/Logo_Rbanism_%20Full.png){fig-align="centre" width="150"}](http://rbanism.org/)
+[![](assets/Logo_Rbanism_%20Full.png){fig-align="centre" width="130"}](http://rbanism.org/)
 :::
 
 ::: {}
@@ -219,8 +219,8 @@ We organise trainings, challenges, workshops and community events. Our skills an
 
 Preparation materials and upcoming contribution to use two licenses:
 
-- Apache License 2.0. for Code (R source, tests, and other software)
-- Creative Commons Attribution 4.0 International (CC BY 4.0) for workshop materials and outputs (data, presentations, notebooks, prose, figures, and other non-code content)
+- **Apache License 2.0** for Code (R source, tests, and other software)
+- **Creative Commons Attribution 4.0 International (CC BY 4.0)** for workshop materials and outputs (data, presentations, notebooks, prose, figures, and other non-code content)
 
 ## Infrastructure for collaboration
 
@@ -245,24 +245,24 @@ Adapted from [The Carpentries' code of conduct](https://docs.carpentries.org/pol
 ::::: {layout-ncol="2"}
 ::: {}
 
-Expected behaviours:
+**Expected behaviours:**
 
 - Use welcoming and inclusive language
 - Be respectful of different viewpoints and experiences
 - Focus on what is best for the community
 - Show courtesy and respect towards other community members
-- Show empathy towards organisation staff 
-- Offer help and expertise when to possible
+- Show empathy towards organisation staff (we're doing out best!)
+- Offer help and expertise when possible
 
 :::
 
 ::: {}
 
-Unacceptable behaviours:
+**Unacceptable behaviours:**
 
 - threats, insults, jokes or comments with the effect of excluding people
 - sustained disruption of talks, events or communications
-- publication of (private) communication without consent
+- publication of (private) data or communication without consent
 - causing someone to fear for their safety, such as through stalking, following, or intimidation
 - nonconsensual or unwelcome physical contact or sexual attention
 - incitement to violence or self-harm
@@ -291,7 +291,7 @@ Unacceptable behaviours:
 countdown::countdown(minutes = 9)
 ```
 
-## Change groups!
+## Change groups! (x2)
 
 - Who are you?
 - What do you do?
@@ -303,7 +303,7 @@ countdown::countdown(minutes = 9)
 countdown::countdown(minutes = 9)
 ```
 
-## Okay! Now you know 6 people! {.scrollable}
+## Okay! Now you know ~6 people! {.scrollable}
 
 ```{r}
 #| label: maps
