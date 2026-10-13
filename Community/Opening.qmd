@@ -1,6 +1,8 @@
 ---
 title: "Updating urban segregation computation with R"
-author: "Clémentine Cottineau-Mugadza"
+author: 
+  - name: "Clémentine Cottineau-Mugadza"
+    orcid: 0000-0002-2452-3901
 filters:
   - revealjs-header
 format: 
@@ -11,7 +13,6 @@ format:
     header-logo-right-height: 75px
     header-logo-left: assets/Logo_Rbanism_ Full.png
     header-logo-left-height: 75px
-
 
 editor: visual
 date: 11-9-2026  

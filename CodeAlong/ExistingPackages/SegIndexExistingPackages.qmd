@@ -24,13 +24,13 @@ theme: united
 
 ## Introduction
 
-In this first code along crash course, we want to bring discussions back to the coding environments, with an exploration of existing segregation measures in R packages. 
+In this first code along crash course, we want to bring discussions back to the coding environments, with an exploration of existing segregation measures in R packages.
 
 We have three aims with this activity:
 
-1. aligning our vocabulary around segregation computation with R by work with R functions to compute segregation together
-2. aligning our knowledge and understanding of the current landscape of segregation computation with R
-3. foster discussions about what the field needs and what the package needs to provide with concrete examples. 
+1.  aligning our vocabulary around segregation computation with R by work with R functions to compute segregation together
+2.  aligning our knowledge and understanding of the current landscape of segregation computation with R
+3.  foster discussions about what the field needs and what the package needs to provide with concrete examples.
 
 We understand that for some of you, parts of the script will seem challenging while for other, it will be very basic... This is the point of our diverse group: some of us are more comfortable with development while others are at ease with theoretical discussions. The fact that everybody attends both types of session facilitates communication between developers and users profiles.
 
