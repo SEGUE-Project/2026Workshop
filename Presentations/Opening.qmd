@@ -238,6 +238,40 @@ These slides:
 :::
 :::::
 
+## Code of conduct {.smaller}
+
+Adapted from [The Carpentries' code of conduct](https://docs.carpentries.org/policies/coc/)
+
+::::: {layout-ncol="2"}
+::: {}
+
+Expected behaviours:
+
+- Use welcoming and inclusive language
+- Be respectful of different viewpoints and experiences
+- Focus on what is best for the community
+- Show courtesy and respect towards other community members
+- Show empathy towards organisation staff 
+- Offer help and expertise when to possible
+
+:::
+
+::: {}
+
+Unacceptable behaviours:
+
+- threats, insults, jokes or comments with the effect of excluding people
+- sustained disruption of talks, events or communications
+- publication of (private) communication without consent
+- causing someone to fear for their safety, such as through stalking, following, or intimidation
+- nonconsensual or unwelcome physical contact or sexual attention
+- incitement to violence or self-harm
+
+
+:::
+:::::
+
+
 ## References {.scrollable .smaller}
 
 ::: {#refs}
