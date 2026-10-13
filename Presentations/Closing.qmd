@@ -54,7 +54,6 @@ css: assets/style.css
 - create a **community** of urban scholars to collaborate on comparative research, theory and methodology development. ▶️ how to keep it going?
 - prepare the development of a **new R package** to assist with segregation measure selection, computation, visualization and/or analysis. ▶️ how to finish?
 
-
 ## How to?
 
 ::::: {layout-ncol="2"}
@@ -63,18 +62,16 @@ Open this document:
 
 ![](assets/taskDistribution.png)
 
+🔗 [Task distribution](https://docs.proton.me/sheet?mode=open-url&token=E6CC98TXZ0&linkId=o5154sezO_l2gL09MtPT-g#0HmLdqa2iazq)
 :::
 
 ::: {}
-
 - Identify task being discussed
 - Fill in your name in lead/contributor column where you can contribute
 - Suggest additional / reduced / split tasks at the end
-- Suggest updated need / input / output / deadline 
-
+- Suggest updated need / input / output / deadline
 :::
 :::::
-
 
 # Package development {background-gradient="linear-gradient(135deg, white 30%, #93278F)"}
 
@@ -83,7 +80,6 @@ Open this document:
 1.  Matching **needs** with technical **fixes**: which indicators? which spatial environments? which robustness checks?
 2.  Matching **techniques** with interpretation and **theoretical questions**: case studies & documentation
 3.  **Process**: sequence and milestones of package development
-
 
 ## 1.1. Needs\>fixes: Which indicators?
 
@@ -94,7 +90,7 @@ Open this document:
 
 ## 1.2. Needs\>fixes: Which environments?
 
-1.  multiscale (1.2.1)
+1.  spatial multiscale (1.2.1)
 2.  temporal (1.2.2)
 3.  accessibility-based (1.2.3)
 4.  ?
@@ -171,7 +167,7 @@ Open this document:
 
 3.  Publication on CRAN (3.4.3)
 
-4.  Publication of academic articles for JOSS/EPB/Urban Studies?  (3.4.4)
+4.  Publication of academic articles for JOSS/EPB/Urban Studies? (3.4.4)
 
 # Community {background-gradient="linear-gradient(135deg, white 30%, #f57b26)"}
 
@@ -179,36 +175,27 @@ Open this document:
 
 ::::: {layout-ncol="2"}
 ::: {}
-
 - Co-authors (formal, short-term, project-based)
 - Collective (informal, mid-term, semi-open)
 - Community (longer term, growing)
-
 :::
 
 ::: {}
-
 - **Horizontal** distribution of roles and responsibilities
 - **Hierarchical** organisation with core active group and contributors?
 - Something **in between**?
-
 :::
 :::::
-
-
-
 
 ## Who do we reach out to? (user group)
 
 - students & staff of our institutions
 - R-user groups: Rbanism / ElementR / rOpenSci, R Ladies
 
-
 ## Who do we ask for help? (diffusion)
-    
+
 - Spatial Data Science across Laguage to translate Python to R
 - Sean Reardon?
-
 
 # Actions {background-gradient="linear-gradient(135deg, white 30%, #00A99D)"}
 
@@ -216,20 +203,18 @@ Open this document:
 
 ::::: {layout-ncol="2"}
 ::: {}
-
 ![](assets/taskDistribution.png)
 
+🔗 [Task distribution](https://docs.proton.me/sheet?mode=open-url&token=E6CC98TXZ0&linkId=o5154sezO_l2gL09MtPT-g#0HmLdqa2iazq)
 :::
 
 ::: {}
-
 - Completing the plan by 13 Dec. 2026
 - Executing the plan within 6 months?
-
 :::
 :::::
 
-## Longer term 
+## Longer term
 
 - online meetings
 - publication writing/review
