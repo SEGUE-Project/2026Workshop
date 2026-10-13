@@ -9,7 +9,7 @@ Updating urban segregation computation with R
 The workshop will take place over 5 full days: 9, 10, 11, 12 and 13 November 2026, at TU Delft, in the Netherlands.
 
 
-## Opening plenary
+## Presentation material
 
 - [Slides of the plenary with aims, links, participants and program](https://erc-segue.nl/2026Workshop/Community/Opening.html)
 - [Slides of the closing session with roles, timeline and actions](https://erc-segue.nl/2026Workshop/Community/Closing.html)
