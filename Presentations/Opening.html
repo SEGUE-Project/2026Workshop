@@ -6,10 +6,10 @@
 <script src="Opening_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="Opening_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="Opening_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="Opening_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="Opening_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="Opening_files/libs/quarto-contrib/revealjs-header/revealjs-header.js" defer="true"></script>
 <link href="Opening_files/libs/quarto-contrib/revealjs-header/revealjs-header.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Clémentine Cottineau-Mugadza">
   <meta name="dcterms.date" content="2026-11-09">
@@ -23,10 +23,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -161,7 +164,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Clémentine Cottineau-Mugadza <a href="https://orcid.org/0000-0002-2452-3901" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a>
+Clémentine Cottineau-Mugadza <a href="https://orcid.org/0000-0002-2452-3901" class="quarto-title-author-orcid" aria-label="ORCID profile for Clémentine Cottineau-Mugadza"> <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a>
 </div>
 </div>
 </div>
@@ -176,71 +179,67 @@ Clémentine Cottineau-Mugadza <a href="https://orcid.org/0000-0002-2452-3901" cl
 <section id="aims-of-the-workshop" class="slide level2">
 <h2>Aims of the workshop</h2>
 <ul>
-<li>foster <strong>research conversations</strong> on the state of segregation measurement and its relation to theories, data, scale and social attributes considered.</li>
-<li>create a <strong>community</strong> of urban scholars to collaborate on comparative research, theory and methodology development .</li>
-<li>prepare the development of a <strong>new R package</strong> to assist with segregation measure selection, computation, visualization and/or analysis.</li>
+<li class="fragment">foster <strong>research conversations</strong> on the state of segregation measurement and its relation to theories, data, scale and social attributes considered.</li>
+<li class="fragment">create a <strong>community</strong> of urban scholars to collaborate on comparative research, theory and methodology development .</li>
+<li class="fragment">prepare the development of a <strong>new R package</strong> to assist with segregation measure selection, computation, visualization and/or analysis.</li>
 </ul>
 </section>
-<section id="some-background" class="slide level2">
-<h2>Some background</h2>
+<section id="background" class="slide level2 smaller">
+<h2>Background</h2>
 <blockquote>
 <p>Urban segregation – the pattern of (geographical) separation between people of different social groups or economic levels in cities.</p>
 </blockquote>
 <ul>
-<li>large component of the scientific program of urban sciences (geography, sociology, demography and economics).</li>
-<li>dire consequences for social cohesion, economic mobility, health and education opportunities, especially in a context of rising economic inequalities and uneven development.</li>
+<li class="fragment">large component of the scientific program of urban sciences (geography, sociology, demography and economics).</li>
+<li class="fragment">dire consequences for social cohesion, economic mobility, health and education opportunities, especially in a context of rising economic inequalities and uneven development.</li>
 </ul>
 </section>
 <section id="some-questions" class="slide level2">
 <h2>Some questions</h2>
-<ul>
-<li>How does urban segregation relate to economic inequality?</li>
-<li>At which scale can urban planners best design more efficient policies to reduce urban segregation?</li>
-<li>What are the mechanisms through which some places produce better outcomes than others?</li>
-<li>Does segregation directly harm children in vulnerable families?</li>
-</ul>
+<p>How does urban segregation relate to economic inequality?</p>
+<p>At which scale can urban planners best design more efficient policies to reduce urban segregation?</p>
+<p>What are the mechanisms through which some places produce better outcomes than others?</p>
+<p>Does segregation directly harm children in vulnerable families?</p>
 </section>
-<section id="your-questions" class="slide level2 scrollable">
+<section id="your-questions" class="slide level2 smaller nonincremental">
 <h2>Your questions</h2>
-<ul>
-<li><span style="color:#00A99D;">How does adding new dwellings to existing housing stock change local segregation values at different scales?</span></li>
-<li><span style="color:#00A99D;">To which extent the links formed by agents across neighborhoors mirror/solidify/diverge from segregation patterns?</span></li>
-<li><span style="color:#00A99D;">How much segregation might standard measures miss in a city of walled communities, and can urban form help reveal it?</span></li>
-<li><span style="color:#00A99D;">How do patterns of urban infrastructural accessibility or inequality shape the everyday experiences of disabled residents in African cities?</span></li>
-<li><span style="color:#00A99D;">How can we compare daily variations in urban segregation across different cities when: (i) the population distributions with respect to socio-demographic categories differ between cities; (ii) cities have different geographical perimeters; and (iii) the primary spatial units (neighbourhoods) differ ?</span></li>
-</ul>
+<p><span style="color:#00A99D;">How does adding new dwellings to existing housing stock change local segregation values at different scales?</span></p>
+<p><span style="color:#00A99D;">To which extent the links formed by agents across neighborhoors mirror/solidify/diverge from segregation patterns?</span></p>
+<p><span style="color:#00A99D;">How much segregation might standard measures miss in a city of walled communities, and can urban form help reveal it?</span></p>
+<p><span style="color:#00A99D;">How do patterns of urban infrastructural accessibility or inequality shape the everyday experiences of disabled residents in African cities?</span></p>
+<p><span style="color:#00A99D;">How can we compare daily variations in urban segregation across different cities when: (i) the population distributions with respect to socio-demographic categories differ between cities; (ii) cities have different geographical perimeters; and (iii) the primary spatial units (neighbourhoods) differ ?</span></p>
 </section>
 <section id="indices-of-segregation" class="slide level2">
 <h2>Indices of segregation</h2>
 <ul>
-<li>Historical (racial) segregation indices, reviewed by <span class="citation" data-cites="massey1988dimensions">(<a href="#/references" role="doc-biblioref" onclick="">Massey &amp; Denton, 1988</a>)</span></li>
-<li>Spatial segregation <span class="citation" data-cites="white1983measurement">(<a href="#/references" role="doc-biblioref" onclick="">White, 1983</a>)</span> <span class="citation" data-cites="morrill1991">(<a href="#/references" role="doc-biblioref" onclick="">Morrill, 1991</a>)</span></li>
-<li>Multi-groups <span class="citation" data-cites="wong1998measuring">(<a href="#/references" role="doc-biblioref" onclick="">Wong, 1998</a>)</span></li>
-<li>Ordinal variables <span class="citation" data-cites="reardon2009measures">(<a href="#/references" role="doc-biblioref" onclick="">Reardon, 2009</a>)</span></li>
+<li class="fragment">Historical (racial) segregation indices, reviewed by <span class="citation" data-cites="massey1988dimensions">(<a href="#/references" role="doc-biblioref" onclick="">Massey &amp; Denton, 1988</a>)</span></li>
+<li class="fragment">Spatial segregation <span class="citation" data-cites="white1983measurement">(<a href="#/references" role="doc-biblioref" onclick="">White, 1983</a>)</span> <span class="citation" data-cites="morrill1991">(<a href="#/references" role="doc-biblioref" onclick="">Morrill, 1991</a>)</span></li>
+<li class="fragment">Multi-groups <span class="citation" data-cites="wong1998measuring">(<a href="#/references" role="doc-biblioref" onclick="">Wong, 1998</a>)</span></li>
+<li class="fragment">Ordinal variables <span class="citation" data-cites="reardon2009measures">(<a href="#/references" role="doc-biblioref" onclick="">Reardon, 2009</a>)</span></li>
 </ul>
 </section>
-<section id="indices-of-segregation-1" class="slide level2">
-<h2>Indices of segregation</h2>
+<section id="indices-of-segregation-r-packages" class="slide level2">
+<h2>Indices of segregation (R packages)</h2>
 
 <img data-src="Opening_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
 <section id="data-on-people-in-cities" class="slide level2">
 <h2>Data on people in cities</h2>
 <ul>
-<li>register-based microdata (NL, AT, SE, NO)</li>
-<li>granular census tract-based data on an annual basis (ES, FR).</li>
-<li>less granular/less frequent census and survey data</li>
-<li>nightlight data as a proxy of population density and income (CN)</li>
-<li>first hand interview and survey data</li>
+<li class="fragment">register-based microdata (NL, AT, SE, NO)</li>
+<li class="fragment">granular census tract-based data on an annual basis (ES, FR).</li>
+<li class="fragment">less granular/less frequent census and survey data</li>
+<li class="fragment">nightlight data as a proxy of population density and income (CN)</li>
+<li class="fragment">first hand interview and survey data</li>
 </ul>
 </section>
 <section id="methodological-infrastructure" class="slide level2">
 <h2>Methodological infrastructure</h2>
-<ul>
-<li>Websites, applications &amp; software for computing segregation</li>
-<li>open-source packages in Python (<code>segregation</code>)</li>
-<li>open-source packages in R (<code>OasisR</code>, <code>seg</code>, <code>segregation</code>, <code>divseg</code>, <code>ineq</code>, <code>mutualinf</code>)</li>
-</ul>
+<p>Websites, applications &amp; software for computing segregation</p>
+<p>Open-source packages in Python (<code>segregation</code>)</p>
+<p>Open-source packages in R (<code>OasisR</code>, <code>seg</code>, <code>segregation</code>, <code>divseg</code>, <code>ineq</code>, <code>mutualinf</code>)</p>
+<blockquote>
 <p>But, we are missing a few things…</p>
+</blockquote>
 </section>
 <section id="a-routemap-to-choose-urban-segregation-measures." class="slide level2">
 <h2>1. A “routemap” to choose urban segregation measures.</h2>
@@ -249,9 +248,9 @@ Clémentine Cottineau-Mugadza <a href="https://orcid.org/0000-0002-2452-3901" cl
 <section id="a-way-to-make-innovative-methods-accessible-to-answer-big-theoretical-questions-of-the-field" class="slide level2">
 <h2>2. A way to make innovative methods accessible to answer big theoretical questions of the field</h2>
 <ul>
-<li>Making the computation of relevant indices accessible and painless</li>
-<li>Facilitating the design of spatial counterfactuals and robustness analysis</li>
-<li>Reorienting the development of indices towards unanswered questions of the field</li>
+<li class="fragment">Making the computation of relevant indices accessible and painless</li>
+<li class="fragment">Facilitating the design of spatial counterfactuals and robustness analysis</li>
+<li class="fragment">Reorienting the development of indices towards unanswered questions of the field</li>
 </ul>
 </section>
 <section id="a-forum-where-sharp-theoretical-developments-meet-novel-computational-science" class="slide level2">
@@ -264,19 +263,19 @@ Clémentine Cottineau-Mugadza <a href="https://orcid.org/0000-0002-2452-3901" cl
 <section id="a-new-and-updated-toolbox-of-segregation-indices-which" class="slide level2">
 <h2>4. A new and updated toolbox of segregation indices, which</h2>
 <ul>
-<li>allows for <strong>combinations</strong> of data features (multi-group AND spatial, ordinal AND spatial)</li>
-<li>is <strong>up to date</strong> with the methodological literature (e.g.&nbsp;Divergence index)</li>
-<li>considers <strong>multilayered attributes of segregation</strong>, as exposed by network segregation <span class="citation" data-cites="kazmina2024socio">(<a href="#/references" role="doc-biblioref" onclick="">Kazmina et al., 2024</a>)</span>, daytime segregation <span class="citation" data-cites="le2017social">(<a href="#/references" role="doc-biblioref" onclick="">Le Roux et al., 2017</a>)</span> and multiscale segregation <span class="citation" data-cites="petrovic2018multiscale">(<a href="#/references" role="doc-biblioref" onclick="">Petrović et al., 2018</a>)</span>.</li>
+<li class="fragment">allows for <strong>combinations</strong> of data features (multi-group AND spatial, ordinal AND spatial)</li>
+<li class="fragment">is <strong>up to date</strong> with the methodological literature (e.g.&nbsp;Divergence index)</li>
+<li class="fragment">considers <strong>multilayered attributes of segregation</strong>, as exposed by network segregation <span class="citation" data-cites="kazmina2024socio">(<a href="#/references" role="doc-biblioref" onclick="">Kazmina et al., 2024</a>)</span>, daytime segregation <span class="citation" data-cites="le2017social">(<a href="#/references" role="doc-biblioref" onclick="">Le Roux et al., 2017</a>)</span> and multiscale segregation <span class="citation" data-cites="petrovic2018multiscale">(<a href="#/references" role="doc-biblioref" onclick="">Petrović et al., 2018</a>)</span>.</li>
 </ul>
 </section>
-<section id="how-to" class="slide level2">
-<h2>How to?</h2>
+<section id="our-approach-in-this-workshop" class="slide level2">
+<h2>Our approach in this workshop</h2>
 <ul>
-<li><strong>Diversity</strong> of participants (profiles, location, skills and interests)</li>
-<li>Needs-mapping <strong>activities</strong></li>
-<li>5 days to prepare for <strong>longer term</strong> development</li>
-<li>Italian catering!</li>
-<li>open source / collaborative / test-driven package development</li>
+<li class="fragment"><strong>Diversity</strong> of participants (profiles, location, skills and interests)</li>
+<li class="fragment">Needs-mapping <strong>activities</strong></li>
+<li class="fragment">5 days to prepare for <strong>longer term</strong> development</li>
+<li class="fragment">Italian catering!</li>
+<li class="fragment">open source / collaborative / test-driven package development</li>
 </ul>
 </section>
 <section id="program" class="slide level2">
@@ -285,70 +284,53 @@ Clémentine Cottineau-Mugadza <a href="https://orcid.org/0000-0002-2452-3901" cl
 <img data-src="assets/program.png" class="r-stretch"></section>
 <section id="organising-team-outside-tu-delft" class="slide level2 smaller">
 <h2>Organising team outside TU Delft</h2>
-<ul>
-<li><p><a href="https://lisst.univ-tlse2.fr/home/julie-vallee">Julie Vallée</a>, Senior researcher at CNRS, LISST, France</p></li>
-<li><p><a href="https://jmigozzi.github.io/">Julien Migozzi</a>, Assistant Professor in Development Studies at University of Cambridge, UK</p></li>
-<li><p><a href="https://www.ljwolf.org/">Levi John Wolf</a>, Associate Professor of Spatial Analysis at the University of Bristol , UK</p></li>
-<li><p><a href="https://www.selcanmutgan.com/">Selcan Mutgan</a>, Assistant Professor at the Institute for Analytical Sociology in Linköping University, Sweden</p></li>
-<li><p><a href="https://khu.elsevierpure.com/en/persons/seong-yun-hong/">Seong-Yun Hong</a>, Associate Professor at Kyung Hee University, South Korea</p></li>
-<li><p><a href="https://www.uva.nl/en/profile/k/a/y.kazmina/y.kazmina.html">Yuliia Kazmina</a>, PhD candidate at the Faculty of Social and Behavioural Sciences, University of Amsterdam (NL)</p></li>
-</ul>
+<p><a href="https://lisst.univ-tlse2.fr/home/julie-vallee">Julie Vallée</a>, Senior researcher at CNRS, LISST, France</p>
+<p><a href="https://jmigozzi.github.io/">Julien Migozzi</a>, Assistant Professor in Development Studies at University of Cambridge, UK</p>
+<p><a href="https://www.ljwolf.org/">Levi John Wolf</a>, Associate Professor of Spatial Analysis at the University of Bristol , UK</p>
+<p><a href="https://www.selcanmutgan.com/">Selcan Mutgan</a>, Assistant Professor at the Institute for Analytical Sociology in Linköping University, Sweden</p>
+<p><a href="https://khu.elsevierpure.com/en/persons/seong-yun-hong/">Seong-Yun Hong</a>, Associate Professor at Kyung Hee University, South Korea</p>
+<p><a href="https://www.uva.nl/en/profile/k/a/y.kazmina/y.kazmina.html">Yuliia Kazmina</a>, PhD candidate at the Faculty of Social and Behavioural Sciences, University of Amsterdam (NL)</p>
 </section>
 <section id="organising-team-tu-delft" class="slide level2 smaller">
 <h2>Organising team @ TU Delft</h2>
-<ul>
-<li><p><a href="https://research.tudelft.nl/en/persons/a-petrovi%C4%87/">Ana Petrovic</a>, Assistant Professor in urban studies at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a></p></li>
-<li><p><a href="https://cforgaci.github.io/">Claudiu Forgaci</a>, Assistant Professor in urban design at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a></p></li>
-<li><p><a href="https://clementinecttn.github.io/">Clémentine Cottineau-Mugadza</a>, Assistant Professor in urban studies at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a><a href="http://erc-segue.nl/"><img data-src="assets/segue_logo.png" class="quarto-figure quarto-figure-left" width="30"></a></p></li>
-<li><p><a href="https://www.tudelft.nl/staff/d.cannatella/">Daniele Cannatella</a>, Assistant Professor in spatial data science at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a></p></li>
-<li><p><a href="https://www.tudelft.nl/staff/i.a.urriayanez/">Ignacio Urria Yáñez</a>, PhD Candidate in urban studies at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a></p></li>
-<li><p><a href="https://javiersanmillan.github.io/">Javier San Millan Tejedor</a>, PhD Candidate in urban studies at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a><a href="http://erc-segue.nl/"><img data-src="assets/segue_logo.png" class="quarto-figure quarto-figure-left" width="30"></a></p></li>
-</ul>
+<p><a href="https://research.tudelft.nl/en/persons/a-petrovi%C4%87/">Ana Petrovic</a>, Assistant Professor in urban studies at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a></p>
+<p><a href="https://cforgaci.github.io/">Claudiu Forgaci</a>, Assistant Professor in urban design at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a></p>
+<p><a href="https://clementinecttn.github.io/">Clémentine Cottineau-Mugadza</a>, Assistant Professor in urban studies at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a><a href="http://erc-segue.nl/"><img data-src="assets/segue_logo.png" class="quarto-figure quarto-figure-left" width="30"></a></p>
+<p><a href="https://www.tudelft.nl/staff/d.cannatella/">Daniele Cannatella</a>, Assistant Professor in urban data science at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a></p>
+<p><a href="https://www.tudelft.nl/staff/i.a.urriayanez/">Ignacio Urria Yáñez</a>, PhD Candidate in urban studies at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a></p>
+<p><a href="https://javiersanmillan.github.io/">Javier San Millan Tejedor</a>, PhD Candidate in urban studies at <a href="https://www.tudelft.nl/"><img data-src="assets/TUDelft.png" class="quarto-figure quarto-figure-left" width="60"></a> <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-left" width="30"></a><a href="http://erc-segue.nl/"><img data-src="assets/segue_logo.png" class="quarto-figure quarto-figure-left" width="30"></a></p>
 </section>
-<section id="what-is-segue" class="slide level2">
-<h2>What is SEGUE?</h2>
-<p>It is an project dedicated to the estimation, modelling and identification of policy scenarios to reduce urban economic segregation in the Netherlands.</p>
+<section id="what-is" class="slide level2">
+<h2>What is <a href="http://erc-segue.nl/"><img data-src="assets/segue_logo.png" class="quarto-figure quarto-figure-left" width="100"></a></h2>
+<p>An project dedicated to the <strong>estimation, modelling and identification of policy scenarios to reduce urban economic segregation in the Netherlands</strong>.</p>
 <p>It is funded by the European Research Council between 2022 and 2029.</p>
 <p>SEGUE funds the organisation of this meeting.</p>
 <p><a href="erc-segue.nl">erc-segue.nl</a></p>
-<div class="quarto-figure quarto-figure-left">
-<figure>
-<p><a href="http://erc-segue.nl/"><img data-src="assets/segue_logo.png" class="quarto-figure quarto-figure-left" width="100"></a></p>
-</figure>
-</div>
 </section>
 <section id="initial-results-from-segue" class="slide level2 scrollable smaller">
 <h2>Initial results from SEGUE</h2>
 <ol type="1">
-<li>urban economic <strong>segregation</strong> is linked to economic <strong>inequality</strong> through a variety of causal pathways, including but not restricted to housing markets <span class="citation" data-cites="cottineau2025economic">(<a href="#/references" role="doc-biblioref" onclick="">Cottineau-Mugadza, 2025</a>)</span> <span class="citation" data-cites="paulinaslr">(<a href="#/references" role="doc-biblioref" onclick="">Pizarro Kumpf et al., 2026</a>)</span></li>
-<li>income <strong>segregation in the Netherlands</strong> is rather low, stable and heterogeneous in Dutch metropolitan areas, but wealth inequalities and segregation are much larger and growing since 2011 <span class="citation" data-cites="san_millan_economic_2025">(<a href="#/references" role="doc-biblioref" onclick="">San Millán, Cottineau‐Mugadza, et al., 2025</a>)</span> <span class="citation" data-cites="sanmillan2025wealth">(<a href="#/references" role="doc-biblioref" onclick="">San Millán, Cottineau-Mugadza, et al., 2025</a>)</span></li>
-<li>the size, spatial dispersion and allocation rules of <strong>social housing</strong> play an important role in dampening the effect of economic inequality on economic segregation, but that they vary significantly between cities <span class="citation" data-cites="san2026inequality">(<a href="#/references" role="doc-biblioref" onclick="">San Millán et al., 2026</a>)</span> <span class="citation" data-cites="buitrago2026">(<a href="#/references" role="doc-biblioref" onclick="">Buitrago-Mora &amp; Cottineau-Mugadza, 2026</a>)</span>. This directly affects the type of <strong>policies</strong> to design in order to reduce income and wealth segregation.</li>
+<li class="fragment">urban economic <strong>segregation</strong> is linked to economic <strong>inequality</strong> through a variety of causal pathways, including but not restricted to housing markets <span class="citation" data-cites="cottineau2025economic">(<a href="#/references" role="doc-biblioref" onclick="">Cottineau-Mugadza, 2025</a>)</span> <span class="citation" data-cites="paulinaslr">(<a href="#/references" role="doc-biblioref" onclick="">Pizarro Kumpf et al., 2026</a>)</span></li>
+<li class="fragment">income <strong>segregation in the Netherlands</strong> is rather low, stable and heterogeneous in Dutch metropolitan areas, but wealth inequalities and segregation are much larger and growing since 2011 <span class="citation" data-cites="san_millan_economic_2025">(<a href="#/references" role="doc-biblioref" onclick="">San Millán, Cottineau‐Mugadza, et al., 2025</a>)</span> <span class="citation" data-cites="sanmillan2025wealth">(<a href="#/references" role="doc-biblioref" onclick="">San Millán, Cottineau-Mugadza, et al., 2025</a>)</span></li>
+<li class="fragment">the size, spatial dispersion and allocation rules of <strong>social housing</strong> play an important role in dampening the effect of economic inequality on economic segregation, but that they vary significantly between cities <span class="citation" data-cites="san2026inequality">(<a href="#/references" role="doc-biblioref" onclick="">San Millán et al., 2026</a>)</span> <span class="citation" data-cites="buitrago2026">(<a href="#/references" role="doc-biblioref" onclick="">Buitrago-Mora &amp; Cottineau-Mugadza, 2026</a>)</span>. This directly affects the type of <strong>policies</strong> to design in order to reduce income and wealth segregation.</li>
 </ol>
 </section>
-<section id="what-is-rbanism" class="slide level2">
-<h2>What is Rbanism?</h2>
+<section id="what-is-1" class="slide level2 smaller">
+<h2>What is <a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-centre" width="100"></a>?</h2>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 46.4%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <p>A community of practice from TU Delft, whose mission is to build capacity, competence, and confidence for working with data and research software in the urbanism community.</p>
-<div class="quarto-figure quarto-figure-centre">
-<figure>
-<p><a href="http://rbanism.org/"><img data-src="assets/Logo_Rbanism_%20Full.png" class="quarto-figure quarto-figure-centre" width="130"></a></p>
-</figure>
+<p>We organise trainings, challenges, workshops and community events.</p>
+<p>Our skills and experience in the fields of <strong>open science</strong> and <strong>community building</strong> will serve this workshop.</p>
 </div>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 53.6%;justify-content: center;">
-<p>We organise trainings, challenges, workshops and community events. Our skills and experience in the fields of <strong>open science</strong> and <strong>community building</strong> will serve this workshop.</p>
-<div class="quarto-figure quarto-figure-centre">
-<figure>
-<p><img data-src="assets/rbanism_join.png" class="quarto-figure quarto-figure-centre" width="150"></p>
-</figure>
-</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="assets/rbanism_join.png"></p>
 </div>
 </div>
 </div>
 </section>
-<section id="rbanisms-latest-productions" class="slide level2">
+<section id="rbanisms-latest-productions" class="slide level2 smaller">
 <h2>Rbanism’s latest productions</h2>
 <p>💡 <strong>Training</strong>: <a href="https://datacarpentry.github.io/r-intro-geospatial/">Geospatial Data Carpentry for Urbanism</a> workshop.</p>
 <p>📦 <strong>Software</strong>: R packages <a href="https://github.com/CityRiverSpaces/rcrisp">rcrisp</a>, <a href="https://github.com/CityRiverSpaces/rcoins">rcoins</a>, and <a href="https://github.com/CityRiverSpaces/visor">visor</a>.</p>
@@ -359,8 +341,8 @@ Clémentine Cottineau-Mugadza <a href="https://orcid.org/0000-0002-2452-3901" cl
 <h2>This is an open source project</h2>
 <p>Preparation materials and upcoming contribution to use two licenses:</p>
 <ul>
-<li><strong>Apache License 2.0</strong> for Code (R source, tests, and other software)</li>
-<li><strong>Creative Commons Attribution 4.0 International (CC BY 4.0)</strong> for workshop materials and outputs (data, presentations, notebooks, prose, figures, and other non-code content)</li>
+<li class="fragment">Apache License 2.0. for Code (R source, tests, and other software)</li>
+<li class="fragment">Creative Commons Attribution 4.0 International (CC BY 4.0) for workshop materials and outputs (data, presentations, notebooks, prose, figures, and other non-code content)</li>
 </ul>
 </section>
 <section id="infrastructure-for-collaboration" class="slide level2">
@@ -369,44 +351,14 @@ Clémentine Cottineau-Mugadza <a href="https://orcid.org/0000-0002-2452-3901" cl
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <ul>
-<li>Workshop material: <a href="https://github.com/SEGUE-Project/2026Workshop">github.com/SEGUE-Project/2026Workshop</a></li>
-<li>Livecode: <a href="https://github.com/SEGUE-Project/workshop-livecode">github.com/SEGUE-Project/workshop-livecode</a></li>
-<li>test-driven development: <a href="https://erc-segue.nl/tdd-r-pkg/">erc-segue.nl/tdd-r-pkg/</a></li>
+<li class="fragment">Workshop material: <a href="https://github.com/SEGUE-Project/2026Workshop">github.com/SEGUE-Project/2026Workshop</a></li>
+<li class="fragment">Livecode: <a href="https://github.com/SEGUE-Project/workshop-livecode">github.com/SEGUE-Project/workshop-livecode</a></li>
+<li class="fragment">test-driven development: <a href="https://erc-segue.nl/tdd-r-pkg/">erc-segue.nl/tdd-r-pkg/</a></li>
 </ul>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p>These slides:</p>
 <p><img data-src="assets/openingSlides.png"></p>
-</div>
-</div>
-</div>
-</section>
-<section id="code-of-conduct" class="slide level2 smaller">
-<h2>Code of conduct</h2>
-<p>Adapted from <a href="https://docs.carpentries.org/policies/coc/">The Carpentries’ code of conduct</a></p>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><strong>Expected behaviours:</strong></p>
-<ul>
-<li>Use welcoming and inclusive language</li>
-<li>Be respectful of different viewpoints and experiences</li>
-<li>Focus on what is best for the community</li>
-<li>Show courtesy and respect towards other community members</li>
-<li>Show empathy towards organisation staff (we’re doing out best!)</li>
-<li>Offer help and expertise when possible</li>
-</ul>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><strong>Unacceptable behaviours:</strong></p>
-<ul>
-<li>threats, insults, jokes or comments with the effect of excluding people</li>
-<li>sustained disruption of talks, events or communications</li>
-<li>publication of (private) data or communication without consent</li>
-<li>causing someone to fear for their safety, such as through stalking, following, or intimidation</li>
-<li>nonconsensual or unwelcome physical contact or sexual attention</li>
-<li>incitement to violence or self-harm</li>
-</ul>
 </div>
 </div>
 </div>
@@ -463,67 +415,64 @@ Wong, D. W. (1998). Measuring multiethnic spatial segregation. <em>Urban Geograp
 <h1>Getting to know each other</h1>
 
 </section>
-<section id="form-9-groups-of-3-ask-each-other" class="slide level2">
-<h2>Form 9 groups of 3 &amp; ask each other:</h2>
+<section id="form-8-groups-of-3-ask-each-other" class="slide level2">
+<h2>Form 8 groups of 3 &amp; ask each other:</h2>
 <ul>
-<li>Who are you?</li>
-<li>What do you do?</li>
-<li>Why are you here?</li>
+<li class="fragment">Who are you?</li>
+<li class="fragment">What do you do?</li>
+<li class="fragment">Why are you here?</li>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<countdown-timer class="countdown" id="timer_1b3c9b98" minutes="9" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
+<countdown-timer class="countdown" id="timer_051f8c03" minutes="9" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
 </div>
 </div>
 </section>
-<section id="change-groups-x2" class="slide level2">
-<h2>Change groups! (x2)</h2>
+<section id="change-groups" class="slide level2">
+<h2>Change groups!</h2>
 <ul>
-<li>Who are you?</li>
-<li>What do you do?</li>
-<li>Why are you here?</li>
+<li class="fragment">Who are you?</li>
+<li class="fragment">What do you do?</li>
+<li class="fragment">Why are you here?</li>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<countdown-timer class="countdown" id="timer_2a7e1880" minutes="9" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
+<countdown-timer class="countdown" id="timer_3aadd2ef" minutes="9" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
 </div>
 </div>
 </section>
 <section id="okay-now-you-know-6-people" class="slide level2 scrollable">
-<h2>Okay! Now you know ~6 people!</h2>
+<h2>Okay! Now you know 6 people!</h2>
 
 <img data-src="Opening_files/figure-revealjs/maps-1.png" width="960" class="r-stretch"></section>
-<section id="the-27" class="slide level2 scrollable smaller">
-<h2>The 27</h2>
-<ul>
-<li><span style="color:#f57b26;"><strong>Adrian Nowacki</strong></span>, PhD Student, Doctoral School of Natural Sciences, Adam Mickiewicz University in Poznań, Poland.</li>
-<li><span style="color:#00A99D;"><strong>Alok Kumar</strong></span>, PhD Candidate, Jawaharlal Nehru University New Delhi, India</li>
-<li><span style="color:#00A99D;"><del><strong>Ana Luisa Maffini</strong></del></span><del>, Researcher/Postdoctoral Researcher at Urban and Regional Planning program at UFRGS, Brasil</del></li>
-<li><span style="color:#f57b26;"><strong>Ana Petrović</strong></span>, Assistant Professor in urban studies at&nbsp;TU Delft, NL</li>
-<li><span style="color:#93278F;"><strong>Benjamin Jarvis</strong></span>, Associate Professor, Institute for Analytical Sociology, Linköping University, Sweden</li>
-<li><span style="color:#93278F;"><strong>Benjamin Rosche</strong></span>, Assistant Professor of Computational Social Science, New York University Abu Dhabi, Abu Dhabi</li>
-<li><span style="color:#93278F;"><strong>Claudiu Forgaci</strong></span>, Assistant Professor in urban design and analytics at&nbsp;TU Delft, NL</li>
-<li><span style="color:#f57b26;"><strong>Clémentine Cottineau-Mugadza</strong></span>, Assistant Professor in urban studies at&nbsp;TU Delft, NL</li>
-<li><span style="color:#93278F;"><strong>Daniele Cannatella</strong></span>, Assistant Professor in spatial data science at&nbsp;Delft, NL</li>
-<li><span style="color:#f57b26;"><strong>Giuliana La Mantia</strong></span>, Post-doc researcher at University of Genoa, Italy.</li>
-<li><span style="color:#f57b26;"><strong>Guilherme Kenjy Chihaya Da Silva</strong></span>, Associate Professor, Nord University, Faculty of Social Sciences, Norway</li>
-<li><span style="color:#93278F;"><strong>Ignacio Urria Yáñez</strong></span>, PhD Candidate in urban studies at&nbsp;Delft, NL</li>
-<li><span style="color:#f57b26;"><strong>Javier San Millán Tejedor</strong></span>, PhD Candidate in urban studies at&nbsp;Delft, NL</li>
-<li><span style="color:#00A99D;"><strong>Jiannis Kaućič</strong></span>, Scientific Staff (Praedoc) at the Institute for Urban and Regional Research (ÖAW), Austria</li>
-<li><span style="color:#00A99D;"><strong>Julie Vallée</strong></span>, Senior researcher at CNRS, LISST, France</li>
-<li><span style="color:#00A99D;"><strong>Julien Migozzi</strong></span>, Assistant Professor in Development Studies at University of Cambridge, UK</li>
-<li><span style="color:#00A99D;"><strong>Juta Kawalerowicz</strong></span>, Lecturer at Stokholm University, Sweden</li>
-<li><span style="color:#00A99D;"><strong>Karina Trelles</strong></span>, Master student at University of Brescia, Italy</li>
-<li><span style="color:#93278F;"><strong>Levi John Wolf</strong></span>, Associate Professor of Spatial Analysis at the University of Bristol, UK</li>
-<li><span style="color:#00A99D;"><strong>Nadeem Ullah</strong></span>, Postdoctoral Researcher, School of Architecture, Tianjin University, China</li>
-<li><span style="color:#00A99D;"><strong>Onur Tumturk</strong></span>, Marie Curie Postdoc, Bilkent University, Turkey</li>
-<li><span style="color:#00A99D;"><strong>Onyinyechi Ossai</strong></span>, Senior Lecturer/University of Nigeria, Nsukka, Nigeria</li>
-<li><span style="color:#00A99D;"><strong>Priyanka deSouza</strong></span>, Assistant Professor, University of Colorado Denver, USA</li>
-<li><span style="color:#f57b26;"><strong>Selcan Mutgan</strong></span>, Assistant Professor at the Institute for Analytical Sociology in Linköping University, Sweden</li>
-<li><span style="color:#93278F;"><strong>Seong-Yun Hong</strong></span>, Associate Professor at Kyung Hee University, South Korea</li>
-<li><span style="color:#93278F;"><strong>Timothée Giraud</strong></span>, Research engineer at CNRS, UAR RIATE - Center for spatial analysis and geovizualisation, France</li>
-<li><span style="color:#f57b26;"><strong>Yuliia Kazmina</strong></span>, PhD candidate at the Faculty of Social and Behavioural Sciences, University of Amsterdam, NL</li>
-</ul>
+<section id="the-25" class="slide level2 scrollable smaller">
+<h2>The 25</h2>
+<p><span style="color:#f57b26;"><strong>Adrian Nowacki</strong></span>, PhD Student, Doctoral School of Natural Sciences, Adam Mickiewicz University in Poznań, Poland.</p>
+<p><span style="color:#00A99D;"><strong>Alok Kumar</strong></span>, PhD Candidate, Jawaharlal Nehru University New Delhi, India</p>
+<p><span style="color:#f57b26;"><strong>Ana Petrović</strong></span>, Assistant Professor in urban studies at&nbsp;TU Delft, NL</p>
+<p><span style="color:#93278F;"><strong>Benjamin Jarvis</strong></span>, Associate Professor, Institute for Analytical Sociology, Linköping University, Sweden</p>
+<p><span style="color:#93278F;"><strong>Benjamin Rosche</strong></span>, Assistant Professor of Computational Social Science, New York University Abu Dhabi, Abu Dhabi</p>
+<p><span style="color:#93278F;"><strong>Claudiu Forgaci</strong></span>, Assistant Professor in urban design and analytics at&nbsp;TU Delft, NL</p>
+<p><span style="color:#f57b26;"><strong>Clémentine Cottineau-Mugadza</strong></span>, Assistant Professor in urban studies at&nbsp;TU Delft, NL</p>
+<p><span style="color:#93278F;"><strong>Daniele Cannatella</strong></span>, Assistant Professor in spatial data science at&nbsp;Delft, NL</p>
+<p><span style="color:#f57b26;"><strong>Giuliana La Mantia</strong></span>, Post-doc researcher at University of Genoa, Italy.</p>
+<p><span style="color:#f57b26;"><strong>Guilherme Kenjy Chihaya Da Silva</strong></span>, Associate Professor, Nord University, Faculty of Social Sciences, Norway</p>
+<p><span style="color:#93278F;"><strong>Ignacio Urria Yáñez</strong></span>, PhD Candidate in urban studies at&nbsp;Delft, NL</p>
+<p><span style="color:#f57b26;"><strong>Javier San Millán Tejedor</strong></span>, PhD Candidate in urban studies at&nbsp;Delft, NL</p>
+<p><span style="color:#00A99D;"><strong>Jiannis Kaućič</strong></span>, Scientific Staff (Praedoc) at the Institute for Urban and Regional Research (ÖAW), Austria</p>
+<p><span style="color:#00A99D;"><strong>Julie Vallée</strong></span>, Senior researcher at CNRS, LISST, France</p>
+<p><span style="color:#00A99D;"><strong>Julien Migozzi</strong></span>, Assistant Professor in Development Studies at University of Cambridge, UK</p>
+<p><span style="color:#00A99D;"><strong>Juta Kawalerowicz</strong></span>, Lecturer at Stokholm University, Sweden</p>
+<p><span style="color:#00A99D;"><strong>Karina Trelles</strong></span>, Master student at University of Brescia, Italy</p>
+<p><span style="color:#93278F;"><del><strong>Levi John Wolf</strong></del></span><del>, Associate Professor of Spatial Analysis at the University of Bristol, UK</del></p>
+<p><span style="color:#00A99D;"><strong>Nadeem Ullah</strong></span>, Postdoctoral Researcher, School of Architecture, Tianjin University, China</p>
+<p><span style="color:#00A99D;"><strong>Onur Tumturk</strong></span>, Marie Curie Postdoc, Bilkent University, Turkey</p>
+<p><span style="color:#00A99D;"><del><strong>Onyinyechi Ossai</strong></del></span>, <del>Senior Lecturer/University of Nigeria, Nsukka, Nigeria</del></p>
+<p><span style="color:#00A99D;"><strong>Priyanka deSouza</strong></span>, Assistant Professor, University of Colorado Denver, USA</p>
+<p><span style="color:#f57b26;"><strong>Selcan Mutgan</strong></span>, Assistant Professor at the Institute for Analytical Sociology in Linköping University, Sweden</p>
+<p><span style="color:#93278F;"><strong>Seong-Yun Hong</strong></span>, Associate Professor at Kyung Hee University, South Korea</p>
+<p><span style="color:#93278F;"><strong>Timothée Giraud</strong></span>, Research engineer at CNRS, UAR RIATE - Center for spatial analysis and geovizualisation, France</p>
+<p><span style="color:#f57b26;"><strong>Yuliia Kazmina</strong></span>, PhD candidate at the Faculty of Social and Behavioural Sciences, University of Amsterdam, NL</p>
 </section>
 <section id="developer-profile" class="slide level2" data-background-gradient="linear-gradient(135deg, white 30%, #93278F)">
 <h2>Developer profile</h2>

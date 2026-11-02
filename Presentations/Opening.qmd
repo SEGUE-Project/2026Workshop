@@ -7,6 +7,7 @@ filters:
   - revealjs-header
 format: 
   revealjs: 
+    incremental: true
     theme: simple
     header-logo-right: assets/segue_logo.png
     header-logo-right-url: https://erc-segue.nl
@@ -36,7 +37,7 @@ css: assets/style.css
 - create a **community** of urban scholars to collaborate on comparative research, theory and methodology development .
 - prepare the development of a **new R package** to assist with segregation measure selection, computation, visualization and/or analysis.
 
-## Some background
+## Background {.smaller}
 
 > Urban segregation – the pattern of (geographical) separation between people of different social groups or economic levels in cities.
 
@@ -45,18 +46,25 @@ css: assets/style.css
 
 ## Some questions
 
-- How does urban segregation relate to economic inequality?
-- At which scale can urban planners best design more efficient policies to reduce urban segregation?
-- What are the mechanisms through which some places produce better outcomes than others?
-- Does segregation directly harm children in vulnerable families?
+How does urban segregation relate to economic inequality?
 
-## Your questions {.scrollable}
+At which scale can urban planners best design more efficient policies to reduce urban segregation?
 
-- [How does adding new dwellings to existing housing stock change local segregation values at different scales?]{style="color:#00A99D;"}
-- [To which extent the links formed by agents across neighborhoors mirror/solidify/diverge from segregation patterns?]{style="color:#00A99D;"}
-- [How much segregation might standard measures miss in a city of walled communities, and can urban form help reveal it?]{style="color:#00A99D;"}
-- [How do patterns of urban infrastructural accessibility or inequality shape the everyday experiences of disabled residents in African cities?]{style="color:#00A99D;"}
-- [How can we compare daily variations in urban segregation across different cities when: (i) the population distributions with respect to socio-demographic categories differ between cities; (ii) cities have different geographical perimeters; and (iii) the primary spatial units (neighbourhoods) differ ?]{style="color:#00A99D;"}
+What are the mechanisms through which some places produce better outcomes than others?
+
+Does segregation directly harm children in vulnerable families?
+
+## Your questions { .smaller .nonincremental}
+
+[How does adding new dwellings to existing housing stock change local segregation values at different scales?]{style="color:#00A99D;"}
+
+[To which extent the links formed by agents across neighborhoors mirror/solidify/diverge from segregation patterns?]{style="color:#00A99D;"}
+
+[How much segregation might standard measures miss in a city of walled communities, and can urban form help reveal it?]{style="color:#00A99D;"}
+
+[How do patterns of urban infrastructural accessibility or inequality shape the everyday experiences of disabled residents in African cities?]{style="color:#00A99D;"}
+
+[How can we compare daily variations in urban segregation across different cities when: (i) the population distributions with respect to socio-demographic categories differ between cities; (ii) cities have different geographical perimeters; and (iii) the primary spatial units (neighbourhoods) differ ?]{style="color:#00A99D;"}
 
 ## Indices of segregation
 
@@ -65,7 +73,7 @@ css: assets/style.css
 - Multi-groups [@wong1998measuring]
 - Ordinal variables [@reardon2009measures]
 
-## Indices of segregation
+## Indices of segregation (R packages)
 
 ```{r}
 library(tidyverse)
@@ -103,11 +111,13 @@ index <- read_csv("assets/index_inventory-aiex.csv") |>
 
 ## Methodological infrastructure
 
-- Websites, applications & software for computing segregation
-- open-source packages in Python (`segregation`)
-- open-source packages in R (`OasisR`, `seg`, `segregation`, `divseg`, `ineq`, `mutualinf`)
+Websites, applications & software for computing segregation
 
-But, we are missing a few things...
+Open-source packages in Python (`segregation`)
+
+Open-source packages in R (`OasisR`, `seg`, `segregation`, `divseg`, `ineq`, `mutualinf`)
+
+> But, we are missing a few things...
 
 ## 1. A “routemap” to choose urban segregation measures.
 
@@ -131,7 +141,7 @@ Different journals, conferences, networks and departments.
 - is **up to date** with the methodological literature (e.g. Divergence index)
 - considers **multilayered attributes of segregation**, as exposed by network segregation [@kazmina2024socio], daytime segregation [@le2017social] and multiscale segregation [@petrovic2018multiscale].
 
-## How to?
+## Our approach in this workshop
 
 - **Diversity** of participants (profiles, location, skills and interests)
 - Needs-mapping **activities**
@@ -145,35 +155,35 @@ Different journals, conferences, networks and departments.
 
 ## Organising team outside TU Delft {.smaller}
 
-- [Julie Vallée](https://lisst.univ-tlse2.fr/home/julie-vallee), Senior researcher at CNRS, LISST, France
+[Julie Vallée](https://lisst.univ-tlse2.fr/home/julie-vallee), Senior researcher at CNRS, LISST, France
 
-- [Julien Migozzi](https://jmigozzi.github.io/), Assistant Professor in Development Studies at University of Cambridge, UK
+[Julien Migozzi](https://jmigozzi.github.io/), Assistant Professor in Development Studies at University of Cambridge, UK
 
-- [Levi John Wolf](https://www.ljwolf.org/), Associate Professor of Spatial Analysis at the University of Bristol , UK
+[Levi John Wolf](https://www.ljwolf.org/), Associate Professor of Spatial Analysis at the University of Bristol , UK
 
-- [Selcan Mutgan](https://www.selcanmutgan.com/), Assistant Professor at the Institute for Analytical Sociology in Linköping University, Sweden
+[Selcan Mutgan](https://www.selcanmutgan.com/), Assistant Professor at the Institute for Analytical Sociology in Linköping University, Sweden
 
-- [Seong-Yun Hong](https://khu.elsevierpure.com/en/persons/seong-yun-hong/), Associate Professor at Kyung Hee University, South Korea
+[Seong-Yun Hong](https://khu.elsevierpure.com/en/persons/seong-yun-hong/), Associate Professor at Kyung Hee University, South Korea
 
-- [Yuliia Kazmina](https://www.uva.nl/en/profile/k/a/y.kazmina/y.kazmina.html), PhD candidate at the Faculty of Social and Behavioural Sciences, University of Amsterdam (NL)
+[Yuliia Kazmina](https://www.uva.nl/en/profile/k/a/y.kazmina/y.kazmina.html), PhD candidate at the Faculty of Social and Behavioural Sciences, University of Amsterdam (NL)
 
 ## Organising team \@ TU Delft {.smaller}
 
-- [Ana Petrovic](https://research.tudelft.nl/en/persons/a-petrovi%C4%87/), Assistant Professor in urban studies at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)
+[Ana Petrovic](https://research.tudelft.nl/en/persons/a-petrovi%C4%87/), Assistant Professor in urban studies at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)
 
-- [Claudiu Forgaci](https://cforgaci.github.io/), Assistant Professor in urban design at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)
+[Claudiu Forgaci](https://cforgaci.github.io/), Assistant Professor in urban design at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)
 
-- [Clémentine Cottineau-Mugadza](https://clementinecttn.github.io/), Assistant Professor in urban studies at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)[![](assets/segue_logo.png){fig-align="left" width="30"}](http://erc-segue.nl/)
+[Clémentine Cottineau-Mugadza](https://clementinecttn.github.io/), Assistant Professor in urban studies at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)[![](assets/segue_logo.png){fig-align="left" width="30"}](http://erc-segue.nl/)
 
-- [Daniele Cannatella](https://www.tudelft.nl/staff/d.cannatella/), Assistant Professor in spatial data science at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)
+[Daniele Cannatella](https://www.tudelft.nl/staff/d.cannatella/), Assistant Professor in urban data science at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)
 
-- [Ignacio Urria Yáñez](https://www.tudelft.nl/staff/i.a.urriayanez/), PhD Candidate in urban studies at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)
+[Ignacio Urria Yáñez](https://www.tudelft.nl/staff/i.a.urriayanez/), PhD Candidate in urban studies at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)
 
-- [Javier San Millan Tejedor](https://javiersanmillan.github.io/), PhD Candidate in urban studies at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)[![](assets/segue_logo.png){fig-align="left" width="30"}](http://erc-segue.nl/)
+[Javier San Millan Tejedor](https://javiersanmillan.github.io/), PhD Candidate in urban studies at [![](assets/TUDelft.png){fig-align="left" width="60"}](https://www.tudelft.nl/) [![](assets/Logo_Rbanism_%20Full.png){fig-align="left" width="30"}](http://rbanism.org/)[![](assets/segue_logo.png){fig-align="left" width="30"}](http://erc-segue.nl/)
 
-## What is SEGUE?
+## What is [![](assets/segue_logo.png){fig-align="left" width="100"}](http://erc-segue.nl/)
 
-It is an project dedicated to the estimation, modelling and identification of policy scenarios to reduce urban economic segregation in the Netherlands.
+An project dedicated to the **estimation, modelling and identification of policy scenarios to reduce urban economic segregation in the Netherlands**.
 
 It is funded by the European Research Council between 2022 and 2029.
 
@@ -181,7 +191,7 @@ SEGUE funds the organisation of this meeting.
 
 [erc-segue.nl](erc-segue.nl)
 
-[![](assets/segue_logo.png){fig-align="left" width="100"}](http://erc-segue.nl/)
+
 
 ## Initial results from SEGUE {.scrollable .smaller}
 
@@ -189,23 +199,27 @@ SEGUE funds the organisation of this meeting.
 2.  income **segregation in the Netherlands** is rather low, stable and heterogeneous in Dutch metropolitan areas, but wealth inequalities and segregation are much larger and growing since 2011 [@san_millan_economic_2025] [@sanmillan2025wealth]
 3.  the size, spatial dispersion and allocation rules of **social housing** play an important role in dampening the effect of economic inequality on economic segregation, but that they vary significantly between cities [@san2026inequality] [@buitrago2026]. This directly affects the type of **policies** to design in order to reduce income and wealth segregation.
 
-## What is Rbanism?
+## What is [![](assets/Logo_Rbanism_%20Full.png){fig-align="centre" width="100"}](http://rbanism.org/)? {.smaller}
 
 ::::: {layout-ncol="2"}
 ::: {}
+
+
 A community of practice from TU Delft, whose mission is to build capacity, competence, and confidence for working with data and research software in the urbanism community.
 
-[![](assets/Logo_Rbanism_%20Full.png){fig-align="centre" width="130"}](http://rbanism.org/)
+We organise trainings, challenges, workshops and community events. 
+
+Our skills and experience in the fields of **open science** and **community building** will serve this workshop.
 :::
 
 ::: {}
-We organise trainings, challenges, workshops and community events. Our skills and experience in the fields of **open science** and **community building** will serve this workshop.
 
-![](assets/rbanism_join.png){fig-align="centre" width="150"}
+
+![](assets/rbanism_join.png){width="100%"}
 :::
 :::::
 
-## Rbanism's latest productions
+## Rbanism's latest productions {.smaller}
 
 💡 **Training**: [Geospatial Data Carpentry for Urbanism](https://datacarpentry.github.io/r-intro-geospatial/) workshop.
 
@@ -219,8 +233,8 @@ We organise trainings, challenges, workshops and community events. Our skills an
 
 Preparation materials and upcoming contribution to use two licenses:
 
-- **Apache License 2.0** for Code (R source, tests, and other software)
-- **Creative Commons Attribution 4.0 International (CC BY 4.0)** for workshop materials and outputs (data, presentations, notebooks, prose, figures, and other non-code content)
+- Apache License 2.0. for Code (R source, tests, and other software)
+- Creative Commons Attribution 4.0 International (CC BY 4.0) for workshop materials and outputs (data, presentations, notebooks, prose, figures, and other non-code content)
 
 ## Infrastructure for collaboration
 
@@ -238,40 +252,6 @@ These slides:
 :::
 :::::
 
-## Code of conduct {.smaller}
-
-Adapted from [The Carpentries' code of conduct](https://docs.carpentries.org/policies/coc/)
-
-::::: {layout-ncol="2"}
-::: {}
-
-**Expected behaviours:**
-
-- Use welcoming and inclusive language
-- Be respectful of different viewpoints and experiences
-- Focus on what is best for the community
-- Show courtesy and respect towards other community members
-- Show empathy towards organisation staff (we're doing out best!)
-- Offer help and expertise when possible
-
-:::
-
-::: {}
-
-**Unacceptable behaviours:**
-
-- threats, insults, jokes or comments with the effect of excluding people
-- sustained disruption of talks, events or communications
-- publication of (private) data or communication without consent
-- causing someone to fear for their safety, such as through stalking, following, or intimidation
-- nonconsensual or unwelcome physical contact or sexual attention
-- incitement to violence or self-harm
-
-
-:::
-:::::
-
-
 ## References {.scrollable .smaller}
 
 ::: {#refs}
@@ -279,7 +259,7 @@ Adapted from [The Carpentries' code of conduct](https://docs.carpentries.org/pol
 
 # Getting to know each other {background-gradient="linear-gradient(135deg, white 30%, #93278F)"}
 
-## Form 9 groups of 3 & ask each other:
+## Form 8 groups of 3 & ask each other:
 
 - Who are you?
 - What do you do?
@@ -291,7 +271,7 @@ Adapted from [The Carpentries' code of conduct](https://docs.carpentries.org/pol
 countdown::countdown(minutes = 9)
 ```
 
-## Change groups! (x2)
+## Change groups!
 
 - Who are you?
 - What do you do?
@@ -303,7 +283,7 @@ countdown::countdown(minutes = 9)
 countdown::countdown(minutes = 9)
 ```
 
-## Okay! Now you know ~6 people! {.scrollable}
+## Okay! Now you know 6 people! {.scrollable}
 
 ```{r}
 #| label: maps
@@ -344,35 +324,59 @@ mf_map(
 
 ```
 
-## The 27 {.scrollable .smaller}
+## The 25 {.scrollable .smaller}
 
-- [**Adrian Nowacki**]{style="color:#f57b26;"}, PhD Student, Doctoral School of Natural Sciences, Adam Mickiewicz University in Poznań, Poland.
-- [**Alok Kumar**]{style="color:#00A99D;"}, PhD Candidate, Jawaharlal Nehru University New Delhi, India
-- [~~**Ana Luisa Maffini**~~]{style="color:#00A99D;"}~~, Researcher/Postdoctoral Researcher at Urban and Regional Planning program at UFRGS, Brasil~~
-- [**Ana Petrović**]{style="color:#f57b26;"}, Assistant Professor in urban studies at TU Delft, NL
-- [**Benjamin Jarvis**]{style="color:#93278F;"}, Associate Professor, Institute for Analytical Sociology, Linköping University, Sweden
-- [**Benjamin Rosche**]{style="color:#93278F;"}, Assistant Professor of Computational Social Science, New York University Abu Dhabi, Abu Dhabi
-- [**Claudiu Forgaci**]{style="color:#93278F;"}, Assistant Professor in urban design and analytics at TU Delft, NL
-- [**Clémentine Cottineau-Mugadza**]{style="color:#f57b26;"}, Assistant Professor in urban studies at TU Delft, NL
-- [**Daniele Cannatella**]{style="color:#93278F;"}, Assistant Professor in spatial data science at Delft, NL
-- [**Giuliana La Mantia**]{style="color:#f57b26;"}, Post-doc researcher at University of Genoa, Italy.
-- [**Guilherme Kenjy Chihaya Da Silva**]{style="color:#f57b26;"}, Associate Professor, Nord University, Faculty of Social Sciences, Norway
-- [**Ignacio Urria Yáñez**]{style="color:#93278F;"}, PhD Candidate in urban studies at Delft, NL
-- [**Javier San Millán Tejedor**]{style="color:#f57b26;"}, PhD Candidate in urban studies at Delft, NL
-- [**Jiannis Kaućič**]{style="color:#00A99D;"}, Scientific Staff (Praedoc) at the Institute for Urban and Regional Research (ÖAW), Austria
-- [**Julie Vallée**]{style="color:#00A99D;"}, Senior researcher at CNRS, LISST, France
-- [**Julien Migozzi**]{style="color:#00A99D;"}, Assistant Professor in Development Studies at University of Cambridge, UK
-- [**Juta Kawalerowicz**]{style="color:#00A99D;"}, Lecturer at Stokholm University, Sweden
-- [**Karina Trelles**]{style="color:#00A99D;"}, Master student at University of Brescia, Italy
-- [**Levi John Wolf**]{style="color:#93278F;"}, Associate Professor of Spatial Analysis at the University of Bristol, UK
-- [**Nadeem Ullah**]{style="color:#00A99D;"}, Postdoctoral Researcher, School of Architecture, Tianjin University, China
-- [**Onur Tumturk**]{style="color:#00A99D;"}, Marie Curie Postdoc, Bilkent University, Turkey
-- [**Onyinyechi Ossai**]{style="color:#00A99D;"}, Senior Lecturer/University of Nigeria, Nsukka, Nigeria
-- [**Priyanka deSouza**]{style="color:#00A99D;"}, Assistant Professor, University of Colorado Denver, USA
-- [**Selcan Mutgan**]{style="color:#f57b26;"}, Assistant Professor at the Institute for Analytical Sociology in Linköping University, Sweden
-- [**Seong-Yun Hong**]{style="color:#93278F;"}, Associate Professor at Kyung Hee University, South Korea
-- [**Timothée Giraud**]{style="color:#93278F;"}, Research engineer at CNRS, UAR RIATE - Center for spatial analysis and geovizualisation, France
-- [**Yuliia Kazmina**]{style="color:#f57b26;"}, PhD candidate at the Faculty of Social and Behavioural Sciences, University of Amsterdam, NL
+[**Adrian Nowacki**]{style="color:#f57b26;"}, PhD Student, Doctoral School of Natural Sciences, Adam Mickiewicz University in Poznań, Poland.
+
+[**Alok Kumar**]{style="color:#00A99D;"}, PhD Candidate, Jawaharlal Nehru University New Delhi, India
+
+[**Ana Petrović**]{style="color:#f57b26;"}, Assistant Professor in urban studies at TU Delft, NL
+
+[**Benjamin Jarvis**]{style="color:#93278F;"}, Associate Professor, Institute for Analytical Sociology, Linköping University, Sweden
+
+[**Benjamin Rosche**]{style="color:#93278F;"}, Assistant Professor of Computational Social Science, New York University Abu Dhabi, Abu Dhabi
+
+[**Claudiu Forgaci**]{style="color:#93278F;"}, Assistant Professor in urban design and analytics at TU Delft, NL
+
+[**Clémentine Cottineau-Mugadza**]{style="color:#f57b26;"}, Assistant Professor in urban studies at TU Delft, NL
+
+[**Daniele Cannatella**]{style="color:#93278F;"}, Assistant Professor in spatial data science at Delft, NL
+
+[**Giuliana La Mantia**]{style="color:#f57b26;"}, Post-doc researcher at University of Genoa, Italy.
+
+[**Guilherme Kenjy Chihaya Da Silva**]{style="color:#f57b26;"}, Associate Professor, Nord University, Faculty of Social Sciences, Norway
+
+[**Ignacio Urria Yáñez**]{style="color:#93278F;"}, PhD Candidate in urban studies at Delft, NL
+
+[**Javier San Millán Tejedor**]{style="color:#f57b26;"}, PhD Candidate in urban studies at Delft, NL
+
+[**Jiannis Kaućič**]{style="color:#00A99D;"}, Scientific Staff (Praedoc) at the Institute for Urban and Regional Research (ÖAW), Austria
+
+[**Julie Vallée**]{style="color:#00A99D;"}, Senior researcher at CNRS, LISST, France
+
+[**Julien Migozzi**]{style="color:#00A99D;"}, Assistant Professor in Development Studies at University of Cambridge, UK
+
+[**Juta Kawalerowicz**]{style="color:#00A99D;"}, Lecturer at Stokholm University, Sweden
+
+[**Karina Trelles**]{style="color:#00A99D;"}, Master student at University of Brescia, Italy
+
+[~~**Levi John Wolf**~~]{style="color:#93278F;"}~~, Associate Professor of Spatial Analysis at the University of Bristol, UK~~
+
+[**Nadeem Ullah**]{style="color:#00A99D;"}, Postdoctoral Researcher, School of Architecture, Tianjin University, China
+
+[**Onur Tumturk**]{style="color:#00A99D;"}, Marie Curie Postdoc, Bilkent University, Turkey
+
+[~~**Onyinyechi Ossai**~~]{style="color:#00A99D;"}, ~~Senior Lecturer/University of Nigeria, Nsukka, Nigeria~~
+
+[**Priyanka deSouza**]{style="color:#00A99D;"}, Assistant Professor, University of Colorado Denver, USA
+
+[**Selcan Mutgan**]{style="color:#f57b26;"}, Assistant Professor at the Institute for Analytical Sociology in Linköping University, Sweden
+
+[**Seong-Yun Hong**]{style="color:#93278F;"}, Associate Professor at Kyung Hee University, South Korea
+
+[**Timothée Giraud**]{style="color:#93278F;"}, Research engineer at CNRS, UAR RIATE - Center for spatial analysis and geovizualisation, France
+
+[**Yuliia Kazmina**]{style="color:#f57b26;"}, PhD candidate at the Faculty of Social and Behavioural Sciences, University of Amsterdam, NL
 
 ## Developer profile {background-gradient="linear-gradient(135deg, white 30%, #93278F)"}
 
