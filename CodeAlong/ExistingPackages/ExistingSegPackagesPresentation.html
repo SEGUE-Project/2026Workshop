@@ -265,27 +265,13 @@ Ignacio Urria Yáñez <a href="https://orcid.org/0000-0003-3218-5102" class="qua
 <h2>Setup intructions</h2>
 <ol type="1">
 <li class="fragment">Open a new R project. <code>File &gt; New Project... &gt; New Directory</code></li>
-<li class="fragment">Download the data: <a href="https://edu.nl/38a8b" class="uri">https://edu.nl/38a8b</a></li>
+<li class="fragment">Download the data: <a href="https://edu.nl/38a8b">edu.nl/38a8b</a></li>
 <li class="fragment">Make sure the data is within the project for ease of use</li>
 </ol>
 </section>
 <section id="about-the-data" class="slide level2">
 <h2>About the data</h2>
 <p>We are using open data from the Dutch statistics office CBS, and in particular 500x500 grid cells of Rotterdam. This is count-data coming from the Dutch register, as the 500m x 500m resolution <span class="citation" data-cites="cbs500">(<a href="#/references" role="doc-biblioref" onclick="">Statistiek (CBS), 2026</a>)</span>. The data was clipped to fit the Rotterdam functional area as defined by the OECD <span class="citation" data-cites="oecdFUA">(<a href="#/references" role="doc-biblioref" onclick="">OECD, 2023</a>)</span>. Municipal boundaries and waterbodies come from the kadaster <span class="citation" data-cites="kadaster">(<a href="#/references" role="doc-biblioref" onclick="">Kadaster, 2026</a>)</span>.</p>
-</section>
-<section id="references" class="slide level2 scrollable smaller">
-<h2>References</h2>
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
-<div id="ref-kadaster" class="csl-entry" role="listitem">
-Kadaster. (2026). <em>INSPIRE NL administratieve eenheden</em>. <a href="https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/7dd1fd45-ace5-41e0-93a6-64e3be231717">https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/7dd1fd45-ace5-41e0-93a6-64e3be231717</a>
-</div>
-<div id="ref-oecdFUA" class="csl-entry" role="listitem">
-OECD. (2023). <em>OECD definition of cities and functional urban areas</em>. <a href="https://www.oecd.org/en/data/datasets/oecd-definition-of-cities-and-functional-urban-areas.html">https://www.oecd.org/en/data/datasets/oecd-definition-of-cities-and-functional-urban-areas.html</a>
-</div>
-<div id="ref-cbs500" class="csl-entry" role="listitem">
-Statistiek (CBS), C. B. voor de. (2026). <em>Kaart van 500 meter bij 500 meter met statistieken</em>. <a href="https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/kaart-van-500-meter-bij-500-meter-met-statistieken">https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/kaart-van-500-meter-bij-500-meter-met-statistieken</a>
-</div>
-</div>
 </section>
 <section id="about-the-data-1" class="slide level2 scrollable">
 <h2>About the data</h2>
@@ -327,6 +313,20 @@ Statistiek (CBS), C. B. voor de. (2026). <em>Kaart van 500 meter bij 500 meter m
 <span id="cb1-35"><a href="" aria-label="35"></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb1-36"><a href="" aria-label="36"></a>  <span class="fu">select</span>(crs28992res500m, population, <span class="fu">starts_with</span>(<span class="st">"age_"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb1-37"><a href="" aria-label="37"></a>  <span class="fu">st_write</span>(<span class="st">"processed_data/rotterdam_500m.gpkg"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="references" class="slide level2 scrollable smaller">
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-kadaster" class="csl-entry" role="listitem">
+Kadaster. (2026). <em>INSPIRE NL administratieve eenheden</em>. <a href="https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/7dd1fd45-ace5-41e0-93a6-64e3be231717">https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/7dd1fd45-ace5-41e0-93a6-64e3be231717</a>
+</div>
+<div id="ref-oecdFUA" class="csl-entry" role="listitem">
+OECD. (2023). <em>OECD definition of cities and functional urban areas</em>. <a href="https://www.oecd.org/en/data/datasets/oecd-definition-of-cities-and-functional-urban-areas.html">https://www.oecd.org/en/data/datasets/oecd-definition-of-cities-and-functional-urban-areas.html</a>
+</div>
+<div id="ref-cbs500" class="csl-entry" role="listitem">
+Statistiek (CBS), C. B. voor de. (2026). <em>Kaart van 500 meter bij 500 meter met statistieken</em>. <a href="https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/kaart-van-500-meter-bij-500-meter-met-statistieken">https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/kaart-van-500-meter-bij-500-meter-met-statistieken</a>
+</div>
 </div>
 </section></section>
 <section id="now-lets-code-together" class="title-slide slide level1 center" data-background-gradient="linear-gradient(135deg, white 30%, #93278F)">

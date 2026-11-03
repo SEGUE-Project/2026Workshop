@@ -49,17 +49,13 @@ The fact that everybody attends both types of session facilitates communication 
 ## Setup intructions
 
 1.  Open a new R project. `File > New Project... > New Directory`
-2.  Download the data: <https://edu.nl/38a8b>
+2.  Download the data: [edu.nl/38a8b](https://edu.nl/38a8b)
 3.  Make sure the data is within the project for ease of use
 
 ## About the data
 
 We are using open data from the Dutch statistics office CBS, and in particular 500x500 grid cells of Rotterdam. This is count-data coming from the Dutch register, as the 500m x 500m resolution [@cbs500]. The data was clipped to fit the Rotterdam functional area as defined by the OECD [@oecdFUA]. Municipal boundaries and waterbodies come from the kadaster [@kadaster].
 
-## References {.scrollable}
-
-::: {#refs}
-:::
 
 ## About the data {.scrollable}
 
@@ -110,5 +106,10 @@ grid2025 <-  st_read("data/CBS_grids/2025/cbs_vk500_2025_v1.gpkg") |>
 
 ```
 
+
+## References {.scrollable}
+
+::: {#refs}
+:::
 
 # Now, let's code together {background-gradient="linear-gradient(135deg, white 30%, #93278F)"}

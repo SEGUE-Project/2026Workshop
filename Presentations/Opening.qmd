@@ -54,7 +54,7 @@ What are the mechanisms through which some places produce better outcomes than o
 
 Does segregation directly harm children in vulnerable families?
 
-## Your questions {.smaller .nonincremental}
+## Your questions { .smaller .nonincremental}
 
 [How does adding new dwellings to existing housing stock change local segregation values at different scales?]{style="color:#00A99D;"}
 
@@ -191,6 +191,8 @@ SEGUE funds the organisation of this meeting.
 
 [erc-segue.nl](erc-segue.nl)
 
+
+
 ## Initial results from SEGUE {.scrollable .smaller}
 
 1.  urban economic **segregation** is linked to economic **inequality** through a variety of causal pathways, including but not restricted to housing markets [@cottineau2025economic] [@paulinaslr]
@@ -201,14 +203,18 @@ SEGUE funds the organisation of this meeting.
 
 ::::: {layout-ncol="2"}
 ::: {}
+
+
 A community of practice from TU Delft, whose mission is to build capacity, competence, and confidence for working with data and research software in the urbanism community.
 
-We organise trainings, challenges, workshops and community events.
+We organise trainings, challenges, workshops and community events. 
 
 Our skills and experience in the fields of **open science** and **community building** will serve this workshop.
 :::
 
 ::: {}
+
+
 ![](assets/rbanism_join.png){width="100%"}
 :::
 :::::
@@ -242,7 +248,7 @@ Preparation materials and upcoming contribution to use two licenses:
 ::: {}
 These slides:
 
-![](assets/openingslides.png)
+![](assets/openingSlides.png)
 :::
 :::::
 
