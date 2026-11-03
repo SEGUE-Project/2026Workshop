@@ -242,7 +242,7 @@ Preparation materials and upcoming contribution to use two licenses:
 ::: {}
 These slides:
 
-![](assets/openingSlides.png)
+![](assets/openingslides.png)
 :::
 :::::
 
