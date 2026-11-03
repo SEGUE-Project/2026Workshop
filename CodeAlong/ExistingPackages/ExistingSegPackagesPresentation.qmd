@@ -1,0 +1,114 @@
+---
+title: "Computing segregation indices from existing packages"
+author:
+  - name: Clémentine Cottineau-Mugadza
+    orcid: 0000-0002-2452-3901
+  - name: Ignacio Urria Yáñez
+    orcid: 0000-0003-3218-5102
+
+format: 
+  revealjs: 
+    incremental: true
+    theme: simple
+    header-logo-right: assets/segue_logo.png
+    header-logo-right-url: https://erc-segue.nl
+    header-logo-right-height: 75px
+    header-logo-left: assets/Logo_Rbanism_ Full.png
+    header-logo-left-height: 75px
+editor: visual
+date: 11-9-2026  
+date-format: long
+bibliography: assets/References.bib 
+csl: assets/apa.csl
+link-citations: true
+
+
+title-slide-attributes:
+  data-background-image: assets/background.png
+  data-background-opacity: "0.6"
+css: assets/style.css
+---
+
+# Introduction {background-gradient="linear-gradient(135deg, white 30%, #00A99D)"}
+
+## Objectives
+
+1.  Bringing discussions back to the coding environments
+2.  Aligning our vocabulary around segregation computation with R
+3.  Aligning our knowledge and understanding of the current landscape of segregation computation with R
+4.  Fostering discussions about what the field needs with concrete examples.
+
+## Disclaimer
+
+For some of you, parts of the script will seem challenging while for others, it will be very basic...
+
+> This is the point of our diverse group: some of us are more comfortable with development while others are at ease with theoretical discussions.
+
+The fact that everybody attends both types of session facilitates communication between [**developer**]{style="color:#93278F;"}, [**interface**]{style="color:#f57b26;"} and [**user**]{style="color:#00A99D;"} profiles.
+
+## Setup intructions
+
+1.  Open a new R project. `File > New Project... > New Directory`
+2.  Download the data: <https://edu.nl/38a8b>
+3.  Make sure the data is within the project for ease of use
+
+## About the data
+
+We are using open data from the Dutch statistics office CBS, and in particular 500x500 grid cells of Rotterdam. This is count-data coming from the Dutch register, as the 500m x 500m resolution [@cbs500]. The data was clipped to fit the Rotterdam functional area as defined by the OECD [@oecdFUA]. Municipal boundaries and waterbodies come from the kadaster [@kadaster].
+
+## References {.scrollable}
+
+::: {#refs}
+:::
+
+## About the data {.scrollable}
+
+```{r dataprep}
+#| echo: true
+#| eval: false
+
+Rotterdam <- st_read("data/OECD_fuas/fuas.shp") |>
+  filter(fuaname_en == "Rotterdam") |>
+  st_transform(28992) |>
+  st_buffer(dist = 100)
+
+muni <- st_read("data/gemeenten.gpkg") |>
+  st_transform(28992) |>
+  st_intersection(Rotterdam) |>
+  st_write("processed_data/rotterdam_muni.gpkg")
+
+muni <- st_read("data/water.gpkg") |>
+  st_transform(28992) |>
+  st_intersection(Rotterdam) |>
+  st_write("processed_data/rotterdam_water.gpkg")
+
+grid2025 <-  st_read("data/CBS_grids/2025/cbs_vk500_2025_v1.gpkg") |>
+  st_transform(28992) |>
+  st_intersection(Rotterdam) |>
+  mutate(
+    across(
+      starts_with("aantal_inwoners"),
+      ~ if_else(.x < 0, NA, .x)
+    )
+  ) |>
+  rename(
+    population = aantal_inwoners,
+    age_0_15    = aantal_inwoners_0_tot_15_jaar,
+    age_15_25   = aantal_inwoners_15_tot_25_jaar,
+    age_25_45   = aantal_inwoners_25_tot_45_jaar,
+    age_45_65   = aantal_inwoners_45_tot_65_jaar,
+    age_older65 = aantal_inwoners_65_jaar_en_ouder
+  ) |>
+  mutate(
+    age_under65 = age_0_15 + age_15_25 + age_25_45 + age_45_65
+  ) |>
+  select(crs28992res500m, population, starts_with("age_")) |>
+  st_write("processed_data/rotterdam_500m.gpkg")
+
+
+
+
+```
+
+
+# Now, let's code together {background-gradient="linear-gradient(135deg, white 30%, #93278F)"}
