@@ -559,7 +559,8 @@ local |>
   head()
 ```
 
-This output represents **local contributions by spatial unit**, rather than group-specific entropy scores. The distinction is important when comparing outputs across packages.
+This output represents **group-specific contributions** to the multi-group entropy score M. The distinction is important when comparing outputs across packages.
+Footnote: more on this package, initially developed for educational segregation purposes [here](https://elbersb.github.io/segregation/).
 
 ### Comparing entropy outputs
 
