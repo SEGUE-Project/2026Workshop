@@ -6,10 +6,10 @@
 <script src="Modelling_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="Modelling_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="Modelling_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="Modelling_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="Modelling_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="Modelling_files/libs/quarto-contrib/revealjs-header/revealjs-header.js" defer="true"></script>
 <link href="Modelling_files/libs/quarto-contrib/revealjs-header/revealjs-header.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Clémentine Cottineau-Mugadza">
   <meta name="author" content="Javier San Millán">
@@ -26,10 +26,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -228,34 +231,42 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Clémentine Cottineau-Mugadza <a href="https://orcid.org/0000-0002-2452-3901" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a>
+Clémentine Cottineau-Mugadza <a href="https://orcid.org/0000-0002-2452-3901" class="quarto-title-author-orcid" aria-label="ORCID profile for Clémentine Cottineau-Mugadza"> <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a>
 </div>
 </div>
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Javier San Millán <a href="https://orcid.org/0000-0002-8369-556X" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a>
+Javier San Millán <a href="https://orcid.org/0000-0002-8369-556X" class="quarto-title-author-orcid" aria-label="ORCID profile for Javier San Millán"> <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a>
 </div>
 </div>
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Paulina Pizarro Kumpf 
+Paulina Pizarro Kumpf
 </div>
 </div>
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Diego Buitrago-Mora 
+Diego Buitrago-Mora
 </div>
 </div>
 </div>
 
   <p class="date">November 10, 2026</p>
 </section>
-<section id="diversity-of-approaches-to-modelling-within-segue" class="slide level2">
-<h2>Diversity of approaches to modelling within SEGUE</h2>
+<section id="diversity-of-approaches-to-modelling-segregation" class="slide level2">
+<h2>Diversity of approaches to modelling segregation</h2>
 <ul>
-<li>Theoretical modelling: causal pathways and multidisciplinary approaches</li>
-<li>Empirical modelling: factors associated with income/wealth segregation variation</li>
-<li>Agent-based modelling: mechanism-based explanation of segregation persistence</li>
+<li class="fragment">Modelling <strong>causes</strong> of segregation (pathways, timing, factors and actors <span class="citation" data-cites="krysan2017cycle">(<a href="#/thank-you" role="doc-biblioref" onclick="">Krysan &amp; Crowder, 2017</a>)</span>)</li>
+<li class="fragment">Modelling <strong>patterns</strong> of segregation (spatial concentration, social frontiers <span class="citation" data-cites="dean2019frontiers">(<a href="#/thank-you" role="doc-biblioref" onclick="">Dean et al., 2019</a>)</span>, multiscale patterns <span class="citation" data-cites="manley2019multiscale">(<a href="#/thank-you" role="doc-biblioref" onclick="">Manley et al., 2019</a>)</span>)</li>
+<li class="fragment">Modelling <strong>consequences</strong> of segregation (neighbourhood effects <span class="citation" data-cites="galster2017spatial">(<a href="#/thank-you" role="doc-biblioref" onclick="">Galster &amp; Sharkey, 2017</a>)</span> <span class="citation" data-cites="tammaru2021spatial">(<a href="#/thank-you" role="doc-biblioref" onclick="">Tammaru et al., 2021</a>)</span>, reduction of network diversity and cohesion)</li>
+</ul>
+</section>
+<section id="diversity-of-epistemologies-within-segue" class="slide level2">
+<h2>Diversity of epistemologies within SEGUE</h2>
+<ul>
+<li class="fragment"><strong>Theoretical</strong> modelling: causal pathways and multidisciplinary approaches</li>
+<li class="fragment"><strong>Empirical</strong> modelling: factors associated with income/wealth segregation variation</li>
+<li class="fragment"><strong>Agent-based</strong> modelling: mechanism-based explanation of segregation persistence</li>
 </ul>
 </section>
 <section>
@@ -263,43 +274,25 @@ Diego Buitrago-Mora
 <h1>Theoretical modelling</h1>
 
 </section>
-<section id="systematic-literature-review" class="slide level2">
-<h2>Systematic literature review</h2>
+<section id="literature-review" class="slide level2">
+<h2>Literature review</h2>
 <ul>
-<li>“cycle of segregation” approach: economic inequality means unequal housing resources, which shape residential environments, social networks and bundle of opportunities <span class="citation" data-cites="krysan2017cycle">(<a href="#/thank-you" role="doc-biblioref" onclick="">Krysan &amp; Crowder, 2017</a>)</span> <span class="citation" data-cites="galster2017spatial">(<a href="#/thank-you" role="doc-biblioref" onclick="">Galster &amp; Sharkey, 2017</a>)</span></li>
-<li>“vicious circles of segregation” approach <span class="citation" data-cites="tammaru2021spatial">(<a href="#/thank-you" role="doc-biblioref" onclick="">Tammaru et al., 2021</a>)</span>: “Segregation experienced in one life domain tends to be reproduced in other life domains […] Segregation experienced early in life is often reproduced later in life and transmitted from parents to children because of the interconnected lives of the family members.”</li>
+<li class="fragment">Does economic segregation vary with economic inequality?</li>
+<li class="fragment">To what extent are the two phenomena linked?</li>
+<li class="fragment">Which causal pathways and mechanisms are proposed to explain their connection?</li>
+<li class="fragment">To what extent does existing research belong to distinct literatures?</li>
+<li class="fragment">What are the consequences regarding the comparability of results and the compatibility of mechanisms?</li>
 </ul>
 </section>
-<section id="systematic-literature-review-1" class="slide level2 smaller">
-<h2>Systematic literature review</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>((<span class="at">TS =</span> segregation <span class="fu">AND</span> (<span class="at">TS =</span> income OR <span class="at">TS =</span> wealth OR <span class="at">TS =</span> economic))</span>
-<span id="cb1-2"><a href=""></a><span class="fu">OR</span> (<span class="at">TS =</span> inequality <span class="fu">AND</span> (<span class="at">TS =</span> income OR <span class="at">TS =</span> wealth OR <span class="at">TS =</span> economic)))</span>
-<span id="cb1-3"><a href=""></a><span class="fu">AND</span> (<span class="at">ALL =</span> mechanis<span class="sc">*</span> OR <span class="at">ALL =</span> expla?n<span class="sc">*</span> OR <span class="at">ALL =</span> effect<span class="sc">*</span> OR <span class="at">ALL =</span> caus<span class="sc">*</span> OR <span class="at">ALL =</span> relation<span class="sc">*</span> OR <span class="at">ALL =</span> process<span class="sc">*</span>)</span>
-<span id="cb1-4"><a href=""></a><span class="fu">AND</span> (<span class="at">AB =</span> segregation OR <span class="at">AB =</span> inequality)</span>
-<span id="cb1-5"><a href=""></a><span class="fu">NOT</span> (<span class="at">AB =</span> spatial inequality)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="assets/prisma.png"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<ul>
-<li><p>Does economic segregation vary with economic inequality, and to what extent are the two phenomena linked?</p></li>
-<li><p>Which causal pathways and mechanisms are proposed to explain their connection?</p></li>
-<li><p>To what extent does existing research belong to distinct literatures?</p></li>
-<li><p>What are the consequences regarding the comparability of results and the compatibility of mechanisms?</p></li>
-</ul>
-<p><span class="citation" data-cites="cottineau2025economic">(<a href="#/thank-you" role="doc-biblioref" onclick="">Cottineau-Mugadza, 2025</a>)</span></p>
-</div>
-</div>
-</div>
-</section>
-<section id="results" class="slide level2 scrollable">
-<h2>Results</h2>
+<section id="a-large-field" class="slide level2 smaller">
+<h2>A large field</h2>
 
-<img data-src="assets/fishcore.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="assets/prisma.png" style="width:100.0%" class="r-stretch"></section>
+<section id="multiplex-phenomenon" class="slide level2 scrollable">
+<h2>Multiplex phenomenon</h2>
+
+<img data-src="assets/fishcore.png" style="width:100.0%" class="r-stretch"><p><span class="citation" data-cites="cottineau2025economic">(<a href="#/thank-you" role="doc-biblioref" onclick="">Cottineau-Mugadza, 2025</a>)</span></p>
+</section>
 <section id="section" class="slide level2">
 <h2></h2>
 
@@ -307,7 +300,17 @@ Diego Buitrago-Mora
 <section id="section-1" class="slide level2">
 <h2></h2>
 
-<img data-src="assets/table2.png" style="width:100.0%" class="r-stretch"></section></section>
+<img data-src="assets/table2.png" style="width:100.0%" class="r-stretch"></section>
+<section id="conclusions" class="slide level2">
+<h2>Conclusions</h2>
+<ul>
+<li class="fragment">Does economic segregation vary with economic inequality? ✅</li>
+<li class="fragment">To what extent are the two phenomena linked? 🤷</li>
+<li class="fragment">Which causal pathways and mechanisms are proposed to explain their connection? 🏡🎓💼</li>
+<li class="fragment">To what extent does existing research belong to distinct literatures? 🤝</li>
+<li class="fragment">What are the consequences regarding the comparability of results and the compatibility of mechanisms? ☠️</li>
+</ul>
+</section></section>
 <section>
 <section id="empirical-modelling" class="title-slide slide level1 center" data-background-gradient="linear-gradient(135deg, white 30%, #93278F)">
 <h1>Empirical modelling</h1>
@@ -316,45 +319,43 @@ Diego Buitrago-Mora
 <section id="regression-of-income-and-wealth-segregation-with" class="slide level2">
 <h2>Regression of income and wealth segregation with:</h2>
 <ul>
-<li>economic inequality</li>
-<li>city size</li>
-<li>housing tenure distribution</li>
-<li>social housing concentration</li>
-<li>social housing allocation rules</li>
+<li class="fragment">economic inequality <span class="citation" data-cites="san_millan_economic_2025">(<a href="#/thank-you" role="doc-biblioref" onclick="">San Millán, Cottineau‐Mugadza, et al., 2025</a>)</span> <span class="citation" data-cites="sanmillan2025wealth">(<a href="#/thank-you" role="doc-biblioref" onclick="">San Millán, Cottineau-Mugadza, et al., 2025</a>)</span></li>
+<li class="fragment">city size <span class="citation" data-cites="san_millan_economic_2025">(<a href="#/thank-you" role="doc-biblioref" onclick="">San Millán, Cottineau‐Mugadza, et al., 2025</a>)</span></li>
+<li class="fragment">social housing concentration <span class="citation" data-cites="san2026inequality">(<a href="#/thank-you" role="doc-biblioref" onclick="">San Millán et al., 2026</a>)</span></li>
+<li class="fragment">social housing allocation rules <span class="citation" data-cites="buitrago2026">(<a href="#/thank-you" role="doc-biblioref" onclick="">Buitrago-Mora &amp; Cottineau-Mugadza, 2026</a>)</span></li>
 </ul>
-<p>Source: <span class="citation" data-cites="san_millan_economic_2025">(<a href="#/thank-you" role="doc-biblioref" onclick="">San Millán, Cottineau‐Mugadza, et al., 2025</a>)</span> <span class="citation" data-cites="sanmillan2025wealth">(<a href="#/thank-you" role="doc-biblioref" onclick="">San Millán, Cottineau-Mugadza, et al., 2025</a>)</span> <span class="citation" data-cites="san2026inequality">(<a href="#/thank-you" role="doc-biblioref" onclick="">San Millán et al., 2026</a>)</span> <span class="citation" data-cites="buitrago2026">(<a href="#/thank-you" role="doc-biblioref" onclick="">Buitrago-Mora &amp; Cottineau-Mugadza, 2026</a>)</span></p>
 </section>
-<section id="effect-of-public-subsidy-on" class="slide level2">
-<h2>Effect of public subsidy on:</h2>
-<ul>
-<li>housing unit selection</li>
-<li>residential neighbourhood</li>
-</ul>
+<section id="effect-of-public-policy" class="slide level2">
+<h2>Effect of public policy</h2>
 <blockquote>
 <p>Housing vouchers are not necessarily used to reduce economic segregation. Household operate trade-offs between units quality, place attachment and bundle of opportunity</p>
 </blockquote>
 <p><span class="citation" data-cites="deluca2020not">(<a href="#/thank-you" role="doc-biblioref" onclick="">DeLuca &amp; Jang–Trettien, 2020</a>)</span></p>
+<ul>
+<li class="fragment">housing unit selection</li>
+<li class="fragment">residential neighbourhood</li>
+</ul>
 </section></section>
 <section>
 <section id="agent-based-modelling" class="title-slide slide level1 center" data-background-gradient="linear-gradient(135deg, white 30%, #f57b26)">
 <h1>Agent-based modelling</h1>
 
 </section>
-<section id="mechanisms-behind-segregation-emergence" class="slide level2">
-<h2>Mechanisms behind segregation emergence</h2>
+<section id="mechanisms-behind-segregation-emergence-and-persistence-paulinaslr" class="slide level2">
+<h2>Mechanisms behind segregation emergence and persistence <span class="citation" data-cites="paulinaslr">(<a href="#/thank-you" role="doc-biblioref" onclick="">Pizarro Kumpf et al., 2026</a>)</span></h2>
 <ul>
-<li>Homophily &amp; clustering (Schelling)</li>
-<li>Real estate markets in unequal societies</li>
-<li>Urban morphology &amp; segregative potential</li>
+<li class="fragment">Homophily &amp; clustering (Schelling)</li>
+<li class="fragment">Real estate markets in unequal societies</li>
+<li class="fragment">Urban morphology &amp; segregative potential</li>
 </ul>
-<p><span class="citation" data-cites="paulinaslr">(<a href="#/thank-you" role="doc-biblioref" onclick="">Pizarro Kumpf et al., 2026</a>)</span></p>
 </section>
 <section id="additional-considerations-in-segue" class="slide level2">
 <h2>Additional considerations in SEGUE</h2>
 <ul>
-<li><strong>Lifecourse of residential needs</strong>: household transitions produce changes in residential needs, both in terms of housing unit and residential environments. - <strong>Contextual effects</strong>: individuals’ bundle of opportunities depend on where they spend time and who they are exposed to.</li>
-<li><strong>Wealth accumulation through residential real estate</strong>: contemporary houses in capitalist states function as shelters and assets.</li>
-<li><strong>Social housing</strong> and the geography of supply price distortion</li>
+<li class="fragment"><strong>Lifecourse of residential needs</strong>: residential needs (housing unit + residential environments) vary with household transitions.</li>
+<li class="fragment"><strong>Contextual effects</strong>: individuals’ bundle of opportunities depend on where they spend time and who they are exposed to.</li>
+<li class="fragment"><strong>Wealth accumulation through residential real estate</strong>: houses as shelters and assets in capitalist societies.</li>
+<li class="fragment"><strong>Social housing</strong> and the geography of supply price distortion</li>
 </ul>
 </section>
 <section id="thank-you" class="slide level2 scrollable smaller">
@@ -366,6 +367,9 @@ Buitrago-Mora, D., &amp; Cottineau-Mugadza, C. (2026). Reshaping economic segreg
 <div id="ref-cottineau2025economic" class="csl-entry" role="listitem">
 Cottineau-Mugadza, C. (2025). Economic inequality and economic segregation: A systematic review of causal pathways. <em>Social Forces</em>. <a href="https://doi.org/10.1093/sf/soaf195">https://doi.org/10.1093/sf/soaf195</a>
 </div>
+<div id="ref-dean2019frontiers" class="csl-entry" role="listitem">
+Dean, N., Dong, G., Piekut, A., &amp; Pryce, G. (2019). Frontiers in residential segregation: Understanding neighbourhood boundaries and their impacts. <em>Tijdschrift Voor Economische En Sociale Geografie</em>, <em>110</em>(3), 271–288.
+</div>
 <div id="ref-deluca2020not" class="csl-entry" role="listitem">
 DeLuca, S., &amp; Jang–Trettien, C. (2020). <span>“Not just a lateral move”</span>: Residential decisions and the reproduction of urban inequality. <em>City &amp; Community</em>, <em>19</em>(3), 451–488.
 </div>
@@ -374,6 +378,9 @@ Galster, G., &amp; Sharkey, P. (2017). Spatial foundations of inequality: A conc
 </div>
 <div id="ref-krysan2017cycle" class="csl-entry" role="listitem">
 Krysan, M., &amp; Crowder, K. (2017). <em>Cycle of segregation: Social processes and residential stratification</em>. Russell Sage Foundation.
+</div>
+<div id="ref-manley2019multiscale" class="csl-entry" role="listitem">
+Manley, D., Jones, K., &amp; Johnston, R. (2019). Multiscale segregation: Multilevel modeling of dissimilarity—challenging the stylized fact that segregation is greater the finer the spatial scale. <em>The Professional Geographer</em>, <em>71</em>(3), 566–578.
 </div>
 <div id="ref-paulinaslr" class="csl-entry" role="listitem">
 Pizarro Kumpf, P., Cottineau-Mugadza, C., &amp; Ham, M. van. (2026). <em>The weight of legacy: A systematic review of agent-based models of economic segregation</em>. Working paper.
@@ -390,6 +397,19 @@ San Millán, J., Cottineau‐Mugadza, C., &amp; Van Ham, M. (2025). The <span>Ec
 <div id="ref-tammaru2021spatial" class="csl-entry" role="listitem">
 Tammaru, T., Knapp, D., Silm, S., Van Ham, M., &amp; Witlox, F. (2021). Spatial underpinnings of social inequalities: A vicious circles of segregation approach. <em>Social Inclusion</em>, <em>9</em>(2), 65–76.
 </div>
+</div>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<ul>
+<li class="fragment">“cycle of segregation” approach: economic inequality means unequal housing resources, which shape residential environments, social networks and bundle of opportunities : “Segregation experienced in one life domain tends to be reproduced in other life domains […] Segregation experienced early in life is often reproduced later in life and transmitted from parents to children because of the interconnected lives of the family members.”</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-label="1"></a>((<span class="at">TS =</span> segregation <span class="fu">AND</span> (<span class="at">TS =</span> income OR <span class="at">TS =</span> wealth OR <span class="at">TS =</span> economic))</span>
+<span id="cb1-2"><a href="" aria-label="2"></a><span class="fu">OR</span> (<span class="at">TS =</span> inequality <span class="fu">AND</span> (<span class="at">TS =</span> income OR <span class="at">TS =</span> wealth OR <span class="at">TS =</span> economic)))</span>
+<span id="cb1-3"><a href="" aria-label="3"></a><span class="fu">AND</span> (<span class="at">ALL =</span> mechanis<span class="sc">*</span> OR <span class="at">ALL =</span> expla?n<span class="sc">*</span> OR <span class="at">ALL =</span> effect<span class="sc">*</span> OR <span class="at">ALL =</span> caus<span class="sc">*</span> OR <span class="at">ALL =</span> relation<span class="sc">*</span> OR <span class="at">ALL =</span> process<span class="sc">*</span>)</span>
+<span id="cb1-4"><a href="" aria-label="4"></a><span class="fu">AND</span> (<span class="at">AB =</span> segregation OR <span class="at">AB =</span> inequality)</span>
+<span id="cb1-5"><a href="" aria-label="5"></a><span class="fu">NOT</span> (<span class="at">AB =</span> spatial inequality)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 <div class="reveal-header">

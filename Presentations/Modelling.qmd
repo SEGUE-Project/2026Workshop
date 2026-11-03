@@ -11,6 +11,7 @@ filters:
   - revealjs-header
 format: 
   revealjs: 
+    incremental: true
     theme: simple
     header-logo-right: assets/segue_logo.png
     header-logo-right-url: https://erc-segue.nl
@@ -32,110 +33,91 @@ title-slide-attributes:
 css: assets/style.css
 ---
 
-## Diversity of approaches to modelling within SEGUE
+## Diversity of approaches to modelling segregation
 
-- Theoretical modelling: causal pathways and multidisciplinary approaches
-- Empirical modelling: factors associated with income/wealth segregation variation
-- Agent-based modelling: mechanism-based explanation of segregation persistence
+- Modelling **causes** of segregation (pathways, timing, factors and actors [@krysan2017cycle])
+- Modelling **patterns** of segregation (spatial concentration, social frontiers [@dean2019frontiers], multiscale patterns [@manley2019multiscale])
+- Modelling **consequences** of segregation (neighbourhood effects [@galster2017spatial] [@tammaru2021spatial], reduction of network diversity and cohesion)
+
+
+## Diversity of epistemologies within SEGUE
+
+- **Theoretical** modelling: causal pathways and multidisciplinary approaches
+- **Empirical** modelling: factors associated with income/wealth segregation variation
+- **Agent-based** modelling: mechanism-based explanation of segregation persistence
 
 # Theoretical modelling {background-gradient="linear-gradient(135deg, white 30%, #00A99D)"}
 
-## Systematic literature review
+## Literature review
 
-- “cycle of segregation” approach: economic inequality means unequal housing resources, which shape residential environments, social networks and bundle of opportunities [@krysan2017cycle] [@galster2017spatial]
-- “vicious circles of segregation” approach [@tammaru2021spatial]: “Segregation experienced in one life domain tends to be reproduced in other life domains […] Segregation experienced early in life is often reproduced later in life and transmitted from parents to children because of the interconnected lives of the family members."
-
-## Systematic literature review {.smaller}
-
-
-```{r}
-#| echo: true
-#| message: false
-#| warning: false
-#| eval: false
-
-
-((TS = segregation AND (TS = income OR TS = wealth OR TS = economic))
-OR (TS = inequality AND (TS = income OR TS = wealth OR TS = economic)))
-AND (ALL = mechanis* OR ALL = expla?n* OR ALL = effect* OR ALL = caus* OR ALL = relation* OR ALL = process*)
-AND (AB = segregation OR AB = inequality)
-NOT (AB = spatial inequality)
-```
-
-::::: {layout-ncol="2"}
-::: {}
-
-![](assets/prisma.png){width=70%} 
-
-:::
-
-::: {}
-
-- Does economic segregation vary with economic inequality, and to what extent are the two phenomena linked?
-
+- Does economic segregation vary with economic inequality? 
+- To what extent are the two phenomena linked?
 - Which causal pathways and mechanisms are proposed to explain their connection?
-
-- To what extent does existing research belong to distinct literatures? 
-
+- To what extent does existing research belong to distinct literatures?
 - What are the consequences regarding the comparability of results and the compatibility of mechanisms?
 
-[@cottineau2025economic]  
-:::
-:::::
+## A large field {.smaller}
 
-## Results {.scrollable}
+![](assets/prisma.png){width="100%"}
 
 
-![](assets/fishcore.png){width=100%} 
+## Multiplex phenomenon {.scrollable}
+
+![](assets/fishcore.png){width="100%"}
+
+
+[@cottineau2025economic]
 
 
 ## 
 
-![](assets/figure5.png){width=120%}
+![](assets/figure5.png){width="120%"}
 
 ## 
 
-![](assets/table2.png){width=100%}
+![](assets/table2.png){width="100%"}
+
+## Conclusions
+
+- Does economic segregation vary with economic inequality? ✅
+- To what extent are the two phenomena linked? 🤷
+- Which causal pathways and mechanisms are proposed to explain their connection? 🏡🎓💼
+- To what extent does existing research belong to distinct literatures? 🤝
+- What are the consequences regarding the comparability of results and the compatibility of mechanisms? ☠️
 
 # Empirical modelling {background-gradient="linear-gradient(135deg, white 30%, #93278F)"}
 
 ## Regression of income and wealth segregation with:
 
-- economic inequality 
-- city size 
-- housing tenure distribution
-- social housing concentration 
-- social housing allocation rules
+- economic inequality [@san_millan_economic_2025] [@sanmillan2025wealth]
+- city size [@san_millan_economic_2025]
+- social housing concentration  [@san2026inequality] 
+- social housing allocation rules [@buitrago2026]
 
-Source: [@san_millan_economic_2025] [@sanmillan2025wealth] [@san2026inequality] [@buitrago2026] 
 
-## Effect of public subsidy on:
-
-- housing unit selection
-- residential neighbourhood 
+## Effect of public policy
 
 > Housing vouchers are not necessarily used to reduce economic segregation. Household operate trade-offs between units quality, place attachment and bundle of opportunity
 
 [@deluca2020not]
 
+- housing unit selection
+- residential neighbourhood
 
 # Agent-based modelling {background-gradient="linear-gradient(135deg, white 30%, #f57b26)"}
 
-## Mechanisms behind segregation emergence
+## Mechanisms behind segregation emergence and persistence [@paulinaslr]
 
--	Homophily & clustering (Schelling)
-- Real estate markets in unequal societies
--	Urban morphology & segregative potential
-
-[@paulinaslr]
-
+- Homophily & clustering (Schelling)
+- Real estate markets in unequal societies 
+- Urban morphology & segregative potential
 
 ## Additional considerations in SEGUE
 
-- **Lifecourse of residential needs**: household transitions produce changes in residential needs, both in terms of housing unit and residential environments. - **Contextual effects**: individuals’ bundle of opportunities depend on where they spend time and who they are exposed to.
--	**Wealth accumulation through residential real estate**: contemporary houses in capitalist states function as shelters and assets. 
+- **Lifecourse of residential needs**: residential needs (housing unit + residential environments) vary with household transitions. 
+- **Contextual effects**: individuals’ bundle of opportunities depend on where they spend time and who they are exposed to. 
+- **Wealth accumulation through residential real estate**: houses as shelters and assets in capitalist societies.
 - **Social housing** and the geography of supply price distortion
-
 
 ## Thank you {.scrollable .smaller}
 
