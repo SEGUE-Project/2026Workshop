@@ -20,7 +20,7 @@ The workshop will take place over 5 full days: 9, 10, 11, 12 and 13 November 202
 ### Code along sessions
 
 - [Livecode repository](https://github.com/SEGUE-Project/workshop-livecode)
-- [Notebook "Computing segregation indices from existing packages"](https://erc-segue.nl/2026Workshop/CodeAlong/ExistingPackages/SegIndexExistingPackages.html)
+- [Notebook "Computing segregation indices from existing packages"](https://erc-segue.nl/2026Workshop/CodeAlong/ExistingPackages/SegIndexExistingPackages.html) & [associated presentation](https://erc-segue.nl/2026Workshop/CodeAlong/ExistingPackages/ExistingSegPackagesPresentation.html#/title-slide)
 - [Notebook "Test-Driven R Package Development"](https://erc-segue.nl/tdd-r-pkg/practical.html)
 
 ## License
