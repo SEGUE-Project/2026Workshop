@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.11.9">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Clémentine Cottineau-Mugadza">
 <meta name="author" content="Ignacio Urria Yáñez">
-<meta name="dcterms.date" content="2026-11-04">
+<meta name="dcterms.date" content="2026-11-06">
 
 <title>Computing segregation indices from existing packages</title>
 <style>
@@ -90,15 +90,14 @@ div.csl-indent {
 <script src="SegIndexExistingPackages_files/libs/clipboard/clipboard.min.js"></script>
 <script src="SegIndexExistingPackages_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="SegIndexExistingPackages_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="SegIndexExistingPackages_files/libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="SegIndexExistingPackages_files/libs/quarto-html/popper.min.js"></script>
 <script src="SegIndexExistingPackages_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="SegIndexExistingPackages_files/libs/quarto-html/anchor.min.js"></script>
 <link href="SegIndexExistingPackages_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="SegIndexExistingPackages_files/libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="SegIndexExistingPackages_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="SegIndexExistingPackages_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="SegIndexExistingPackages_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="SegIndexExistingPackages_files/libs/bootstrap/bootstrap-2275184d74a9f5996c3de92a346d11bf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="SegIndexExistingPackages_files/libs/bootstrap/bootstrap-075330560c56690c3f39d9a1f8dc2012.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
@@ -146,11 +145,11 @@ window.Quarto = {
 
 </head>
 
-<body class="quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+<body class="quarto-light">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-  <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+  <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
@@ -186,7 +185,7 @@ window.Quarto = {
   </ul>
 </nav>
 </div>
-<main class="content" id="quarto-document-content" tabindex="-1">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -208,7 +207,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 4, 2026</p>
+      <p class="date">November 6, 2026</p>
     </div>
   </div>
   
@@ -248,7 +247,7 @@ window.Quarto = {
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">28992</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reading layer `rotterdam_muni' from data source 
-  `C:\Users\iurriayanez\OneDrive - Delft University of Technology\Documenten\R\Rbanism\SEGUE-Workshop\2026Workshop\CodeAlong\ExistingPackages\processed_data\rotterdam_muni.gpkg' 
+  `/Users/ccottineau/GitHub/2026Workshop/CodeAlong/ExistingPackages/processed_data/rotterdam_muni.gpkg' 
   using driver `GPKG'
 Simple feature collection with 108 features and 12 fields
 Geometry type: MULTILINESTRING
@@ -260,7 +259,7 @@ Projected CRS: Amersfoort / RD New</code></pre>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">28992</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reading layer `rotterdam_water' from data source 
-  `C:\Users\iurriayanez\OneDrive - Delft University of Technology\Documenten\R\Rbanism\SEGUE-Workshop\2026Workshop\CodeAlong\ExistingPackages\processed_data\rotterdam_water.gpkg' 
+  `/Users/ccottineau/GitHub/2026Workshop/CodeAlong/ExistingPackages/processed_data/rotterdam_water.gpkg' 
   using driver `GPKG'
 Simple feature collection with 21116 features and 13 fields
 Geometry type: MULTIPOLYGON
@@ -272,7 +271,7 @@ Projected CRS: Amersfoort / RD New</code></pre>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">28992</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reading layer `rotterdam_500m' from data source 
-  `C:\Users\iurriayanez\OneDrive - Delft University of Technology\Documenten\R\Rbanism\SEGUE-Workshop\2026Workshop\CodeAlong\ExistingPackages\processed_data\rotterdam_500m.gpkg' 
+  `/Users/ccottineau/GitHub/2026Workshop/CodeAlong/ExistingPackages/processed_data/rotterdam_500m.gpkg' 
   using driver `GPKG'
 Simple feature collection with 8645 features and 8 fields
 Geometry type: MULTIPOLYGON
@@ -396,7 +395,7 @@ Projected CRS: Amersfoort / RD New</code></pre>
     result &lt;- result + t(result)
     return(round(result, 4))
 }
-&lt;bytecode: 0x000001dc804c22a8&gt;
+&lt;bytecode: 0xc3eadf268&gt;
 &lt;environment: namespace:OasisR&gt;</code></pre>
 </div>
 </div>
@@ -470,7 +469,7 @@ Projected CRS: Amersfoort / RD New</code></pre>
         out
     }
 }
-&lt;bytecode: 0x000001dc81c61938&gt;
+&lt;bytecode: 0xc34c417a8&gt;
 &lt;environment: namespace:divseg&gt;</code></pre>
 </div>
 </div>
@@ -535,7 +534,7 @@ Projected CRS: Amersfoort / RD New</code></pre>
     }
     ret
 }
-&lt;bytecode: 0x000001dc81e4a770&gt;
+&lt;bytecode: 0xc33a8fb98&gt;
 &lt;environment: namespace:segregation&gt;</code></pre>
 </div>
 </div>
@@ -660,7 +659,7 @@ Projected CRS: Amersfoort / RD New</code></pre>
     result &lt;- result/(2 * Total * II)
     return(round(result, 4))
 }
-&lt;bytecode: 0x000001dc816ae5b8&gt;
+&lt;bytecode: 0xc3ec09ce8&gt;
 &lt;environment: namespace:OasisR&gt;</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>dissim_multigroup <span class="ot">&lt;-</span> <span class="fu">DMulti</span>(age_multi_matrix)</span>
@@ -749,7 +748,7 @@ Projected CRS: Amersfoort / RD New</code></pre>
     }
     return(round(result, 4))
 }
-&lt;bytecode: 0x000001dc81649b30&gt;
+&lt;bytecode: 0xc3c63d888&gt;
 &lt;environment: namespace:OasisR&gt;</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>morrill_matrix <span class="ot">&lt;-</span> <span class="fu">DIMorrill</span>(</span>
@@ -790,7 +789,7 @@ H = \sum_{i=1}^{n} \frac{t_{i} (E - E_{i})}{TE}
 </span></p>
 <p>where <span class="math inline">E</span> is the entropy of the entire study area, <span class="math inline">t_{i}</span> is the population of spatial unit <span class="math inline">i</span>, <span class="math inline">T</span> is the population of the entire study area, and <span class="math inline">n</span> is the number of spatial units.</p>
 <p><span class="math inline">H</span> ranges from 0 (every spatial unit has the same composition as the entire study area - no segregation) to 1 (every spatial unit contains only one group - complete segregation).</p>
-<p>Another way of computing the <span class="math inline">H</span> index is using the Mutual Information Index ($M$), which measures how much we know of the population group of an individual by knowing their spatial location:</p>
+<p>Another way of computing the <span class="math inline">H</span> index is using the Mutual Information Index (<span class="math inline">M</span>), which measures how much we know of the population group of an individual by knowing their spatial location:</p>
 <p><span class="math display">
 M = \sum_{i=1}^{n} p_{ig} L_{i}
 </span></p>
@@ -826,7 +825,7 @@ L_{i} = \sum_{g=1}^{G} ln \left( \frac{p_{ig}}{p_{i}p_{g}} \right)
     }
     return(round(result, 4))
 }
-&lt;bytecode: 0x000001dc1bd7a150&gt;
+&lt;bytecode: 0xc3cb47b98&gt;
 &lt;environment: namespace:OasisR&gt;</code></pre>
 </div>
 </div>
@@ -892,7 +891,7 @@ L_{i} = \sum_{g=1}^{G} ln \left( \frac{p_{ig}}{p_{i}p_{g}} \right)
         out
     }
 }
-&lt;bytecode: 0x000001dc892ba7b0&gt;
+&lt;bytecode: 0xc3430d818&gt;
 &lt;environment: namespace:divseg&gt;</code></pre>
 </div>
 </div>
@@ -949,7 +948,7 @@ L_{i} = \sum_{g=1}^{G} ln \left( \frac{p_{ig}}{p_{i}p_{g}} \right)
     p &lt;- data[, list(p = sum(freq)), by = group][["p"]]/n_total
     sum(p * logf(1/p, base))
 }
-&lt;bytecode: 0x000001dc7ffb4c48&gt;
+&lt;bytecode: 0xc3dd78350&gt;
 &lt;environment: namespace:segregation&gt;</code></pre>
 </div>
 </div>
@@ -1056,7 +1055,7 @@ L_{i} = \sum_{g=1}^{G} ln \left( \frac{p_{ig}}{p_{i}p_{g}} \right)
     result &lt;- result/(Etot * Total)
     return(round(result, 4))
 }
-&lt;bytecode: 0x000001dc198621c0&gt;
+&lt;bytecode: 0xc369255b0&gt;
 &lt;environment: namespace:OasisR&gt;</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>entropyOasisR_multi <span class="ot">&lt;-</span> <span class="fu">HMulti</span>(age_groups_count_matrix)</span>
@@ -1181,8 +1180,7 @@ Statistiek (CBS), C. B. voor de. (2026). <em>Kaart van 500 meter bij 500 meter m
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-      window.quartoDecorateExternalLinks = function (root) {
-     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -1191,69 +1189,8 @@ Statistiek (CBS), C. B. voor de. (2026). <em>Kaart van 500 meter bij 500 meter m
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
-          if (!link.classList.contains('no-external-icon')) {
-          }
         }
       }
-      };
-      window.quartoDecorateExternalLinks(window.document);
-    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
-    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
-    const hideOnEscAndFocusOut = {
-      name: 'hideOnEscAndFocusOut',
-      defaultValue: true,
-      fn(instance) {
-        const dismiss = () => {
-          // A show scheduled by the trigger delay would otherwise reopen it
-          instance.clearDelayTimeouts();
-          instance.hide();
-        };
-        const onKeyDown = (event) => {
-          if (event.key !== 'Escape') {
-            return;
-          }
-          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
-          // except an open reveal.js slide menu, which Esc should close too.
-          // The menu handles keys only when its keyboard option is on.
-          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
-            window.Reveal.getConfig().menu?.keyboard !== false;
-          if (!menuHandlesEsc) {
-            event.stopPropagation();
-          }
-          if (instance.popper.contains(window.document.activeElement)) {
-            // Disabled while refocusing so the focus trigger does not reopen it
-            instance.disable();
-            instance.reference.focus();
-            instance.enable();
-          }
-          dismiss();
-        };
-        const onFocusOut = (event) => {
-          const target = event.relatedTarget;
-          if (target && !instance.reference.contains(target) &&
-              !instance.popper.contains(target)) {
-            dismiss();
-          }
-        };
-        // On the trigger too: a click trigger (code-annotations: select) has no
-        // blur handling. Attached for the instance's lifetime so leaving the
-        // trigger also cancels a show still pending on the trigger delay.
-        instance.reference.addEventListener('focusout', onFocusOut);
-        return {
-          onShow() {
-            window.document.addEventListener('keydown', onKeyDown, true);
-            instance.popper.addEventListener('focusout', onFocusOut);
-          },
-          onHide() {
-            window.document.removeEventListener('keydown', onKeyDown, true);
-            instance.popper.removeEventListener('focusout', onFocusOut);
-          },
-          onDestroy() {
-            instance.reference.removeEventListener('focusout', onFocusOut);
-          },
-        };
-      },
-    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -1267,7 +1204,6 @@ Statistiek (CBS), C. B. voor de. (2026). <em>Kaart van 500 meter bij 500 meter m
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
-        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -1430,54 +1366,44 @@ Statistiek (CBS), C. B. voor de. (2026). <em>Kaart van 500 meter bij 500 meter m
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          // Each band is positioned against its own containing block, which is
-          // not the offsetParent of the lines, so place it from client rects.
-          const placeBand = (band, firstEl, lastEl, codeBlock) => {
-            const container = band.offsetParent;
-            if (container === null) {
-              return;
-            }
-            const containerRect = container.getBoundingClientRect();
-            // Reveal.js scales slides with a transform, so convert client
-            // pixels back to the CSS pixels of the container.
-            const scale = containerRect.height / container.offsetHeight || 1;
-            const firstRect = firstEl.getBoundingClientRect();
-            const lastRect = lastEl.getBoundingClientRect();
-            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
-            const height = (lastRect.bottom - firstRect.top) / scale;
-            band.style.top = top - 2 + "px";
-            band.style.height = height + 4 + "px";
-            if (codeBlock) {
-              // Without the copy button wrapper, the containing block is wider
-              // than the code block, so span the code block explicitly.
-              const blockRect = codeBlock.getBoundingClientRect();
-              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
-              band.style.width = blockRect.width / scale + "px";
-            }
-          };
+          let top = null;
+          let height = null;
+          let parent = null;
           if (lineIds.length > 0) {
-            const el = window.document.getElementById(lineIds[0]);
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const parent = el.parentElement.parentElement;
-            // cook up a div (if necessary) and position it
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
             }
-            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
             }
-            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -1575,9 +1501,6 @@ Statistiek (CBS), C. B. voor de. (2026). <em>Kaart van 500 meter bij 500 meter m
       }
     }
   });
-  </script>
-  <script type="application/javascript">
-  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
   </script>
 </div> <!-- /content -->
 
