@@ -265,13 +265,30 @@ Ignacio Urria Yáñez <a href="https://orcid.org/0000-0003-3218-5102" class="qua
 <h2>Setup intructions</h2>
 <ol type="1">
 <li class="fragment">Open a new R project. <code>File &gt; New Project... &gt; New Directory</code></li>
-<li class="fragment">Download the data: <a href="https://edu.nl/38a8b">edu.nl/38a8b</a></li>
+<li class="fragment">Download the data: <a href="https://edu.nl/38a8b" class="uri">https://edu.nl/38a8b</a></li>
 <li class="fragment">Make sure the data is within the project for ease of use</li>
 </ol>
 </section>
 <section id="about-the-data" class="slide level2">
 <h2>About the data</h2>
 <p>We are using open data from the Dutch statistics office CBS, and in particular 500x500 grid cells of Rotterdam. This is count-data coming from the Dutch register, as the 500m x 500m resolution <span class="citation" data-cites="cbs500">(<a href="#/references" role="doc-biblioref" onclick="">Statistiek (CBS), 2026</a>)</span>. The data was clipped to fit the Rotterdam functional area as defined by the OECD <span class="citation" data-cites="oecdFUA">(<a href="#/references" role="doc-biblioref" onclick="">OECD, 2023</a>)</span>. Municipal boundaries and waterbodies come from the kadaster <span class="citation" data-cites="kadaster">(<a href="#/references" role="doc-biblioref" onclick="">Kadaster, 2026</a>)</span>.</p>
+</section>
+<section id="references" class="slide level2 scrollable smaller">
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-kadaster" class="csl-entry" role="listitem">
+Kadaster. (2026). <em>INSPIRE NL administratieve eenheden</em>. <a href="https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/7dd1fd45-ace5-41e0-93a6-64e3be231717">https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/7dd1fd45-ace5-41e0-93a6-64e3be231717</a>
+</div>
+<div id="ref-massey1988dimensions" class="csl-entry" role="listitem">
+Massey, D. S., &amp; Denton, N. A. (1988). The dimensions of residential segregation. <em>Social Forces</em>, <em>67</em>(2), 281–315.
+</div>
+<div id="ref-oecdFUA" class="csl-entry" role="listitem">
+OECD. (2023). <em>OECD definition of cities and functional urban areas</em>. <a href="https://www.oecd.org/en/data/datasets/oecd-definition-of-cities-and-functional-urban-areas.html">https://www.oecd.org/en/data/datasets/oecd-definition-of-cities-and-functional-urban-areas.html</a>
+</div>
+<div id="ref-cbs500" class="csl-entry" role="listitem">
+Statistiek (CBS), C. B. voor de. (2026). <em>Kaart van 500 meter bij 500 meter met statistieken</em>. <a href="https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/kaart-van-500-meter-bij-500-meter-met-statistieken">https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/kaart-van-500-meter-bij-500-meter-met-statistieken</a>
+</div>
+</div>
 </section>
 <section id="about-the-data-1" class="slide level2 scrollable">
 <h2>About the data</h2>
@@ -314,25 +331,123 @@ Ignacio Urria Yáñez <a href="https://orcid.org/0000-0003-3218-5102" class="qua
 <span id="cb1-36"><a href="" aria-label="36"></a>  <span class="fu">select</span>(crs28992res500m, population, <span class="fu">starts_with</span>(<span class="st">"age_"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb1-37"><a href="" aria-label="37"></a>  <span class="fu">st_write</span>(<span class="st">"processed_data/rotterdam_500m.gpkg"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="references" class="slide level2 scrollable smaller">
-<h2>References</h2>
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
-<div id="ref-kadaster" class="csl-entry" role="listitem">
-Kadaster. (2026). <em>INSPIRE NL administratieve eenheden</em>. <a href="https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/7dd1fd45-ace5-41e0-93a6-64e3be231717">https://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/7dd1fd45-ace5-41e0-93a6-64e3be231717</a>
-</div>
-<div id="ref-oecdFUA" class="csl-entry" role="listitem">
-OECD. (2023). <em>OECD definition of cities and functional urban areas</em>. <a href="https://www.oecd.org/en/data/datasets/oecd-definition-of-cities-and-functional-urban-areas.html">https://www.oecd.org/en/data/datasets/oecd-definition-of-cities-and-functional-urban-areas.html</a>
-</div>
-<div id="ref-cbs500" class="csl-entry" role="listitem">
-Statistiek (CBS), C. B. voor de. (2026). <em>Kaart van 500 meter bij 500 meter met statistieken</em>. <a href="https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/kaart-van-500-meter-bij-500-meter-met-statistieken">https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/kaart-van-500-meter-bij-500-meter-met-statistieken</a>
-</div>
-</div>
 </section></section>
+<section>
 <section id="now-lets-code-together" class="title-slide slide level1 center" data-background-gradient="linear-gradient(135deg, white 30%, #93278F)">
 <h1>Now, let’s code together</h1>
 
 </section>
+<section id="segregation-packages" class="slide level2">
+<h2>Segregation Packages</h2>
+<p>There are currently (at least) 3 packages available to compute the indices of segregation we will use in this session (dissimilarity and entropy):</p>
+<ul>
+<li class="fragment"><code>OasisR</code></li>
+<li class="fragment"><code>divseg</code></li>
+<li class="fragment"><code>segregation</code></li>
+</ul>
+</section>
+<section id="oasisr" class="slide level2">
+<h2><code>OasisR</code></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-label="1"></a><span class="fu">library</span>(OasisR)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><a href="https://cran.rstudio.com/web/packages/OasisR/OasisR.pdf"><code>OasisR</code></a> was deprecated last year but seems to function well again.</p>
+<p>It provides performs <strong>most categorical &amp; ordinal measures</strong> of segregation (inc. 2-group, 1-group, multigroup, and spatially adjusted indices). It provides <strong>resampling methods</strong> to test significance.</p>
+<p>Its core segregation functions generally use a <strong>matrix-oriented structure</strong>: rows represent spatial units and columns represent population groups.</p>
+</section>
+<section id="divseg" class="slide level2">
+<h2><code>divseg</code></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-label="1"></a><span class="fu">library</span>(divseg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><a href="https://christophertkenny.com/divseg/reference/index.html"><code>divseg</code></a> performs diversity measures and indices proposed by Massey &amp; Denton along the 5 dimensions of segregation <span class="citation" data-cites="massey1988dimensions">(<a href="#/references" role="doc-biblioref" onclick="">Massey &amp; Denton, 1988</a>)</span>.</p>
+<p>It uses a <strong>data-frame and tidyverse-oriented structure</strong>.</p>
+<p>Group variables are selected from columns, and the package can work directly with <code>sf</code> objects.</p>
+</section>
+<section id="segregation" class="slide level2">
+<h2><code>segregation</code></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-label="1"></a><span class="fu">library</span>(segregation)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><a href="https://www.rdocumentation.org/packages/segregation/versions/1.1.0"><code>segregation</code></a> implements D, exposure and isolation measures, and entropy-based M and H indices.</p>
+<p>It uses a <strong>long-data structure</strong> in which the population group, spatial unit, and optional frequency or weight are represented explicitly as variables.</p>
+<p>The package also includes <strong>inference, decomposition, and visualisation</strong> tools.</p>
+</section>
+<section id="dissimilarity-index" class="slide level2">
+<h2>Dissimilarity index</h2>
+<p>Measures the unevenness with which two population groups are distributed across a set of spatial units. For two groups <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> distributed across <span class="math inline">\(n\)</span> units:</p>
+<p><span class="math display">\[D = \frac{1}{2}\sum_{i=1}^{n}
+\left|
+\frac{x_i}{X} - \frac{y_i}{Y}
+\right|\]</span></p>
+<p>For the first comparison, we distinguish between people aged <strong>0–25</strong> and everyone aged <strong>26 and older</strong>.</p>
+</section></section>
+<section>
+<section id="package-comparison" class="title-slide slide level1 center" data-background-gradient="linear-gradient(135deg, white 30%, #f57b26)">
+<h1>Package comparison</h1>
+<p>Why different input and output structures?</p>
+<p>What is their added value?</p>
+</section>
+<section id="what-should-a-function-do-when-the-user-supplies-more-than-two-groups" class="slide level2" data-background-gradient="linear-gradient(135deg, white 30%, #00A99D)">
+<h2>What should a function do when the user supplies more than two groups?</h2>
+<ul>
+<li class="fragment">return all pairwise comparisons?</li>
+<li class="fragment">collapse the data to one group versus all others?</li>
+<li class="fragment">calculate a multigroup extension?</li>
+<li class="fragment">require the user to choose explicitly?</li>
+</ul>
+</section></section>
+<section>
+<section id="spatial-dissimilarity" class="title-slide slide level1 center">
+<h1>Spatial Dissimilarity</h1>
+<p>Conventional D depends on the population counts in the spatial units, but not on the locations of those units relative to one another.</p>
+<p>Rearranging the same grid cells spatially would therefore leave D unchanged.</p>
+</section>
+<section id="spatial-dissimilarity-1" class="slide level2">
+<h2>Spatial Dissimilarity</h2>
+<p>Morrill’s spatial version of D adjusts the conventional index using contiguity between spatial units:</p>
+<p><span class="math display">\[D(S) = D - \sum_{i=1}^{n}\sum_{j=1}^{n}\left|w_{ij} (z_{i,g} - z_{j,g})\right|\]</span></p>
+<p>where <span class="math inline">\(D\)</span> is the traditional aspatial Index of Dissimilarity; <span class="math inline">\(z_{i,g}\)</span> and <span class="math inline">\(z_{j,g}\)</span> are the proportions of group <span class="math inline">\(g\)</span> in spatial units <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>, respectively; <span class="math inline">\(w_{ij}\)</span> has a value of 1 if units <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are adjacent or 0 otherwise.</p>
+</section>
+<section id="spatial-dissimilarity-2" class="slide level2">
+<h2>Spatial Dissimilarity</h2>
+<p><code>OasisR::DIMorrill()</code> accepts the group matrix together with a binary contiguity matrix.</p>
+<p>We create a rook-contiguity matrix for the same grid cells used in the two-group example. <code>spdep</code> is used here only to construct the spatial relationship between cells.</p>
+</section>
+<section id="entropy-index-e" class="slide level2">
+<h2>Entropy index E</h2>
+<p>The Entropy Index measures the diversity of population groups within a spatial unit:</p>
+<p><span class="math display">\[E_{i} = -\sum_{g=1}^{G} p_{ig} ln(p_{ig})\]</span></p>
+<p>where <span class="math inline">\(p_{ig}\)</span> is the proportion of group <span class="math inline">\(g\)</span> in spatial unit <span class="math inline">\(i\)</span>, and <span class="math inline">\(G\)</span> is the total number of population groups.</p>
+<p>Entropy ranges from 0 (only one group present) to <span class="math inline">\(ln(G)\)</span> (all groups have equal proportions).</p>
+</section>
+<section id="theils-index-h" class="slide level2 smaller">
+<h2>Theil’s index H</h2>
+<p>Theil’s Information Theory Index H measures segregation by comparing the diversity of individual spatial units with the diversity of the overall study area:</p>
+<p><span class="math display">\[
+H = \sum_{i=1}^{n} \frac{t_{i} (E - E_{i})}{TE}
+\]</span></p>
+<p>where <span class="math inline">\(E\)</span> is the entropy of the entire study area, <span class="math inline">\(t_{i}\)</span> is the population of spatial unit <span class="math inline">\(i\)</span>, <span class="math inline">\(T\)</span> is the population of the entire study area, and <span class="math inline">\(n\)</span> is the number of spatial units.</p>
+<p><span class="math inline">\(H\)</span> ranges from 0 (every spatial unit has the same composition as the entire study area - no segregation) to 1 (every spatial unit contains only one group - complete segregation).</p>
+</section>
+<section id="mutual-information-index-m" class="slide level2 smaller">
+<h2>Mutual Information index M</h2>
+<p>Another way of computing the <span class="math inline">\(H\)</span> index is using the Mutual Information Index (<span class="math inline">\(M\)</span>), which measures how much we know of the population group of an individual by knowing their spatial location:</p>
+<p><span class="math display">\[
+M = \sum_{i=1}^{n} p_{ig} L_{i}
+\]</span></p>
+<p>where <span class="math inline">\(L_{i}\)</span> is the “local” segregation score for unit <span class="math inline">\(i\)</span>:</p>
+<p><span class="math display">\[
+L_{i} = \sum_{g=1}^{G} ln \left( \frac{p_{ig}}{p_{i}p_{g}} \right)
+\]</span></p>
+<p><span class="math inline">\(M\)</span> ranges from 0 (knowing someone’s location provides no information about their group membership) to E.</p>
+</section>
+<section id="entropy-based-indices" class="slide level2">
+<h2>Entropy-based indices:</h2>
+<p>The <span class="math inline">\(H\)</span> index is mathematically equivalent to the normalisation of <span class="math inline">\(M\)</span> by <span class="math inline">\(E\)</span>:</p>
+<p><span class="math display">\[ H = \frac{M}{E}\]</span></p>
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

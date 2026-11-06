@@ -49,13 +49,17 @@ The fact that everybody attends both types of session facilitates communication 
 ## Setup intructions
 
 1.  Open a new R project. `File > New Project... > New Directory`
-2.  Download the data: [edu.nl/38a8b](https://edu.nl/38a8b)
+2.  Download the data: <https://edu.nl/38a8b>
 3.  Make sure the data is within the project for ease of use
 
 ## About the data
 
 We are using open data from the Dutch statistics office CBS, and in particular 500x500 grid cells of Rotterdam. This is count-data coming from the Dutch register, as the 500m x 500m resolution [@cbs500]. The data was clipped to fit the Rotterdam functional area as defined by the OECD [@oecdFUA]. Municipal boundaries and waterbodies come from the kadaster [@kadaster].
 
+## References {.scrollable}
+
+::: {#refs}
+:::
 
 ## About the data {.scrollable}
 
@@ -107,9 +111,158 @@ grid2025 <-  st_read("data/CBS_grids/2025/cbs_vk500_2025_v1.gpkg") |>
 ```
 
 
-## References {.scrollable}
-
-::: {#refs}
-:::
-
 # Now, let's code together {background-gradient="linear-gradient(135deg, white 30%, #93278F)"}
+
+
+## Segregation Packages
+
+There are currently (at least) 3 packages available to compute the indices of segregation we will use in this session (dissimilarity and entropy):
+
+- `OasisR`
+- `divseg`
+- `segregation`
+
+
+## `OasisR`
+
+
+```{r OasisR}
+#| echo: true
+#| eval: false
+
+library(OasisR)
+```
+
+
+[`OasisR`](https://cran.rstudio.com/web/packages/OasisR/OasisR.pdf) was deprecated last year but seems to function well again. 
+
+It provides performs **most categorical & ordinal measures** of segregation (inc. 2-group, 1-group, multigroup, and spatially adjusted indices). It provides **resampling methods** to test significance. 
+
+Its core segregation functions generally use a **matrix-oriented structure**: rows represent spatial units and columns represent population groups.
+
+## `divseg`
+
+
+```{r divseg}
+#| echo: true
+#| eval: false
+
+library(divseg)
+```
+
+[`divseg`](https://christophertkenny.com/divseg/reference/index.html) performs diversity measures and indices proposed by Massey & Denton along the 5 dimensions of segregation [@massey1988dimensions]. 
+
+It uses a **data-frame and tidyverse-oriented structure**.
+
+Group variables are selected from columns, and the package can work directly with `sf` objects.
+
+
+## `segregation`
+
+```{r segregationpackage}
+#| echo: true
+#| eval: false
+
+library(segregation)
+```
+
+
+[`segregation`](https://www.rdocumentation.org/packages/segregation/versions/1.1.0) implements D, exposure and isolation measures, and entropy-based M and H indices. 
+
+It uses a **long-data structure** in which the population group, spatial unit, and optional frequency or weight are represented explicitly as variables. 
+
+The package also includes **inference, decomposition, and visualisation** tools.
+
+
+## Dissimilarity index
+
+Measures the unevenness with which two population groups are distributed across a set of spatial units. For two groups $x$ and $y$ distributed across $n$ units:
+
+$$D = \frac{1}{2}\sum_{i=1}^{n}
+\left|
+\frac{x_i}{X} - \frac{y_i}{Y}
+\right|$$
+
+For the first comparison, we distinguish between people aged **0--25** and everyone aged **26 and older**.
+
+
+# Package comparison {background-gradient="linear-gradient(135deg, white 30%, #f57b26)"}
+
+Why different input and output structures? 
+
+What is their added value?
+
+
+## What should a function do when the user supplies more than two groups? {background-gradient="linear-gradient(135deg, white 30%, #00A99D)"}
+
+-   return all pairwise comparisons?
+-   collapse the data to one group versus all others?
+-   calculate a multigroup extension?
+-   require the user to choose explicitly?
+
+
+# Spatial Dissimilarity
+
+Conventional D depends on the population counts in the spatial units, but not on the locations of those units relative to one another. 
+
+Rearranging the same grid cells spatially would therefore leave D unchanged.
+
+## Spatial Dissimilarity
+
+Morrill's spatial version of D adjusts the conventional index using contiguity between spatial units:
+
+$$D(S) = D - \sum_{i=1}^{n}\sum_{j=1}^{n}\left|w_{ij} (z_{i,g} - z_{j,g})\right|$$
+
+where $D$ is the traditional aspatial Index of Dissimilarity; $z_{i,g}$ and $z_{j,g}$ are the proportions of group $g$ in spatial units $i$ and $j$, respectively; $w_{ij}$ has a value of 1 if units $i$ and $j$ are adjacent or 0 otherwise.
+
+## Spatial Dissimilarity
+
+`OasisR::DIMorrill()` accepts the group matrix together with a binary contiguity matrix.
+
+We create a rook-contiguity matrix for the same grid cells used in the two-group example. `spdep` is used here only to construct the spatial relationship between cells.
+
+## Entropy index E
+
+
+The Entropy Index measures the diversity of population groups within a spatial unit:
+
+$$E_{i} = -\sum_{g=1}^{G} p_{ig} ln(p_{ig})$$
+
+where $p_{ig}$ is the proportion of group $g$ in spatial unit $i$, and $G$ is the total number of population groups.
+
+Entropy ranges from 0 (only one group present) to $ln(G)$ (all groups have equal proportions).
+
+## Theil's index H {.smaller}
+
+Theil's Information Theory Index H measures segregation by comparing the diversity of individual spatial units with the diversity of the overall study area:
+
+$$
+ H = \sum_{i=1}^{n} \frac{t_{i} (E - E_{i})}{TE}
+$$
+
+where $E$ is the entropy of the entire study area, $t_{i}$ is the population of spatial unit $i$, $T$ is the population of the entire study area, and $n$ is the number of spatial units.
+
+$H$ ranges from 0 (every spatial unit has the same composition as the entire study area - no segregation) to 1 (every spatial unit contains only one group - complete segregation).
+
+## Mutual Information index M {.smaller}
+
+Another way of computing the $H$ index is using the Mutual Information Index ($M$), which measures how much we know of the population group of an individual by knowing their spatial location:
+
+$$
+ M = \sum_{i=1}^{n} p_{ig} L_{i} 
+$$
+
+where $L_{i}$ is the "local" segregation score for unit $i$:
+
+$$
+ L_{i} = \sum_{g=1}^{G} ln \left( \frac{p_{ig}}{p_{i}p_{g}} \right) 
+$$
+
+$M$ ranges from 0 (knowing someone's location provides no information about their group membership) to E.
+
+## Entropy-based indices:
+
+The $H$ index is mathematically equivalent to the normalisation of $M$ by $E$:
+
+$$ H = \frac{M}{E}$$
+

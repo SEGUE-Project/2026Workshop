@@ -480,7 +480,7 @@ where $E$ is the entropy of the entire study area, $t_{i}$ is the population of 
 
 $H$ ranges from 0 (every spatial unit has the same composition as the entire study area - no segregation) to 1 (every spatial unit contains only one group - complete segregation).
 
-Another way of computing the $H$ index is using the Mutual Information Index (\$M\$), which measures how much we know of the population group of an individual by knowing their spatial location:
+Another way of computing the $H$ index is using the Mutual Information Index ($M$), which measures how much we know of the population group of an individual by knowing their spatial location:
 
 $$
  M = \sum_{i=1}^{n} p_{ig} L_{i} 
