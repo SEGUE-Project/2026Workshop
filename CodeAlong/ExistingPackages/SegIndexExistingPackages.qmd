@@ -28,11 +28,11 @@ In this first code along crash course, we want to bring discussions back to the 
 
 We have three aims with this activity:
 
-1.  aligning our vocabulary around segregation computation with R by working with R functions to compute segregation together
+1.  aligning our vocabulary around segregation computation with R by work with R functions to compute segregation together
 2.  aligning our knowledge and understanding of the current landscape of segregation computation with R
 3.  foster discussions about what the field needs and what the package needs to provide with concrete examples.
 
-We understand that for some of you, parts of the script will seem challenging while for others, it will be very basic... This is the point of our diverse group: some of us are more comfortable with development while others are at ease with theoretical discussions. The fact that everybody attends both types of session facilitates communication between developers and users profiles.
+We understand that for some of you, parts of the script will seem challenging while for other, it will be very basic... This is the point of our diverse group: some of us are more comfortable with development while others are at ease with theoretical discussions. The fact that everybody attends both types of session facilitates communication between developers and users profiles.
 
 ## Basic Packages
 
@@ -208,7 +208,7 @@ $$D = \frac{1}{2}\sum_{i=1}^{n}
 \frac{x_i}{X} - \frac{y_i}{Y}
 \right|$$
 
-For the first comparison, we distinguish between people aged **0--25** and everyone aged **26 and older**.
+For the first comparison we distinguish between people aged **0--25** and everyone aged **26 and older**.
 
 ### `OasisR`
 
@@ -406,22 +406,16 @@ segregation::dissimilarity(
 
 **Discuss:** What should a function do when the user supplies more than two groups?
 
--   return all pairwise comparisons?
--   collapse the data to one group versus all others?
--   calculate a multigroup extension?
--   require the user to choose explicitly?
+- return all pairwise comparisons?
+- collapse the data to one group versus all others?
+- calculate a multigroup extension?
+- require the user to choose explicitly?
 
 ### Adding spatial information
 
 Conventional D depends on the population counts in the spatial units, but not on the locations of those units relative to one another. Rearranging the same grid cells spatially would therefore leave D unchanged.
 
-Morrill's spatial version of D adjusts the conventional index using contiguity between spatial units:
-
-$$D(S) = D - \sum_{i=1}^{n}\sum_{j=1}^{n}\left|w_{ij} (z_{i,g} - z_{j,g})\right|$$
-
-where $D$ is the traditional aspatial Index of Dissimilarity; $z_{i,g}$ and $z_{j,g}$ are the proportions of group $g$ in spatial units $i$ and $j$, respectively; $w_{ij}$ has a value of 1 if units $i$ and $j$ are adjacent or 0 otherwise.
-
-`OasisR::DIMorrill()` accepts the group matrix together with a binary contiguity matrix.
+Morrill's spatial version of D adjusts the conventional index using contiguity between spatial units. `OasisR::DIMorrill()` accepts the group matrix together with a binary contiguity matrix.
 
 We create a rook-contiguity matrix for the same grid cells used in the two-group example. `spdep` is used here only to construct the spatial relationship between cells.
 
@@ -462,41 +456,7 @@ tibble(
 
 ## Entropy
 
-The Entropy Index measures the diversity of population groups within a spatial unit:
-
-$$E_{i} = -\sum_{g=1}^{G} p_{ig} ln(p_{ig})$$
-
-where $p_{ig}$ is the proportion of group $g$ in spatial unit $i$, and $G$ is the total number of population groups.
-
-Entropy ranges from 0 (only one group present) to $ln(G)$ (all groups have equal proportions).
-
-The H Index (Theil's Information Theory Index) measures segregation by comparing the diversity of individual spatial units with the diversity of the overall study area:
-
-$$
- H = \sum_{i=1}^{n} \frac{t_{i} (E - E_{i})}{TE}
-$$
-
-where $E$ is the entropy of the entire study area, $t_{i}$ is the population of spatial unit $i$, $T$ is the population of the entire study area, and $n$ is the number of spatial units.
-
-$H$ ranges from 0 (every spatial unit has the same composition as the entire study area - no segregation) to 1 (every spatial unit contains only one group - complete segregation).
-
-Another way of computing the $H$ index is using the Mutual Information Index ($M$), which measures how much we know of the population group of an individual by knowing their spatial location:
-
-$$
- M = \sum_{i=1}^{n} p_{ig} L_{i} 
-$$
-
-where $L_{i}$ is the "local" segregation score for unit $i$:
-
-$$
- L_{i} = \sum_{g=1}^{G} ln \left( \frac{p_{ig}}{p_{i}p_{g}} \right) 
-$$
-
-$M$ ranges from 0 (knowing someone's location provides no information about their group membership) to E.
-
-The $H$ index is mathematically equivalent to the normalisation of $M$ by $E$:
-
-$$ H = \frac{M}{E}$$
+We will use the same three packages to compute entropy indices of segregation.
 
 ### `OasisR`
 
@@ -599,7 +559,7 @@ local |>
   head()
 ```
 
-This output represents **group-specific contributions** to the multi-group entropy score M. The distinction is important when comparing outputs across packages. Footnote: more on this package, initially developed for educational segregation purposes [here](https://elbersb.github.io/segregation/).
+This output represents **local contributions by spatial unit**, rather than group-specific entropy scores. The distinction is important when comparing outputs across packages.
 
 ### Comparing entropy outputs
 

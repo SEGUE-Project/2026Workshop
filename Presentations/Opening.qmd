@@ -31,6 +31,24 @@ css: assets/style.css
 
 # Welcome {background-gradient="linear-gradient(135deg, white 30%, #00A99D)"}
 
+## Some basic, some useful and some boring questions!
+
+
+::::: {layout-ncol="2"}
+::: {}
+
+[vevox.app](https://vevox.app/#/m/140165436)
+
+140165436
+
+:::
+
+::: {}
+
+![](assets/vevox-qr.png){width="300"}
+:::
+:::::
+
 ## Aims of the workshop
 
 - foster **research conversations** on the state of segregation measurement and its relation to theories, data, scale and social attributes considered.
@@ -324,13 +342,15 @@ mf_map(
 
 ```
 
-## The 25 {.scrollable .smaller}
+## The ~~27~~ 23 {.scrollable .smaller}
 
 [**Adrian Nowacki**]{style="color:#f57b26;"}, PhD Student, Doctoral School of Natural Sciences, Adam Mickiewicz University in Poznań, Poland.
 
 [**Alok Kumar**]{style="color:#00A99D;"}, PhD Candidate, Jawaharlal Nehru University New Delhi, India
 
-[**Ana Petrović**]{style="color:#f57b26;"}, Assistant Professor in urban studies at TU Delft, NL
+[~~**Ana Luisa Maffini**~~]{style="color:#f57b26;"}, ~~temporary lecturer at the Federal University of Santa Maria, Brasil~~
+
+[~~**Ana Petrović**~~]{style="color:#f57b26;"}, ~~Assistant Professor in urban studies at TU Delft, NL~~
 
 [**Benjamin Jarvis**]{style="color:#93278F;"}, Associate Professor, Institute for Analytical Sociology, Linköping University, Sweden
 
